@@ -1,0 +1,39 @@
+﻿using AutoMapper;
+using CEMEX.API.Models.Catalogos;
+using CEMEX.API.Models.Seguridad;
+using CEMEX.Entidades.Catalogos;
+using CEMEX.Entidades.Seguridad;
+using System.Collections.Generic;
+
+namespace CEMEX.API.Mappings
+{
+    public class DomainToViewModelMappingProfile:Profile
+    {
+        public override string ProfileName
+        {
+            get
+            {
+                return "DomainToViewModelMappings";
+            }
+        }
+
+        public DomainToViewModelMappingProfile()
+        {
+            CreateMap<Estado, EstadoViewModel>();
+
+            CreateMap<Municipio, MunicipioViewModel>();
+
+            CreateMap<Jerarquia, JerarquiaViewModel>();
+
+            CreateMap<Permiso, PermisoViewModel>();
+
+            CreateMap<Modulo, ModuloViewModel>().ForMember(m => m.DetalleModuloPermisos, map =>map.MapFrom(ma => ma.ModuloDetallePermisos));
+
+            CreateMap<DetalleModuloPermiso, DetalleModuloPermisoViewModel>();
+
+            CreateMap<Rol, RolViewModel>();
+
+            CreateMap<Usuario, UsuarioViewModel>().ForMember(u => u.Contrasena, opt => opt.Ignore());
+        }
+    }
+}

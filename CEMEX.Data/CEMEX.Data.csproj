@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CB3A0554-C8F5-439A-B4A7-D7FD9F63BA35}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CEMEX.Data</RootNamespace>
+    <AssemblyName>CEMEX.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CemexContext.cs" />
+    <Compile Include="Configurations\Catalogos\ActividadPGVConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\CampaniaConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\EstadoConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\MunicipioConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\TipoProspectoConfiguration.cs" />
+    <Compile Include="Configurations\EntityBaseConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\DetalleModuloPermisoConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\DetalleRolPermisoConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\JerarquiaConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\ModuloConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\PermisoConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\RolConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\UsuarioConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\UsuarioRolConfiguration.cs" />
+    <Compile Include="Extensions\Seguridad\EstadoExtensions.cs" />
+    <Compile Include="Extensions\Seguridad\UsuarioExtensions.cs" />
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
+    <Compile Include="Infrastructure\IDbFactory.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\201704091830231_initial_migration.cs" />
+    <Compile Include="Migrations\201704091830231_initial_migration.Designer.cs">
+      <DependentUpon>201704091830231_initial_migration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704100408484_Modulo de Seguridad.cs" />
+    <Compile Include="Migrations\201704100408484_Modulo de Seguridad.Designer.cs">
+      <DependentUpon>201704100408484_Modulo de Seguridad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704140612273_Entidad Error.cs" />
+    <Compile Include="Migrations\201704140612273_Entidad Error.Designer.cs">
+      <DependentUpon>201704140612273_Entidad Error.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704160516505_Tabla Jerarquia.cs" />
+    <Compile Include="Migrations\201704160516505_Tabla Jerarquia.Designer.cs">
+      <DependentUpon>201704160516505_Tabla Jerarquia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704160623158_Tabla Permiso.cs" />
+    <Compile Include="Migrations\201704160623158_Tabla Permiso.Designer.cs">
+      <DependentUpon>201704160623158_Tabla Permiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.cs" />
+    <Compile Include="Migrations\201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.Designer.cs">
+      <DependentUpon>201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.cs" />
+    <Compile Include="Migrations\201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.Designer.cs">
+      <DependentUpon>201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.cs" />
+    <Compile Include="Migrations\201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.Designer.cs">
+      <DependentUpon>201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704250427053_Entidad Usuario Update.cs" />
+    <Compile Include="Migrations\201704250427053_Entidad Usuario Update.Designer.cs">
+      <DependentUpon>201704250427053_Entidad Usuario Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EntityBaseRepository.cs" />
+    <Compile Include="Repositories\IEntityBaseRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CEMEX.Entidades\CEMEX.Entidades.csproj">
+      <Project>{23c95db5-346c-4238-8108-a91f46be21dc}</Project>
+      <Name>CEMEX.Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201704091830231_initial_migration.resx">
+      <DependentUpon>201704091830231_initial_migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704100408484_Modulo de Seguridad.resx">
+      <DependentUpon>201704100408484_Modulo de Seguridad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704140612273_Entidad Error.resx">
+      <DependentUpon>201704140612273_Entidad Error.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704160516505_Tabla Jerarquia.resx">
+      <DependentUpon>201704160516505_Tabla Jerarquia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704160623158_Tabla Permiso.resx">
+      <DependentUpon>201704160623158_Tabla Permiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.resx">
+      <DependentUpon>201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.resx">
+      <DependentUpon>201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.resx">
+      <DependentUpon>201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704250427053_Entidad Usuario Update.resx">
+      <DependentUpon>201704250427053_Entidad Usuario Update.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
