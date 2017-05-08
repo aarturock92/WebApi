@@ -13,10 +13,12 @@ using CEMEX.API.Infrastructure.Extensions;
 using AutoMapper;
 using CEMEX.Entidades;
 using System.Collections.Generic;
+using System.Web.Http.Cors;
 
 namespace CEMEX.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [EnableCors(origins: "http://localhost:3000/", headers: "*", methods:"*")]
     [RoutePrefix("api/estados")]
     public class EstadosController : ApiControllerBase
     {

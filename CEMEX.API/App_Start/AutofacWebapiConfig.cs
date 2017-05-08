@@ -3,8 +3,6 @@ using Autofac.Integration.WebApi;
 using CEMEX.Data;
 using CEMEX.Data.Infrastructure;
 using CEMEX.Data.Repositories;
-using CEMEX.Services;
-using CEMEX.Services.Abstract;
 using System.Data.Entity;
 using System.Reflection;
 using System.Web.Http;
@@ -47,13 +45,13 @@ namespace CEMEX.API.App_Start
                   .InstancePerRequest();
 
 
-            builder.RegisterType<EncryptionService>()
-                .As<IEncryptionService>()
-                .InstancePerRequest();
+            //builder.RegisterType<EncryptionService>()
+            //    .As<IEncryptionService>()
+            //    .InstancePerRequest();
 
-            builder.RegisterType<MembershipService>()
-                .As<IMembershipService>()
-                .InstancePerRequest();
+            //builder.RegisterType<MembershipService>()
+            //    .As<IMembershipService>()
+            //    .InstancePerRequest();
 
             Container = builder.Build();
 
