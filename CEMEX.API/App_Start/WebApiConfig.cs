@@ -2,6 +2,7 @@
 using CEMEX.API.Infrastructure.MessageHandlers;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace CEMEX.API
 {
@@ -9,7 +10,8 @@ namespace CEMEX.API
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors();
+            var cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
             // Rutas de API web
             config.MapHttpAttributeRoutes();
 

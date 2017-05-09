@@ -18,7 +18,6 @@ using System.Web.Http.Cors;
 namespace CEMEX.API.Controllers
 {
     //[Authorize]
-    [EnableCors(origins: "http://localhost:3000/", headers: "*", methods:"*")]
     [RoutePrefix("api/estados")]
     public class EstadosController : ApiControllerBase
     {
