@@ -16,6 +16,8 @@ namespace CEMEX.API.Models.Catalogos
 
         public int Estatus { get; set; }
 
+        public List<MunicipioViewModel> Municipios { get; set; }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var validator = new EstadoViewModelValidator();

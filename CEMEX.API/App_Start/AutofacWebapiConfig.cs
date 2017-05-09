@@ -44,15 +44,6 @@ namespace CEMEX.API.App_Start
                   .As(typeof(IEntityBaseRepository<>))
                   .InstancePerRequest();
 
-
-            //builder.RegisterType<EncryptionService>()
-            //    .As<IEncryptionService>()
-            //    .InstancePerRequest();
-
-            //builder.RegisterType<MembershipService>()
-            //    .As<IMembershipService>()
-            //    .InstancePerRequest();
-
             Container = builder.Build();
 
             return Container;

@@ -19,7 +19,7 @@ namespace CEMEX.API.Mappings
 
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Estado, EstadoViewModel>();
+            CreateMap<Estado, EstadoViewModel>().ForMember(e => e.Municipios, map => map.MapFrom(ma => ma.Municipios));
 
             CreateMap<Municipio, MunicipioViewModel>();
 
@@ -27,7 +27,7 @@ namespace CEMEX.API.Mappings
 
             CreateMap<Permiso, PermisoViewModel>();
 
-            CreateMap<Modulo, ModuloViewModel>().ForMember(m => m.DetalleModuloPermisos, map =>map.MapFrom(ma => ma.ModuloDetallePermisos));
+            CreateMap<Modulo, ModuloViewModel>();//.ForMember(m => m.DetalleModuloPermisos, map =>map.MapFrom(ma => ma.ModuloDetallePermisos));
 
             CreateMap<DetalleModuloPermiso, DetalleModuloPermisoViewModel>();
 

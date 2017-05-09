@@ -11,5 +11,10 @@ namespace CEMEX.Data.Extensions.Seguridad
         {
             return repositoryEstado.GetAll().Include(e => e.Municipios).Where(x => x.ID == id).FirstOrDefault();
         } 
+
+        //public static Estado GetSingleEstadoWithMunicipiosById()
+        //{
+
+        //}
     }
 }

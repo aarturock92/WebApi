@@ -14,6 +14,7 @@ using AutoMapper;
 using CEMEX.Entidades;
 using System.Collections.Generic;
 using System.Web.Http.Cors;
+using System.Data.Entity;
 
 namespace CEMEX.API.Controllers
 {
@@ -125,20 +126,18 @@ namespace CEMEX.API.Controllers
             {
                 HttpResponseMessage response = null;
 
-                var estado = _estadosRepository.GetSingle(id);
+                Estado estado = _estadosRepository.GetSingle(id);
 
                 if (estado != null)
                 {
-                    EstadoViewModel estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
-
-                    response = request.CreateResponse<EstadoViewModel>(HttpStatusCode.OK, estadoVM);
+                     EstadoViewModel estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
+                     response = request.CreateResponse<EstadoViewModel>(HttpStatusCode.OK, estadoVM);
                 }
                 else
                 {
                     response = request.CreateResponse(HttpStatusCode.NotFound, 
                                                       string.Format(ResponseMessages.MessageResponseEstados.NoEncontrado, id));
                 }                
-
                 return response;
             });
         }
@@ -195,43 +194,6 @@ namespace CEMEX.API.Controllers
                 };
 
                 response = request.CreateResponse<PaginationSet<EstadoViewModel>>(HttpStatusCode.OK,pagedSet);
-
-                return response;
-            });
-
-        }
-
-        [HttpGet]
-        [Route("{id:int}/municipios")]
-        public HttpResponseMessage GetMunicipiosByEstadoId(HttpRequestMessage request, int id)
-        {
-            return CreateHttpResponse(request, () =>
-            {
-                HttpResponseMessage response = null;
-
-                var estado = _estadosRepository.GetSingle(id);
-
-                if (estado !=null)
-                {
-                    List<Municipio> municipios = estado.Municipios.ToList();
-
-                    if (municipios.Count == 0)
-                    {
-                        response = request.CreateResponse(HttpStatusCode.NoContent, 
-                                                          ResponseMessages.MessageResponseServices.NotFound);
-                    }else
-                    {
-                        IEnumerable<MunicipioViewModel> municipiosVM = Mapper.Map<IEnumerable<Municipio>, 
-                                                                                  IEnumerable<MunicipioViewModel>>(municipios);
-                        response = request.CreateResponse(HttpStatusCode.OK,
-                                                          municipiosVM);
-                    }
-
-                }else
-                {
-                    response = request.CreateResponse(HttpStatusCode.NotFound, 
-                                                      ResponseMessages.MessageResponseServices.NotFound);
-                }
 
                 return response;
             });
