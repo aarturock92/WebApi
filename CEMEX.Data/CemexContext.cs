@@ -19,11 +19,13 @@ namespace CEMEX.Data
         }
 
         #region Catalogos
-        public IDbSet<ActividadPGV> ActividadPGVSet { get; set; }
-        public IDbSet<Campania> CampaniaSet { get; set; }
         public IDbSet<Estado> EstadoSet { get; set; }
         public IDbSet<Municipio> MunicipioSet { get; set; }
-        public IDbSet<TipoProspecto> TipoProspectoSet { get; set; }
+        public IDbSet<Region> RegionSet { get; set; }
+        public IDbSet<PlazaImmex> PlazaImmexSet { get; set; }
+        public IDbSet<PlazaOxxo> PlazaOxxoSet { get; set; }
+        public IDbSet<Distrito> DistritoSet { get; set; }
+        public IDbSet<Tienda> TiendaSet { get; set; }
         #endregion
 
         #region Seguridad
@@ -51,11 +53,14 @@ namespace CEMEX.Data
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
-            modelBuilder.Configurations.Add(new ActividadPGVConfiguration());
-            modelBuilder.Configurations.Add(new CampaniaConfiguration());
             modelBuilder.Configurations.Add(new EstadoConfiguration());
             modelBuilder.Configurations.Add(new MunicipioConfiguration());
-            modelBuilder.Configurations.Add(new TipoProspectoConfiguration());
+            modelBuilder.Configurations.Add(new RegionConfiguration());
+            modelBuilder.Configurations.Add(new PlazaImmexConfiguration());
+            modelBuilder.Configurations.Add(new PlazaOxxoConfiguration());
+            modelBuilder.Configurations.Add(new DistritoConfiguration());
+            modelBuilder.Configurations.Add(new TiendaConfiguration());
+                        
 
             modelBuilder.Configurations.Add(new DetalleModuloPermisoConfiguration());
             modelBuilder.Configurations.Add(new DetalleRolPermisoConfiguration());
@@ -64,8 +69,7 @@ namespace CEMEX.Data
             modelBuilder.Configurations.Add(new PermisoConfiguration());
             modelBuilder.Configurations.Add(new RolConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
-            modelBuilder.Configurations.Add(new UsuarioRolConfiguration());
-            
+            modelBuilder.Configurations.Add(new UsuarioRolConfiguration());            
         }
 
     }

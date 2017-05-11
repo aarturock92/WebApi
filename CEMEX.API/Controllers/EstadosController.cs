@@ -13,12 +13,12 @@ using CEMEX.API.Infrastructure.Extensions;
 using AutoMapper;
 using CEMEX.Entidades;
 using System.Collections.Generic;
-using System.Web.Http.Cors;
 using System.Data.Entity;
+using CEMEX.Data.Extensions.Seguridad;
 
 namespace CEMEX.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/estados")]
     public class EstadosController : ApiControllerBase
     {
@@ -33,15 +33,21 @@ namespace CEMEX.API.Controllers
      
         [HttpGet]
         [Route("list")]
-        public HttpResponseMessage Get(HttpRequestMessage request)
+        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirMunicipios = false)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
+                IEnumerable<EstadoViewModel> estadosVM;
 
-                IEnumerable<EstadoViewModel> estadosVM = Mapper.Map<IEnumerable<Estado>, 
-                                                                    IEnumerable<EstadoViewModel>>
-                                                                    (_estadosRepository.GetAll().ToList());
+                if (incluirMunicipios)
+                    estadosVM = Mapper.Map<IEnumerable<Estado>,
+                                           IEnumerable<EstadoViewModel>>
+                                           (_estadosRepository.GetAllEstados());
+                else
+                    estadosVM = Mapper.Map<IEnumerable<Estado>,
+                                           IEnumerable<EstadoViewModel>>
+                                           (_estadosRepository.GetAllEstadosWithMunicipios());             
 
                 response = request.CreateResponse(HttpStatusCode.OK, estadosVM);
 
@@ -120,13 +126,18 @@ namespace CEMEX.API.Controllers
 
         [HttpGet]
         [Route("{id:int}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int id)
+        public HttpResponseMessage Get(HttpRequestMessage request, int id, bool incluirEstados = false)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
+                Estado estado = null;
 
-                Estado estado = _estadosRepository.GetSingle(id);
+                if (incluirEstados)
+                    estado = _estadosRepository.GetSingleEstadoWithMunicipiosById(id);
+                else
+                    estado = _estadosRepository.GetSingleEstadoById(id);
+                
 
                 if (estado != null)
                 {

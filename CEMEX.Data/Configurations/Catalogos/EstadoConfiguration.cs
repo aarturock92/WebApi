@@ -22,7 +22,7 @@ namespace CEMEX.Data.Configurations.Catalogos
 
             Property(e => e.FechaModifico).IsOptional();
 
-            HasMany(e => e.Municipios).WithRequired().HasForeignKey(s => s.IdEstado);
+            HasMany(e => e.Municipios).WithRequired().HasForeignKey(s => s.EstadoId);
         }
     }
 }

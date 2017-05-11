@@ -7,13 +7,13 @@ namespace CEMEX.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class EntidadUsuarioUpdate : IMigrationMetadata
+    public sealed partial class RegionPlazaImmexPlazaOxxoDistritoTienda : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EntidadUsuarioUpdate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RegionPlazaImmexPlazaOxxoDistritoTienda));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704250427053_Entidad Usuario Update"; }
+            get { return "201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda"; }
         }
         
         string IMigrationMetadata.Source

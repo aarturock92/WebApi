@@ -29,7 +29,7 @@ namespace CEMEX.API.Infrastructure.Extensions
         public static void UpdateMunicipio(this Municipio municipio, MunicipioViewModel municipioVM)
         {
             municipio.Nombre = municipioVM.Nombre.Trim();
-            municipio.IdEstado = municipioVM.IdEstado;
+            //municipio.Estado_ID = municipioVM.IdEstado;
             municipio.Estatus = municipioVM.Estatus;
         }
 

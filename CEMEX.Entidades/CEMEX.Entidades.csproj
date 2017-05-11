@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Catalogos\ActividadPGV.cs" />
-    <Compile Include="Catalogos\Campania.cs" />
+    <Compile Include="Catalogos\Distrito.cs" />
     <Compile Include="Catalogos\Estado.cs" />
     <Compile Include="Catalogos\Municipio.cs" />
-    <Compile Include="Catalogos\TipoProspecto.cs" />
+    <Compile Include="Catalogos\PlazaImmex.cs" />
+    <Compile Include="Catalogos\PlazaOxxo.cs" />
+    <Compile Include="Catalogos\Region.cs" />
+    <Compile Include="Catalogos\Tienda.cs" />
     <Compile Include="Codes.cs" />
     <Compile Include="EntidadBase.cs" />
     <Compile Include="IEntidadBase.cs" />

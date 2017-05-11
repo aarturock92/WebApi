@@ -15,6 +15,6 @@ namespace CEMEX.Entidades.Catalogos
 
         public int Estatus { get; set; }
 
-        public virtual ICollection<Municipio> Municipios { get; set; }
+        public ICollection<Municipio> Municipios { get; set; }
     }
 }

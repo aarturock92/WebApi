@@ -7,13 +7,13 @@ namespace CEMEX.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class EntidadError : IMigrationMetadata
+    public sealed partial class initialmigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(EntidadError));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialmigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201704140612273_Entidad Error"; }
+            get { return "201705100533270_initial-migration"; }
         }
         
         string IMigrationMetadata.Source

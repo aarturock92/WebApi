@@ -19,9 +19,12 @@ namespace CEMEX.API.Mappings
 
         public DomainToViewModelMappingProfile()
         {
-            CreateMap<Estado, EstadoViewModel>().ForMember(e => e.Municipios, map => map.MapFrom(ma => ma.Municipios));
 
+            //Mapping Catalogos
+            CreateMap<Estado, EstadoViewModel>().ForMember(e => e.Municipios, map => map.MapFrom(ma => ma.Municipios));
             CreateMap<Municipio, MunicipioViewModel>();
+            CreateMap<Region, RegionViewModel>();
+
 
             CreateMap<Jerarquia, JerarquiaViewModel>();
 
@@ -34,6 +37,8 @@ namespace CEMEX.API.Mappings
             CreateMap<Rol, RolViewModel>();
 
             CreateMap<Usuario, UsuarioViewModel>().ForMember(u => u.Contrasena, opt => opt.Ignore());
+
+            
         }
     }
 }

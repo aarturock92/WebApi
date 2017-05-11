@@ -20,7 +20,7 @@ namespace CEMEX.API
             Bootstrapper.Run();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             GlobalConfiguration.Configuration.EnsureInitialized();
-            //GlobalConfiguration.Configure(WebApiConfig.Register);
+          
         }
     }
 }

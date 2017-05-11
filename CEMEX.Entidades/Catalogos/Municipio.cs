@@ -8,6 +8,6 @@ namespace CEMEX.Entidades.Catalogos
 
         public int Estatus { get; set; }
 
-        public int IdEstado { get; set; }
+        public int EstadoId { get; set; }
     }
 }

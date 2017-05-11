@@ -12,7 +12,7 @@ namespace CEMEX.Data.Configurations.Catalogos
 
             Property(m => m.Estatus).IsRequired();
             
-            Property(m => m.IdEstado).IsRequired();
+            Property(m => m.EstadoId).IsRequired();
 
             Property(m => m.IdUsuarioAlta).IsRequired();
 

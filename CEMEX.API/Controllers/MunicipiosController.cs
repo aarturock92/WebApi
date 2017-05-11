@@ -190,16 +190,14 @@ namespace CEMEX.API.Controllers
                 if (!string.IsNullOrEmpty(filter))
                 {
                     filter = filter.Trim().ToLower();
-                    municipios = _municipiosRepository.FindBy(m => m.Nombre.ToLower().Contains(filter) ||
-                                                              m.IdEstado.ToString().Contains(filter))
+                    municipios = _municipiosRepository.FindBy(m => m.Nombre.ToLower().Contains(filter))
                                                       .OrderBy(c => c.ID)
                                                       .Skip(currentPage * currentPageSize)
                                                       .Take(currentPageSize)
                                                       .ToList();
 
                     totalMunicipios = _municipiosRepository.GetAll()
-                                       .Where(m => m.Nombre.ToLower().Contains(filter) ||
-                                              m.IdEstado.ToString().Contains(filter))
+                                       .Where(m => m.Nombre.ToLower().Contains(filter))
                                        .Count();
                 }else
                 {

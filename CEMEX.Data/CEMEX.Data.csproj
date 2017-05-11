@@ -51,11 +51,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CemexContext.cs" />
-    <Compile Include="Configurations\Catalogos\ActividadPGVConfiguration.cs" />
-    <Compile Include="Configurations\Catalogos\CampaniaConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\DistritoConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\EstadoConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\MunicipioConfiguration.cs" />
-    <Compile Include="Configurations\Catalogos\TipoProspectoConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\PlazaImmexConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\PlazaOxxoConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\RegionConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\TiendaConfiguration.cs" />
     <Compile Include="Configurations\EntityBaseConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\DetalleModuloPermisoConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\DetalleRolPermisoConfiguration.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Configurations\Seguridad\RolConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\UsuarioConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\UsuarioRolConfiguration.cs" />
+    <Compile Include="Extensions\Catalogos\RegionExtensions.cs" />
     <Compile Include="Extensions\Seguridad\EstadoExtensions.cs" />
     <Compile Include="Extensions\Seguridad\UsuarioExtensions.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
@@ -72,41 +75,13 @@
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201704091830231_initial_migration.cs" />
-    <Compile Include="Migrations\201704091830231_initial_migration.Designer.cs">
-      <DependentUpon>201704091830231_initial_migration.cs</DependentUpon>
+    <Compile Include="Migrations\201705100533270_initial-migration.cs" />
+    <Compile Include="Migrations\201705100533270_initial-migration.Designer.cs">
+      <DependentUpon>201705100533270_initial-migration.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201704100408484_Modulo de Seguridad.cs" />
-    <Compile Include="Migrations\201704100408484_Modulo de Seguridad.Designer.cs">
-      <DependentUpon>201704100408484_Modulo de Seguridad.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704140612273_Entidad Error.cs" />
-    <Compile Include="Migrations\201704140612273_Entidad Error.Designer.cs">
-      <DependentUpon>201704140612273_Entidad Error.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704160516505_Tabla Jerarquia.cs" />
-    <Compile Include="Migrations\201704160516505_Tabla Jerarquia.Designer.cs">
-      <DependentUpon>201704160516505_Tabla Jerarquia.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704160623158_Tabla Permiso.cs" />
-    <Compile Include="Migrations\201704160623158_Tabla Permiso.Designer.cs">
-      <DependentUpon>201704160623158_Tabla Permiso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.cs" />
-    <Compile Include="Migrations\201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.Designer.cs">
-      <DependentUpon>201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.cs" />
-    <Compile Include="Migrations\201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.Designer.cs">
-      <DependentUpon>201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.cs" />
-    <Compile Include="Migrations\201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.Designer.cs">
-      <DependentUpon>201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201704250427053_Entidad Usuario Update.cs" />
-    <Compile Include="Migrations\201704250427053_Entidad Usuario Update.Designer.cs">
-      <DependentUpon>201704250427053_Entidad Usuario Update.cs</DependentUpon>
+    <Compile Include="Migrations\201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.cs" />
+    <Compile Include="Migrations\201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.Designer.cs">
+      <DependentUpon>201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -124,32 +99,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201704091830231_initial_migration.resx">
-      <DependentUpon>201704091830231_initial_migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705100533270_initial-migration.resx">
+      <DependentUpon>201705100533270_initial-migration.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704100408484_Modulo de Seguridad.resx">
-      <DependentUpon>201704100408484_Modulo de Seguridad.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704140612273_Entidad Error.resx">
-      <DependentUpon>201704140612273_Entidad Error.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704160516505_Tabla Jerarquia.resx">
-      <DependentUpon>201704160516505_Tabla Jerarquia.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704160623158_Tabla Permiso.resx">
-      <DependentUpon>201704160623158_Tabla Permiso.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.resx">
-      <DependentUpon>201704170020508_Tablas Modulo, DetalleModuloPermiso, DetalleRolPermiso.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.resx">
-      <DependentUpon>201704180428585_Relacion Rol-DetalleRolPermiso-DetalleModuloPermiso.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.resx">
-      <DependentUpon>201704180443581_Eliminar Campo IdRol de Tabla DetalleRolPermiso.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201704250427053_Entidad Usuario Update.resx">
-      <DependentUpon>201704250427053_Entidad Usuario Update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.resx">
+      <DependentUpon>201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

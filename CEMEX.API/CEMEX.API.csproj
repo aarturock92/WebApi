@@ -162,6 +162,8 @@
     <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\Catalogos\PlazaImmexController.cs" />
+    <Compile Include="Controllers\Catalogos\RegionController.cs" />
     <Compile Include="Controllers\EstadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MunicipiosController.cs" />
@@ -193,6 +195,8 @@
     <Compile Include="Mappings\DomainToViewModelMappingProfile.cs" />
     <Compile Include="Models\Catalogos\EstadoViewModel.cs" />
     <Compile Include="Models\Catalogos\MunicipioViewModel.cs" />
+    <Compile Include="Models\Catalogos\PlazaImmexViewModel.cs" />
+    <Compile Include="Models\Catalogos\RegionViewModel.cs" />
     <Compile Include="Models\Seguridad\CredentialViewModel.cs" />
     <Compile Include="Models\Seguridad\DetalleModuloPermisoViewModel.cs" />
     <Compile Include="Models\Seguridad\JerarquiaViewModel.cs" />
