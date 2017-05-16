@@ -14,8 +14,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace CEMEX.API.Controllers
+namespace CEMEX.API.Controllers.Catalogos
 {
+    [Authorize]
     [RoutePrefix("api/municipios")]
     public class MunicipiosController : ApiControllerBase
     {
@@ -29,8 +30,8 @@ namespace CEMEX.API.Controllers
             _municipiosRepository = municipiosRepository;
         }
 
+        [HttpGet]
         [Route("list")]
-        [Authorize]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>

@@ -8,6 +8,7 @@ using System.Web.Http;
 
 namespace CEMEX.API.Controllers.Catalogos
 {
+    [Authorize]
     [RoutePrefix("api/PlazasImmex")]
     public class PlazaImmexController : ApiControllerBase
     {

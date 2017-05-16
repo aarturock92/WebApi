@@ -16,7 +16,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using CEMEX.Data.Extensions.Seguridad;
 
-namespace CEMEX.API.Controllers
+namespace CEMEX.API.Controllers.Catalogos
 {
     [Authorize]
     [RoutePrefix("api/estados")]

@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace CEMEX.API.Controllers.Seguridad
 {
+    [Authorize]
     [RoutePrefix("api/modulos")]
     public class ModulosController : ApiControllerBase
     {

@@ -13,6 +13,7 @@ using System.Web.Http;
 
 namespace CEMEX.API.Controllers.Seguridad
 {
+    [Authorize]
     [RoutePrefix("api/jerarquias")]
     public class JerarquiasController : ApiControllerBase
     {
@@ -28,7 +29,6 @@ namespace CEMEX.API.Controllers.Seguridad
 
         [HttpGet]
         [Route("list")]
-        [Authorize]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, ()=>
@@ -44,9 +44,5 @@ namespace CEMEX.API.Controllers.Seguridad
                 return response;
             });
         }
-
-
-
-
     }
 }

@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace CEMEX.API.Controllers.Seguridad
 {
+    [Authorize]
     [RoutePrefix("api/roles")]
     public class RolesController : ApiControllerBase
     {
@@ -18,13 +19,7 @@ namespace CEMEX.API.Controllers.Seguridad
                                IUnitOfWork unitOfWork) : base(errorRepository, unitOfWork)
         {
             _rolRepository = rolRepository;
-        }
-
-        //[Route("list")]
-        //public HttpResponseMessage Get(bool include)
-        //{
-
-        //}
+        }    
 
 
     }

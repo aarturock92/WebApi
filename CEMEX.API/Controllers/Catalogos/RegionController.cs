@@ -14,6 +14,7 @@ using System.Linq;
 
 namespace CEMEX.API.Controllers.Catalogos
 {
+    [Authorize]
     [RoutePrefix("api/Regiones")]
     public class RegionController : ApiControllerBase
     {
