@@ -33,7 +33,9 @@ namespace CEMEX.API.Controllers.Catalogos
      
         [HttpGet]
         [Route("list")]
-        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirMunicipios = false, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
+        public HttpResponseMessage Get(HttpRequestMessage request, 
+                                       bool incluirMunicipios = false, 
+                                       ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -47,7 +49,7 @@ namespace CEMEX.API.Controllers.Catalogos
                 else
                     estadosVM = Mapper.Map<IEnumerable<Estado>,
                                           IEnumerable<EstadoViewModel>>
-                                          (_estadosRepository.GetAllEstados());
+                                          (_estadosRepository.GetAllEstados(estatusRegistro));
 
                 response = request.CreateResponse(HttpStatusCode.OK, estadosVM);
 
@@ -73,12 +75,9 @@ namespace CEMEX.API.Controllers.Catalogos
                 {
                     Estado newEstado = new Estado();
                     newEstado.UpdateEstado(estadoVM);
-
                     newEstado.FechaAlta = DateTime.Now;
                     newEstado.FechaModifico = DateTime.Now;
-
                     _estadosRepository.Add(newEstado);
-
                     _unitOfWork.Commit();
 
                     estadoVM = Mapper.Map<Estado, EstadoViewModel>(newEstado);
@@ -110,7 +109,6 @@ namespace CEMEX.API.Controllers.Catalogos
                     {
                         _estado.UpdateEstado(estado);
                         _unitOfWork.Commit();
-
                         response = request.CreateResponse(HttpStatusCode.OK);
                     }else
                     {

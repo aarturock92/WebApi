@@ -69,7 +69,7 @@ namespace CEMEX.API.Controllers.Seguridad
                                                      .Select(u => u.ErrorMessage).ToArray());
                 }else
                 {
-                    var _usuario = _usuariosRepository.GetSingleByUserName(usuarioVM.NombreUsuario.Trim());
+                    var _usuario = _usuariosRepository.GetSingleByUserName(usuarioVM.NombreUsuario.Trim(), usuarioVM.Email.Trim());
 
                     if (_usuario == null)
                     {

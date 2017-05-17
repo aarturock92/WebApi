@@ -174,6 +174,7 @@
     <Compile Include="Controllers\Seguridad\PermisosController.cs" />
     <Compile Include="Controllers\Seguridad\RolesController.cs" />
     <Compile Include="Controllers\Seguridad\UsuariosController.cs" />
+    <Compile Include="Controllers\Shared\FileUploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +185,9 @@
     <Compile Include="Infrastructure\Extensions\EntitiesExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\IdentityExtensions.cs" />
     <Compile Include="Infrastructure\Extensions\RequestMessageExtensions.cs" />
+    <Compile Include="Infrastructure\Files\FileUploadResult.cs" />
+    <Compile Include="Infrastructure\Files\MimeMultipart.cs" />
+    <Compile Include="Infrastructure\Files\UploadMultipartFormProvider.cs" />
     <Compile Include="Infrastructure\Filters\BearerAuthenticationFilter.cs" />
     <Compile Include="Infrastructure\MessageHandlers\CemexAuthHandler.cs" />
     <Compile Include="Infrastructure\MessageHandlers\SlidingExpirationHandler.cs" />
@@ -222,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\Home\" />
   </ItemGroup>
   <ItemGroup>
