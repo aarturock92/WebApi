@@ -39,11 +39,45 @@ namespace CEMEX.API.Controllers.Catalogos
                 IEnumerable<RegionViewModel> regionesVM;
 
                 if (incluirPlazaImmex)
-                    regionesVM = Mapper.Map<IEnumerable<Region>, IEnumerable<RegionViewModel>>(_regionRepository.GetRegionesWithPlazaImmex());
+                    regionesVM = Mapper.Map<IEnumerable<Region>, 
+                                            IEnumerable<RegionViewModel>>
+                                            (_regionRepository.GetRegionesWithPlazaImmex());
                 else
-                    regionesVM = Mapper.Map<IEnumerable<Region>, IEnumerable<RegionViewModel>>(_regionRepository.GetRegiones());
+                    regionesVM = Mapper.Map<IEnumerable<Region>, 
+                                            IEnumerable<RegionViewModel>>
+                                            (_regionRepository.GetRegiones());
 
                 response = request.CreateResponse(HttpStatusCode.OK, regionesVM);
+
+                return response;
+            });
+        }
+
+        [HttpGet]
+        [Route("{id:int}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, int id, bool incluirPlazasImmex = false)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                RegionViewModel regionVM = null;
+
+                if (incluirPlazasImmex)
+                    regionVM = Mapper.Map<Region,
+                                          RegionViewModel>
+                                          (_regionRepository.GetRegionByIdWithPlazasImmex(id));
+                else
+                    regionVM = Mapper.Map<Region, 
+                                          RegionViewModel>
+                                          (_regionRepository.GetRegionById(id));
+
+                if (regionVM != null)
+                {
+                    response = request.CreateResponse(HttpStatusCode.OK, regionVM);
+                }else
+                {
+                    response = request.CreateResponse(HttpStatusCode.NotFound);
+                }
 
                 return response;
             });

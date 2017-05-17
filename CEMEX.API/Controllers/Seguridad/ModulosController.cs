@@ -14,7 +14,7 @@ using System.Web.Http;
 namespace CEMEX.API.Controllers.Seguridad
 {
     [Authorize]
-    [RoutePrefix("api/modulos")]
+    [RoutePrefix("api/Modulo")]
     public class ModulosController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Modulo> _modulosRepository;

@@ -8,34 +8,6 @@ namespace CEMEX.Data.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.ActividadPGV",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Descripcion = c.String(nullable: false, maxLength: 100),
-                        Estatus = c.Int(nullable: false),
-                        FechaAlta = c.DateTime(nullable: false),
-                        FechaModifico = c.DateTime(),
-                        IdUsuarioAlta = c.Int(nullable: false),
-                        IdUsuarioModifico = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.Campania",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Descripcion = c.String(),
-                        Estatus = c.Int(nullable: false),
-                        FechaAlta = c.DateTime(nullable: false),
-                        FechaModifico = c.DateTime(),
-                        IdUsuarioAlta = c.Int(nullable: false),
-                        IdUsuarioModifico = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
                 "dbo.DetalleModuloPermiso",
                 c => new
                     {
@@ -107,6 +79,54 @@ namespace CEMEX.Data.Migrations
                         IdUsuarioModifico = c.Int(),
                     })
                 .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.Distrito",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        DistritoId = c.Int(nullable: false),
+                        ClaveDistrito = c.String(nullable: false, maxLength: 50),
+                        NombreDistrito = c.String(nullable: false, maxLength: 100),
+                        Estatus = c.Int(nullable: false),
+                        FechaAlta = c.DateTime(nullable: false),
+                        FechaModifico = c.DateTime(),
+                        IdUsuarioAlta = c.Int(nullable: false),
+                        IdUsuarioModifico = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.PlazaOxxo", t => t.DistritoId, cascadeDelete: true)
+                .Index(t => t.DistritoId);
+            
+            CreateTable(
+                "dbo.Tienda",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        DistritoId = c.Int(nullable: false),
+                        UniqueTienda = c.Guid(nullable: false),
+                        CRTienda = c.String(nullable: false, maxLength: 50),
+                        NombreTienda = c.String(nullable: false, maxLength: 100),
+                        Calle = c.String(nullable: false, maxLength: 150),
+                        Numero = c.String(nullable: false, maxLength: 20),
+                        EntreCalles = c.String(nullable: false, maxLength: 150),
+                        Colonia = c.String(nullable: false, maxLength: 100),
+                        Municipio = c.String(nullable: false, maxLength: 100),
+                        Ciudad = c.String(nullable: false, maxLength: 100),
+                        Estado = c.String(nullable: false, maxLength: 100),
+                        CodigoPostal = c.String(nullable: false, maxLength: 10),
+                        Latitud = c.String(nullable: false, maxLength: 20),
+                        Longitud = c.String(nullable: false, maxLength: 20),
+                        EstatusTienda = c.String(nullable: false, maxLength: 20),
+                        Estatus = c.Int(nullable: false),
+                        FechaAlta = c.DateTime(nullable: false),
+                        FechaModifico = c.DateTime(),
+                        IdUsuarioAlta = c.Int(nullable: false),
+                        IdUsuarioModifico = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Distrito", t => t.DistritoId, cascadeDelete: true)
+                .Index(t => t.DistritoId);
             
             CreateTable(
                 "dbo.Error",
@@ -191,11 +211,49 @@ namespace CEMEX.Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
-                "dbo.TipoProspecto",
+                "dbo.PlazaImmex",
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Descripcion = c.String(nullable: false, maxLength: 100),
+                        RegionId = c.Int(nullable: false),
+                        CRPlazaImmex = c.String(nullable: false, maxLength: 50),
+                        NombrePlazaImmex = c.String(nullable: false, maxLength: 100),
+                        Estatus = c.Int(nullable: false),
+                        FechaAlta = c.DateTime(nullable: false),
+                        FechaModifico = c.DateTime(),
+                        IdUsuarioAlta = c.Int(nullable: false),
+                        IdUsuarioModifico = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Region", t => t.RegionId, cascadeDelete: true)
+                .Index(t => t.RegionId);
+            
+            CreateTable(
+                "dbo.PlazaOxxo",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        PlazaImmexId = c.Int(nullable: false),
+                        CRPlazaOxxo = c.String(nullable: false, maxLength: 50),
+                        NombrePlazaOxxo = c.String(nullable: false, maxLength: 100),
+                        Estatus = c.Int(nullable: false),
+                        FechaAlta = c.DateTime(nullable: false),
+                        FechaModifico = c.DateTime(),
+                        IdUsuarioAlta = c.Int(nullable: false),
+                        IdUsuarioModifico = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.PlazaImmex", t => t.PlazaImmexId, cascadeDelete: true)
+                .Index(t => t.PlazaImmexId);
+            
+            CreateTable(
+                "dbo.Region",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        IdNegocio = c.Int(nullable: false),
+                        ClaveRegion = c.String(nullable: false, maxLength: 50),
+                        NombreRegion = c.String(nullable: false, maxLength: 100),
                         Estatus = c.Int(nullable: false),
                         FechaAlta = c.DateTime(nullable: false),
                         FechaModifico = c.DateTime(),
@@ -265,32 +323,42 @@ namespace CEMEX.Data.Migrations
         {
             DropForeignKey("dbo.UsuarioRol", "UsuarioId", "dbo.Usuario");
             DropForeignKey("dbo.UsuarioRol", "RolId", "dbo.Rol");
+            DropForeignKey("dbo.PlazaImmex", "RegionId", "dbo.Region");
+            DropForeignKey("dbo.PlazaOxxo", "PlazaImmexId", "dbo.PlazaImmex");
+            DropForeignKey("dbo.Distrito", "DistritoId", "dbo.PlazaOxxo");
             DropForeignKey("dbo.DetalleModuloPermiso", "Modulo_ID", "dbo.Modulo");
             DropForeignKey("dbo.Municipio", "EstadoId", "dbo.Estado");
+            DropForeignKey("dbo.Tienda", "DistritoId", "dbo.Distrito");
             DropForeignKey("dbo.DetalleRolPermiso", "Rol_ID", "dbo.Rol");
             DropForeignKey("dbo.DetalleRolPermiso", "DetalleModuloPermiso_ID", "dbo.DetalleModuloPermiso");
             DropForeignKey("dbo.DetalleModuloPermiso", "Permiso_ID", "dbo.Permiso");
             DropIndex("dbo.UsuarioRol", new[] { "RolId" });
             DropIndex("dbo.UsuarioRol", new[] { "UsuarioId" });
+            DropIndex("dbo.PlazaOxxo", new[] { "PlazaImmexId" });
+            DropIndex("dbo.PlazaImmex", new[] { "RegionId" });
             DropIndex("dbo.Municipio", new[] { "EstadoId" });
+            DropIndex("dbo.Tienda", new[] { "DistritoId" });
+            DropIndex("dbo.Distrito", new[] { "DistritoId" });
             DropIndex("dbo.DetalleRolPermiso", new[] { "Rol_ID" });
             DropIndex("dbo.DetalleRolPermiso", new[] { "DetalleModuloPermiso_ID" });
             DropIndex("dbo.DetalleModuloPermiso", new[] { "Modulo_ID" });
             DropIndex("dbo.DetalleModuloPermiso", new[] { "Permiso_ID" });
             DropTable("dbo.Usuario");
             DropTable("dbo.UsuarioRol");
-            DropTable("dbo.TipoProspecto");
+            DropTable("dbo.Region");
+            DropTable("dbo.PlazaOxxo");
+            DropTable("dbo.PlazaImmex");
             DropTable("dbo.Modulo");
             DropTable("dbo.Jerarquia");
             DropTable("dbo.Municipio");
             DropTable("dbo.Estado");
             DropTable("dbo.Error");
+            DropTable("dbo.Tienda");
+            DropTable("dbo.Distrito");
             DropTable("dbo.Rol");
             DropTable("dbo.DetalleRolPermiso");
             DropTable("dbo.Permiso");
             DropTable("dbo.DetalleModuloPermiso");
-            DropTable("dbo.Campania");
-            DropTable("dbo.ActividadPGV");
         }
     }
 }

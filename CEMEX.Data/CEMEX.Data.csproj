@@ -67,6 +67,9 @@
     <Compile Include="Configurations\Seguridad\RolConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\UsuarioConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\UsuarioRolConfiguration.cs" />
+    <Compile Include="Extensions\Catalogos\DistritoExtensions.cs" />
+    <Compile Include="Extensions\Catalogos\PlazaImmexExtensions.cs" />
+    <Compile Include="Extensions\Catalogos\PlazaOxxoExtensions.cs" />
     <Compile Include="Extensions\Catalogos\RegionExtensions.cs" />
     <Compile Include="Extensions\Seguridad\EstadoExtensions.cs" />
     <Compile Include="Extensions\Seguridad\UsuarioExtensions.cs" />
@@ -75,13 +78,9 @@
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201705100533270_initial-migration.cs" />
-    <Compile Include="Migrations\201705100533270_initial-migration.Designer.cs">
-      <DependentUpon>201705100533270_initial-migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.cs" />
-    <Compile Include="Migrations\201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.Designer.cs">
-      <DependentUpon>201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.cs</DependentUpon>
+    <Compile Include="Migrations\201705161551505_initial migration.cs" />
+    <Compile Include="Migrations\201705161551505_initial migration.Designer.cs">
+      <DependentUpon>201705161551505_initial migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,11 +98,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201705100533270_initial-migration.resx">
-      <DependentUpon>201705100533270_initial-migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.resx">
-      <DependentUpon>201705110340406_Region-PlazaImmex-PlazaOxxo-Distrito-Tienda.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201705161551505_initial migration.resx">
+      <DependentUpon>201705161551505_initial migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,7 +8,7 @@ using System.Web.Http;
 namespace CEMEX.API.Controllers.Seguridad
 {
     [Authorize]
-    [RoutePrefix("api/roles")]
+    [RoutePrefix("api/Rol")]
     public class RolesController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Rol> _rolRepository;

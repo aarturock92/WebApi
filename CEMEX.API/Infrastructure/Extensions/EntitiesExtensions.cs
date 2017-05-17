@@ -50,7 +50,7 @@ namespace CEMEX.API.Infrastructure.Extensions
             usuario.Sexo = usuarioVM.Sexo;
             usuario.Calle = usuarioVM.Calle.Trim();
             usuario.NumeroExterior = usuarioVM.NumeroExterior.Trim();
-            usuario.NumeroInterior = usuarioVM.NumeroInterior.Trim();
+            usuario.NumeroInterior = (usuarioVM.NumeroInterior == null) ? string.Empty: usuarioVM.NumeroInterior;
             usuario.Colonia = usuarioVM.Colonia.Trim();
             usuario.CodigoPostal = usuarioVM.CodigoPostal.Trim();
             usuario.IdPais = usuarioVM.IdPais;

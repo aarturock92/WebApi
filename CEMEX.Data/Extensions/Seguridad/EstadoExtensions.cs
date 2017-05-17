@@ -1,4 +1,5 @@
 ﻿using CEMEX.Data.Repositories;
+using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -23,9 +24,44 @@ namespace CEMEX.Data.Extensions.Seguridad
             return repositoryEstado.GetAll().ToList();
         }
 
-        public static IEnumerable<Estado> GetAllEstadosWithMunicipios(this IEntityBaseRepository<Estado> repositoryEstado)
+        public static IEnumerable<Estado> GetAllEstadosWithMunicipios(this IEntityBaseRepository<Estado> repositoryEstado, ETypeEstatusRegistro estatusRegistro)
         {
-            return repositoryEstado.GetAll().Include(e => e.Municipios).ToList();
+            IEnumerable<Estado> estados = null;
+
+            switch (estatusRegistro)
+            {
+                case ETypeEstatusRegistro.Activo:
+                    estados = repositoryEstado.GetAll()
+                                              .Include(e => e.Municipios)
+                                              .Where(e => e.Estatus == (int)ETypeEstatusRegistro.Activo)
+                                              .ToList();
+                    break;
+                case ETypeEstatusRegistro.Inactivo:
+                    estados = repositoryEstado.GetAll()
+                                             .Include(e => e.Municipios)
+                                             .Where(e => e.Estatus == (int)ETypeEstatusRegistro.Inactivo)
+                                             .ToList();
+                    break;
+                case ETypeEstatusRegistro.Eliminado:
+                    estados = repositoryEstado.GetAll()
+                                             .Include(e => e.Municipios)
+                                             .Where(e => e.Estatus == (int)ETypeEstatusRegistro.Eliminado)
+                                             .ToList();
+                    break;
+                case ETypeEstatusRegistro.Todos:
+                    estados = repositoryEstado.GetAll()
+                                             .Include(e => e.Municipios)
+                                             .Where(e => e.Estatus == (int)ETypeEstatusRegistro.Inactivo ||
+                                                         e.Estatus == (int)ETypeEstatusRegistro.Activo)
+                                             .ToList();
+                    break;
+                default:
+                    estados = repositoryEstado.GetAll()
+                                              .ToList();
+                    break;
+            }
+
+            return estados;
         }
     }
 }

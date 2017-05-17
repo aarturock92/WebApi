@@ -21,7 +21,7 @@ using CEMEX.API.Infrastructure.Extensions;
 
 namespace CEMEX.API.Controllers.Seguridad
 {
-    [RoutePrefix("api/users")]
+    [RoutePrefix("api/Usuario")]
     public class UsuariosController:ApiControllerBase
     {
         private readonly IEntityBaseRepository<Usuario> _usuariosRepository;
@@ -64,7 +64,8 @@ namespace CEMEX.API.Controllers.Seguridad
 
                 if (!ModelState.IsValid)
                 {
-                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState.Keys.SelectMany(k => ModelState[k].Errors)
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, 
+                                                      ModelState.Keys.SelectMany(k => ModelState[k].Errors)
                                                      .Select(u => u.ErrorMessage).ToArray());
                 }else
                 {
@@ -106,21 +107,32 @@ namespace CEMEX.API.Controllers.Seguridad
                                .Select(m => m.ErrorMessage).ToArray());
                 }else
                 {
-                    var _usuario = _usuariosRepository.GetSingleByEmailAddressPassword(credentialVM.EmailAddress, credentialVM.Password);
+
+                    var _usuario = _usuariosRepository.GetSingleByEmailAddress(credentialVM.EmailAddress);
 
                     if (_usuario == null)
                     {
                         response = request.CreateResponse(HttpStatusCode.Unauthorized);
                     }else
                     {
-                        var lifetimeInMinutes = int.Parse(WebConfigurationManager.AppSettings["TokenLifetimeInMinutes"]);
-                        var token = CrearToken(_usuario.ID.ToString(), _usuario.NombreUsuario, lifetimeInMinutes);
+                        
+                        if (string.Equals(EncryptionService.EncriptarPassowrd(credentialVM.Password.Trim(), _usuario.Salt), 
+                                          _usuario.HashedContraseña.Trim()))
+                        {
+                            var lifetimeInMinutes = int.Parse(WebConfigurationManager.AppSettings["TokenLifetimeInMinutes"]);
+                            var token = CrearToken(_usuario.ID.ToString(), _usuario.NombreUsuario, lifetimeInMinutes);
 
-                        response = request.CreateResponse(HttpStatusCode.OK, new {
-                            Token = token,
-                            LifetimeInMinutes = lifetimeInMinutes,
-                            FullName = _usuario.NombreUsuario
-                        });
+                            response = request.CreateResponse(HttpStatusCode.OK, new
+                            {
+                                Token = token,
+                                LifetimeInMinutes = lifetimeInMinutes,
+                                FullName = _usuario.NombreUsuario
+                            });
+                        }
+                        else
+                        {
+                            response = request.CreateResponse(HttpStatusCode.Unauthorized);
+                        }                      
                     }
                 }
 

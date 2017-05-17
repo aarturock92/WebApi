@@ -19,26 +19,22 @@ namespace CEMEX.API.Mappings
 
         public DomainToViewModelMappingProfile()
         {
-
             //Mapping Catalogos
             CreateMap<Estado, EstadoViewModel>().ForMember(e => e.Municipios, map => map.MapFrom(ma => ma.Municipios));
             CreateMap<Municipio, MunicipioViewModel>();
             CreateMap<Region, RegionViewModel>();
+            CreateMap<PlazaImmex, PlazaImmexViewModel>();
+            CreateMap<PlazaOxxo, PlazaOxxoViewModel>();
+            CreateMap<Distrito, DistritoViewModel>();
+            CreateMap<Tienda, TiendaViewModel>();
 
 
             CreateMap<Jerarquia, JerarquiaViewModel>();
-
             CreateMap<Permiso, PermisoViewModel>();
-
-            CreateMap<Modulo, ModuloViewModel>();//.ForMember(m => m.DetalleModuloPermisos, map =>map.MapFrom(ma => ma.ModuloDetallePermisos));
-
+            CreateMap<Modulo, ModuloViewModel>();
             CreateMap<DetalleModuloPermiso, DetalleModuloPermisoViewModel>();
-
             CreateMap<Rol, RolViewModel>();
-
-            CreateMap<Usuario, UsuarioViewModel>().ForMember(u => u.Contrasena, opt => opt.Ignore());
-
-            
+            CreateMap<Usuario, UsuarioViewModel>().ForMember(u => u.Contrasena, opt => opt.Ignore());            
         }
     }
 }

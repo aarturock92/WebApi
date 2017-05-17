@@ -8,19 +8,12 @@ namespace CEMEX.Data.Extensions.Seguridad
     {
         public static Usuario GetSingleByUserName(this IEntityBaseRepository<Usuario> usuarioRepositorio, string nombreUsuario)
         {
-            return usuarioRepositorio
-                   .GetAll()
-                   .FirstOrDefault(x => x.NombreUsuario.Trim() == nombreUsuario.Trim());
-        }
+            return usuarioRepositorio.GetAll().FirstOrDefault(x => x.NombreUsuario.Trim() == nombreUsuario.Trim());
+        }        
 
-        
-
-        public static Usuario GetSingleByEmailAddressPassword(this IEntityBaseRepository<Usuario> usersRepository, string emailAddress, string password)
+        public static Usuario GetSingleByEmailAddress(this IEntityBaseRepository<Usuario> usersRepository, string emailAddress)
         {
-            return usersRepository
-                   .GetAll()
-                   .FirstOrDefault(u => u.Email.Trim() == emailAddress.Trim() &&
-                                        u.HashedContraseña.Trim() == password.Trim());
+            return usersRepository.GetAll().FirstOrDefault(u => u.Email.Trim() == emailAddress.Trim());
         }
     }
 }

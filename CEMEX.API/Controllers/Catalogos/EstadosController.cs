@@ -33,7 +33,7 @@ namespace CEMEX.API.Controllers.Catalogos
      
         [HttpGet]
         [Route("list")]
-        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirMunicipios = false)
+        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirMunicipios = false, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -42,12 +42,12 @@ namespace CEMEX.API.Controllers.Catalogos
 
                 if (incluirMunicipios)
                     estadosVM = Mapper.Map<IEnumerable<Estado>,
-                                           IEnumerable<EstadoViewModel>>
-                                           (_estadosRepository.GetAllEstados());
+                                            IEnumerable<EstadoViewModel>>
+                                            (_estadosRepository.GetAllEstadosWithMunicipios(estatusRegistro));
                 else
                     estadosVM = Mapper.Map<IEnumerable<Estado>,
-                                           IEnumerable<EstadoViewModel>>
-                                           (_estadosRepository.GetAllEstadosWithMunicipios());             
+                                          IEnumerable<EstadoViewModel>>
+                                          (_estadosRepository.GetAllEstados());
 
                 response = request.CreateResponse(HttpStatusCode.OK, estadosVM);
 
@@ -126,19 +126,18 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [HttpGet]
         [Route("{id:int}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int id, bool incluirEstados = false)
+        public HttpResponseMessage Get(HttpRequestMessage request, int id, bool incluirMunicipios = false)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
                 Estado estado = null;
 
-                if (incluirEstados)
+                if (incluirMunicipios)
                     estado = _estadosRepository.GetSingleEstadoWithMunicipiosById(id);
                 else
                     estado = _estadosRepository.GetSingleEstadoById(id);
                 
-
                 if (estado != null)
                 {
                      EstadoViewModel estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);

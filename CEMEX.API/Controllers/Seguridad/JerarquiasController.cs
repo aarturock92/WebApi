@@ -14,7 +14,7 @@ using System.Web.Http;
 namespace CEMEX.API.Controllers.Seguridad
 {
     [Authorize]
-    [RoutePrefix("api/jerarquias")]
+    [RoutePrefix("api/Jerarquia")]
     public class JerarquiasController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Jerarquia> _jerarquiasRepository;

@@ -1,4 +1,6 @@
-﻿namespace CEMEX.API.Models.Catalogos
+﻿using System.Collections.Generic;
+
+namespace CEMEX.API.Models.Catalogos
 {
     public class PlazaImmexViewModel
     {
@@ -11,5 +13,7 @@
         public string NombrePlazaImmex { get; set; }
 
         public int Estatus { get; set; }
+
+        public List<PlazaOxxoViewModel> PlazasOxxo { get; set; }
     }
 }

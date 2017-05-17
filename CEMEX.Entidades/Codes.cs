@@ -7,6 +7,14 @@
         Eliminado = 3
     }
 
+    public enum ETypeEstatusRegistro
+    {
+        Activo= 1,
+        Inactivo= 2,
+        Eliminado = 3,
+        Todos = 0
+    }
+
     public static class ResponseMessages
     {
         public static class MessageResponseServices

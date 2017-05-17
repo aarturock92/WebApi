@@ -13,7 +13,7 @@ namespace CEMEX.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201705100533270_initial-migration"; }
+            get { return "201705161551505_initial migration"; }
         }
         
         string IMigrationMetadata.Source

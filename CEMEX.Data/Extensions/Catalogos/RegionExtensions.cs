@@ -17,5 +17,15 @@ namespace CEMEX.Data.Extensions.Catalogos
         {
             return repositoryRegion.GetAll().ToList();
         }
+
+        public static Region GetRegionById(this IEntityBaseRepository<Region> repositoryRegion, int idRegion)
+        {
+            return repositoryRegion.GetAll().Where(r => r.ID == idRegion).FirstOrDefault();
+        }
+
+        public static Region GetRegionByIdWithPlazasImmex(this IEntityBaseRepository<Region> repositoryRegion, int idRegion)
+        {
+            return repositoryRegion.GetAll().Include(r => r.PlazasImmex).Where(r => r.ID == idRegion).FirstOrDefault();
+        }
     }
 }
