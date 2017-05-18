@@ -22,7 +22,7 @@ namespace CEMEX.API.Infrastructure.Core
         }
 
         public HttpResponseMessage CreateHttpResponse(HttpRequestMessage request,
-                                                         Func<HttpResponseMessage> function)
+                                                      Func<HttpResponseMessage> function)
         {
             HttpResponseMessage response = null;
 
