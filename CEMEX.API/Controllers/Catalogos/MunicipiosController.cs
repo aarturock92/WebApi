@@ -17,7 +17,7 @@ using System.Web.Http;
 namespace CEMEX.API.Controllers.Catalogos
 {
     [Authorize]
-    [RoutePrefix("api/municipios")]
+    [RoutePrefix("api/Municipio")]
     public class MunicipiosController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Municipio> _municipiosRepository;

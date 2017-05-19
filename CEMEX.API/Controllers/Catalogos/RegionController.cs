@@ -15,7 +15,7 @@ using System.Linq;
 namespace CEMEX.API.Controllers.Catalogos
 {
     [Authorize]
-    [RoutePrefix("api/Regiones")]
+    [RoutePrefix("api/Region")]
     public class RegionController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Region> _regionRepository;

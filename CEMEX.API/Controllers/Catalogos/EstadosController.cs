@@ -18,8 +18,8 @@ using CEMEX.Data.Extensions.Seguridad;
 
 namespace CEMEX.API.Controllers.Catalogos
 {
-    //[Authorize]
-    [RoutePrefix("api/estados")]
+    [Authorize]
+    [RoutePrefix("api/Estado")]
     public class EstadosController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Estado> _estadosRepository;
