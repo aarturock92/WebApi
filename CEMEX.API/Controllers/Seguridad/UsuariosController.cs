@@ -5,12 +5,10 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
-using System.Web;
 using CEMEX.Data.Infrastructure;
 using CEMEX.Data.Repositories;
 using CEMEX.Entidades.Seguridad;
 using System.Web.Http;
-using System.Web.Http.Routing;
 using System.Net.Http;
 using CEMEX.API.Models.Seguridad;
 using System.Net;
@@ -18,16 +16,17 @@ using CEMEX.Data.Extensions.Seguridad;
 using System.Web.Configuration;
 using AutoMapper;
 using CEMEX.API.Infrastructure.Extensions;
+using CEMEX.Entidades;
 
 namespace CEMEX.API.Controllers.Seguridad
 {
     [RoutePrefix("api/Usuario")]
-    public class UsuariosController:ApiControllerBase
+    public class UsuariosController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Usuario> _usuariosRepository;
         public UsuariosController(IEntityBaseRepository<Usuario> usuariosRepository,
-                                  IEntityBaseRepository<Error> errorRepository, 
-                                  IUnitOfWork unitOfWork) 
+                                  IEntityBaseRepository<Error> errorRepository,
+                                  IUnitOfWork unitOfWork)
             : base(errorRepository, unitOfWork)
         {
             _usuariosRepository = usuariosRepository;
@@ -35,14 +34,14 @@ namespace CEMEX.API.Controllers.Seguridad
 
         [HttpGet]
         [Route("list")]
-        [Authorize]
+        //[Authorize]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
-                IEnumerable<UsuarioViewModel> _usuariosVM = Mapper.Map<IEnumerable<Usuario>, 
+                IEnumerable<UsuarioViewModel> _usuariosVM = Mapper.Map<IEnumerable<Usuario>,
                                                                        IEnumerable<UsuarioViewModel>>
                                                                        (_usuariosRepository.GetAll().ToList());
 
@@ -52,22 +51,22 @@ namespace CEMEX.API.Controllers.Seguridad
             });
         }
 
-       
+
         [Route("register")]
-        [HttpPost]
-        [Authorize]
+        //[Authorize]
+        [HttpPost]        
         public HttpResponseMessage Register(HttpRequestMessage request, UsuarioViewModel usuarioVM)
         {
-            return CreateHttpResponse(request, ()=>
+            return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
                 if (!ModelState.IsValid)
                 {
-                    response = request.CreateResponse(HttpStatusCode.BadRequest, 
+                    response = request.CreateResponse(HttpStatusCode.BadRequest,
                                                       ModelState.Keys.SelectMany(k => ModelState[k].Errors)
                                                      .Select(u => u.ErrorMessage).ToArray());
-                }else
+                } else
                 {
                     var _usuario = _usuariosRepository.GetSingleByUserName(usuarioVM.NombreUsuario.Trim(), usuarioVM.Email.Trim());
 
@@ -80,7 +79,7 @@ namespace CEMEX.API.Controllers.Seguridad
 
                         usuarioVM = Mapper.Map<Usuario, UsuarioViewModel>(newUsuario);
                         response = request.CreateResponse(HttpStatusCode.Created, usuarioVM);
-                    }else
+                    } else
                     {
                         response = request.CreateResponse(HttpStatusCode.Accepted, "El Nombre de Usuario ya existe.");
                     }
@@ -92,10 +91,11 @@ namespace CEMEX.API.Controllers.Seguridad
 
 
         [HttpPost]
+        //[AllowAnonymous]
         [Route("authenticate")]
         public HttpResponseMessage Authenticate(HttpRequestMessage request, CredentialViewModel credentialVM)
         {
-            return CreateHttpResponse(request, ()=>
+            return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
@@ -104,7 +104,7 @@ namespace CEMEX.API.Controllers.Seguridad
                     response = request.CreateResponse(HttpStatusCode.BadRequest,
                                ModelState.Keys.SelectMany(k => ModelState[k].Errors)
                                .Select(m => m.ErrorMessage).ToArray());
-                }else
+                } else
                 {
 
                     var _usuario = _usuariosRepository.GetSingleByEmailAddress(credentialVM.EmailAddress);
@@ -112,10 +112,10 @@ namespace CEMEX.API.Controllers.Seguridad
                     if (_usuario == null)
                     {
                         response = request.CreateResponse(HttpStatusCode.Unauthorized);
-                    }else
+                    } else
                     {
-                        
-                        if (string.Equals(EncryptionService.EncriptarPassowrd(credentialVM.Password.Trim(), _usuario.Salt), 
+
+                        if (string.Equals(EncryptionService.EncriptarPassowrd(credentialVM.Password.Trim(), _usuario.Salt),
                                           _usuario.HashedContraseña.Trim()))
                         {
                             var lifetimeInMinutes = int.Parse(WebConfigurationManager.AppSettings["TokenLifetimeInMinutes"]);
@@ -131,12 +131,58 @@ namespace CEMEX.API.Controllers.Seguridad
                         else
                         {
                             response = request.CreateResponse(HttpStatusCode.Unauthorized);
-                        }                      
+                        }
                     }
                 }
 
                 return response;
             });
+        }
+
+
+        [HttpGet]
+        [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter=null)
+        {
+            int currentPage = page.Value;
+            int currentPageSize = pageSize.Value;
+
+            return CreateHttpResponse(request, ()=>
+            {
+                HttpResponseMessage response = null;
+                List<Usuario> _usuarios = null;
+                int totalUsuarios = new int();
+
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    //filter = filter.Trim().ToLower();
+                    //_usuarios = _usuariosRepository.FindBy(c => c.NombreUsuario.ToLower().Contains(filter) || )
+                }else
+                {
+                    _usuarios = _usuariosRepository.GetAll()
+                                .OrderBy(u => u.ID)
+                                .Skip(currentPage * currentPageSize)
+                                .Take(currentPageSize)
+                                .ToList();
+
+                    totalUsuarios = _usuariosRepository.GetAll().Count();
+                }
+
+                IEnumerable<UsuarioViewModel> _usuariosVM = Mapper.Map<IEnumerable<Usuario>, IEnumerable<UsuarioViewModel>>(_usuarios);
+
+                PaginationSet<UsuarioViewModel> pagedSet = new PaginationSet<UsuarioViewModel>()
+                {
+                    Page = currentPage,
+                    TotalCount = totalUsuarios,
+                    TotalPages = (int)Math.Ceiling((decimal)totalUsuarios / currentPageSize),
+                    Items = _usuariosVM
+                };
+
+                response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
+
+                return response;
+            });
+
         }
 
 
