@@ -54,8 +54,8 @@ namespace CEMEX.API.Controllers.Seguridad
 
        
         [Route("register")]
-        [Authorize]
         [HttpPost]
+        [Authorize]
         public HttpResponseMessage Register(HttpRequestMessage request, UsuarioViewModel usuarioVM)
         {
             return CreateHttpResponse(request, ()=>
@@ -92,7 +92,6 @@ namespace CEMEX.API.Controllers.Seguridad
 
 
         [HttpPost]
-        [AllowAnonymous]
         [Route("authenticate")]
         public HttpResponseMessage Authenticate(HttpRequestMessage request, CredentialViewModel credentialVM)
         {
