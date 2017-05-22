@@ -18,7 +18,7 @@ using CEMEX.Data.Extensions.Seguridad;
 
 namespace CEMEX.API.Controllers.Catalogos
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/Estado")]
     public class EstadosController : ApiControllerBase
     {
@@ -201,7 +201,7 @@ namespace CEMEX.API.Controllers.Catalogos
                     Items = estadosVM
                 };
 
-                response = request.CreateResponse<PaginationSet<EstadoViewModel>>(HttpStatusCode.OK,pagedSet);
+                response = request.CreateResponse(HttpStatusCode.OK,pagedSet);
 
                 return response;
             });
