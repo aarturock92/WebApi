@@ -54,7 +54,7 @@ namespace CEMEX.API.Controllers.Seguridad
 
         [Route("register")]
         [Authorize]
-        [HttpPost]
+        [HttpPost]        
         public HttpResponseMessage Register(HttpRequestMessage request, UsuarioViewModel usuarioVM)
         {
             return CreateHttpResponse(request, () =>
