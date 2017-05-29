@@ -34,7 +34,7 @@ namespace CEMEX.API.Controllers.Seguridad
 
         [HttpGet]
         [Route("list")]
-        //[Authorize]
+        [Authorize]
         public HttpResponseMessage Get(HttpRequestMessage request)
         {
             return CreateHttpResponse(request, () =>
@@ -53,7 +53,7 @@ namespace CEMEX.API.Controllers.Seguridad
 
 
         [Route("register")]
-        //[Authorize]
+        [Authorize]
         [HttpPost]
         public HttpResponseMessage Register(HttpRequestMessage request, UsuarioViewModel usuarioVM)
         {
@@ -89,9 +89,33 @@ namespace CEMEX.API.Controllers.Seguridad
             });
         }
 
+        [HttpDelete]
+        [Authorize]
+        [Route("{id:int}")]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                Usuario user = _usuariosRepository.GetSingle(id);
+
+                if (user != null)
+                {
+                    user.DeleteUser();
+                    _unitOfWork.Commit();
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }else
+                {
+                    response = request.CreateResponse(HttpStatusCode.NotFound, "Usuario no encontrado.");
+                }
+
+                return response;
+            });
+        }
+
 
         [HttpPost]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [Route("authenticate")]
         public HttpResponseMessage Authenticate(HttpRequestMessage request, CredentialViewModel credentialVM)
         {
@@ -141,8 +165,9 @@ namespace CEMEX.API.Controllers.Seguridad
 
 
         [HttpGet]
+        [Authorize]
         [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]
-        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter=null)
+        public HttpResponseMessage Get(HttpRequestMessage request, int? page, int? pageSize, string filter=null, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             int currentPage = page.Value;
             int currentPageSize = pageSize.Value;
@@ -159,11 +184,12 @@ namespace CEMEX.API.Controllers.Seguridad
                     //_usuarios = _usuariosRepository.FindBy(c => c.NombreUsuario.ToLower().Contains(filter) || )
                 }else
                 {
-                    _usuarios = _usuariosRepository.GetAll()
+                    _usuarios = _usuariosRepository.GetUsuarios(estatusRegistro)
                                 .OrderBy(u => u.ID)
                                 .Skip(currentPage * currentPageSize)
                                 .Take(currentPageSize)
                                 .ToList();
+                               
 
                     totalUsuarios = _usuariosRepository.GetAll().Count();
                 }

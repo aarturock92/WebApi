@@ -1,6 +1,7 @@
 ﻿using CEMEX.API.Infrastructure.Core;
 using CEMEX.API.Models.Catalogos;
 using CEMEX.API.Models.Seguridad;
+using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
 using System;
@@ -66,6 +67,11 @@ namespace CEMEX.API.Infrastructure.Extensions
             usuario.IdEstatus = usuarioVM.Estatus;
             usuario.FechaAlta = DateTime.UtcNow;
             usuario.FechaModifico = DateTime.UtcNow;
+        }
+
+        public static void DeleteUser(this Usuario usuario)
+        {
+            usuario.IdEstatus = (int)EstatusRegistro.Eliminado;
         }
     }
 }
