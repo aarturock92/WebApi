@@ -21,12 +21,6 @@ namespace CEMEX.Data.Extensions.Seguridad
                                   .FirstOrDefault(u => u.Email.Trim() == emailAddress.Trim());
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="userRepository"></param>
-        /// <param name="estatusRegistro"></param>
-        /// <returns></returns>
         public static IEnumerable<Usuario> GetUsuarios(this IEntityBaseRepository<Usuario> userRepository, ETypeEstatusRegistro estatusRegistro)
         {
             IEnumerable<Usuario> usuarios = null;

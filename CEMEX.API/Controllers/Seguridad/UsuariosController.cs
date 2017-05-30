@@ -24,6 +24,7 @@ namespace CEMEX.API.Controllers.Seguridad
     public class UsuariosController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Usuario> _usuariosRepository;
+
         public UsuariosController(IEntityBaseRepository<Usuario> usuariosRepository,
                                   IEntityBaseRepository<Error> errorRepository,
                                   IUnitOfWork unitOfWork)
@@ -41,11 +42,30 @@ namespace CEMEX.API.Controllers.Seguridad
             {
                 HttpResponseMessage response = null;
 
-                IEnumerable<UsuarioViewModel> _usuariosVM = Mapper.Map<IEnumerable<Usuario>,
-                                                                       IEnumerable<UsuarioViewModel>>
-                                                                       (_usuariosRepository.GetAll().ToList());
+                response = request.CreateResponse(HttpStatusCode.OK, 
+                                                  Mapper.Map<IEnumerable<Usuario>,
+                                                             IEnumerable<UsuarioViewModel>>
+                                                             (_usuariosRepository.GetAll().ToList()));
 
-                response = request.CreateResponse(HttpStatusCode.OK, _usuariosVM);
+                return response;
+            });
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("{id:int}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                UsuarioViewModel _usuarioVM = Mapper.Map<Usuario, UsuarioViewModel>
+                                              (_usuariosRepository.GetSingle(id));
+
+                if (_usuarioVM != null)
+                    response = request.CreateResponse(HttpStatusCode.OK, _usuarioVM);
+                else
+                    response = request.CreateResponse(HttpStatusCode.NotFound, "El usuario no se encuentra.");
 
                 return response;
             });
