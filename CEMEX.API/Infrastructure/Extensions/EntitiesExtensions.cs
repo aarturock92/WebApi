@@ -41,8 +41,9 @@ namespace CEMEX.API.Infrastructure.Extensions
         /// <param name="usuarioVM"></param>
         public static void UpdateUsuario(this Usuario usuario, UsuarioViewModel usuarioVM)
         {
+            usuario.NumeroEmpleado = usuarioVM.NumeroEmpleado.Trim();
             usuario.NombreUsuario = usuarioVM.NombreUsuario.Trim();
-            usuario.IdRolUsuario = usuarioVM.IdRolUsuario;
+            usuario.IdPerfilUsuario = usuarioVM.IdPerfilUsuario;
             usuario.Salt = EncryptionService.CrearSalt();
             usuario.HashedContraseña = EncryptionService.EncriptarPassowrd(usuarioVM.Contrasena.Trim(), usuario.Salt);
             usuario.Nombre = usuarioVM.Nombre.Trim();
@@ -51,20 +52,17 @@ namespace CEMEX.API.Infrastructure.Extensions
             usuario.Sexo = usuarioVM.Sexo;
             usuario.Calle = usuarioVM.Calle.Trim();
             usuario.NumeroExterior = usuarioVM.NumeroExterior.Trim();
-            usuario.NumeroInterior = (usuarioVM.NumeroInterior == null) ? string.Empty: usuarioVM.NumeroInterior;
             usuario.Colonia = usuarioVM.Colonia.Trim();
             usuario.CodigoPostal = usuarioVM.CodigoPostal.Trim();
             usuario.IdPais = usuarioVM.IdPais;
             usuario.IdEstado = usuarioVM.IdEstado;
             usuario.IdMunicipio = usuarioVM.IdMunicipio;
             usuario.Email = usuarioVM.Email.Trim();
-            usuario.TelefonoOficina = usuarioVM.TelefonoOficina.Trim();
-            usuario.TelefonoCasa = usuarioVM.TelefonoCasa.Trim();
-            usuario.TelefonoCelular = usuarioVM.TelefonoCelular.Trim();
-            usuario.Extension = usuarioVM.Extension.Trim();
-            usuario.IdZona = usuarioVM.IdZona;
-            usuario.IdGerencia = usuarioVM.IdGerencia;
             usuario.IdEstatus = usuarioVM.Estatus;
+            usuario.Curp = usuarioVM.Curp.Trim();
+            usuario.RFC = usuarioVM.RFC.Trim();
+            usuario.FechaNacimiento = usuarioVM.FechaNacimiento.Trim();
+            usuario.Imagen = usuarioVM.Imagen.Trim();
             usuario.FechaAlta = DateTime.UtcNow;
             usuario.FechaModifico = DateTime.UtcNow;
         }

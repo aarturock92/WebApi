@@ -12,12 +12,10 @@ namespace CEMEX.API.Models.Seguridad
     {
         public int ID { get; set; }
 
-        public string NombreUsuario { get; set; }
+        public int IdPerfilUsuario { get; set; }
 
-        public int IdRolUsuario { get; set; }
+        public string NumeroEmpleado { get; set; }
 
-        public string Contrasena { get; set; }
-        
         public string Nombre { get; set; }
 
         public string PrimerApellido { get; set; }
@@ -26,11 +24,23 @@ namespace CEMEX.API.Models.Seguridad
 
         public int Sexo { get; set; }
 
+        public string Telefono { get; set; }
+
+        public string Email { get; set; }
+
+        public string Curp { get; set; }
+
+        public string RFC { get; set; }
+
+        public string FechaNacimiento { get; set; }
+
+        public string NombreUsuario { get; set; }
+
+        public string Contrasena { get; set; }
+
         public string Calle { get; set; }
 
         public string NumeroExterior { get; set; }
-
-        public string NumeroInterior { get; set; }
 
         public string Colonia { get; set; }
 
@@ -42,24 +52,9 @@ namespace CEMEX.API.Models.Seguridad
 
         public int IdMunicipio { get; set; }
 
-        public string Email { get; set; }
-
-        public string TelefonoOficina { get; set; }
-
-        public string Extension { get; set; }
-
-        public string TelefonoCasa { get; set; }
-
-        public string TelefonoCelular { get; set; }
-
-        public int IdZona { get; set; }
-
-        public int IdPlaza { get; set; }
-
-        public int IdGerencia { get; set; }
+        public string Imagen { get; set; }
 
         public int Estatus { get; set; }
-
         
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

@@ -57,6 +57,7 @@
     <Compile Include="Seguridad\Error.cs" />
     <Compile Include="Seguridad\Jerarquia.cs" />
     <Compile Include="Seguridad\Modulo.cs" />
+    <Compile Include="Seguridad\PerfilUsuario.cs" />
     <Compile Include="Seguridad\Permiso.cs" />
     <Compile Include="Seguridad\Rol.cs" />
     <Compile Include="Seguridad\Usuario.cs" />

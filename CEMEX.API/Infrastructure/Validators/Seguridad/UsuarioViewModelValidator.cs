@@ -7,13 +7,11 @@ namespace CEMEX.API.Infrastructure.Validators.Seguridad
     {
         public UsuarioViewModelValidator()
         {
-            RuleFor(u => u.Nombre).NotEmpty().WithMessage("El campo Usuario Nombre es requerido.")
-                                  .Length(5, 50).WithMessage("El campo Usuario solo permite entre 5 y 50 caracteres.");
+            RuleFor(u => u.IdPerfilUsuario)
+                        .NotEmpty()
+                        .WithMessage("El campo Perfil Usuario es requerido.");
 
-            RuleFor(u => u.IdRolUsuario).NotEmpty().WithMessage("El campo Rol Usuario es requerido.");
-
-            RuleFor(u => u.Contrasena).NotEmpty().WithMessage("El campo Contraseña es requerido.")
-                                      .Length(5, 50).WithMessage("El campo Contraseña solo permite entre 5 y 50 caracteres.");
+            RuleFor(u => u.NumeroEmpleado).NotEmpty().WithMessage("El campo Numero Empleado es requerdio");
 
             RuleFor(u => u.Nombre).NotEmpty().WithMessage("El campo Nombre es requerido")
                                   .Length(2, 50).WithMessage("El campo Nombre solo permite entre 2 y 50 caracteres.");
@@ -25,6 +23,17 @@ namespace CEMEX.API.Infrastructure.Validators.Seguridad
                                    .Length(2, 50).WithMessage("El campo Segundo Apellido permite entre 2 y 50 caracteres.");
 
             RuleFor(u => u.Sexo).Must(x => x == 1 || x == 2).WithMessage("El campo Sexo es invalido.");
+
+            RuleFor(u => u.Telefono).NotEmpty().WithMessage("El campo Telefono es requerido.");
+
+            RuleFor(u => u.Email).NotEmpty().WithMessage("El campo Email es requerido")
+                                .EmailAddress().WithMessage("El campo Email es invalido");
+
+            RuleFor(u => u.NombreUsuario).NotEmpty().WithMessage("El campo Usuario Nombre es requerido.")
+                                  .Length(5, 50).WithMessage("El campo Usuario solo permite entre 5 y 50 caracteres.");
+
+            RuleFor(u => u.Contrasena).NotEmpty().WithMessage("El campo Contraseña es requerido.")
+                                      .Length(5, 50).WithMessage("El campo Contraseña solo permite entre 5 y 50 caracteres.");
 
             RuleFor(u => u.Calle).NotEmpty().WithMessage("El campo Calle es requerido")
                                     .Length(2,50).WithMessage("El campo Calle permite entre 2 y 50 caracteres");
@@ -44,27 +53,7 @@ namespace CEMEX.API.Infrastructure.Validators.Seguridad
 
             RuleFor(u => u.IdMunicipio).NotEmpty().WithMessage("El campo Municipio es requerido");
 
-            RuleFor(u => u.Email).NotEmpty().WithMessage("El campo Email es requerido")
-                                 .EmailAddress().WithMessage("El campo Email es invalido");
-
-            RuleFor(u => u.TelefonoOficina).NotEmpty().WithMessage("El campo Telefono Oficina es requerido")
-                                           .Length(10).WithMessage("El campo Telefono Oficina solo permite 10 caracteres");
-
-            RuleFor(u => u.Extension).NotEmpty().WithMessage("El campo Extension es requerido")
-                                    .Length(1, 5).WithMessage("El campo Extension permite entre 1 y 5 caracteres");
-
-            RuleFor(u => u.TelefonoCasa).NotEmpty().WithMessage("El campo Telefono Casa es requerido")
-                               .Length(10).WithMessage("El campo Telefono Casa solo permite 10 caracteres");
-
-            RuleFor(u => u.TelefonoCelular).NotEmpty().WithMessage("El campo Telefono Celular es requerido")
-                               .Length(10).WithMessage("El campo Telefono Celular es requerido");
-
-            RuleFor(u => u.IdZona).NotEmpty().WithMessage("El campo Zona es requerido");
-
-            RuleFor(u => u.IdPlaza).NotEmpty().WithMessage("El campo Plaza es requerido");
-
-            RuleFor(u => u.IdGerencia).NotEmpty().WithMessage("El campo Gerencia es requerido");            
-
+           
         }
     }
 }

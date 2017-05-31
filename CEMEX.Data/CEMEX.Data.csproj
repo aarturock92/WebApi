@@ -63,6 +63,7 @@
     <Compile Include="Configurations\Seguridad\DetalleRolPermisoConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\JerarquiaConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\ModuloConfiguration.cs" />
+    <Compile Include="Configurations\Seguridad\PerfilUsuarioConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\PermisoConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\RolConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\UsuarioConfiguration.cs" />
@@ -82,6 +83,18 @@
     <Compile Include="Migrations\201705161551505_initial migration.Designer.cs">
       <DependentUpon>201705161551505_initial migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705312046470_Create Entity PerfilUsuario.cs" />
+    <Compile Include="Migrations\201705312046470_Create Entity PerfilUsuario.Designer.cs">
+      <DependentUpon>201705312046470_Create Entity PerfilUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705312108134_Add schema and configure name table.cs" />
+    <Compile Include="Migrations\201705312108134_Add schema and configure name table.Designer.cs">
+      <DependentUpon>201705312108134_Add schema and configure name table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705312202435_Add schema Jerarquia.cs" />
+    <Compile Include="Migrations\201705312202435_Add schema Jerarquia.Designer.cs">
+      <DependentUpon>201705312202435_Add schema Jerarquia.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntityBaseRepository.cs" />
@@ -100,6 +113,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201705161551505_initial migration.resx">
       <DependentUpon>201705161551505_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312046470_Create Entity PerfilUsuario.resx">
+      <DependentUpon>201705312046470_Create Entity PerfilUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312108134_Add schema and configure name table.resx">
+      <DependentUpon>201705312108134_Add schema and configure name table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705312202435_Add schema Jerarquia.resx">
+      <DependentUpon>201705312202435_Add schema Jerarquia.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

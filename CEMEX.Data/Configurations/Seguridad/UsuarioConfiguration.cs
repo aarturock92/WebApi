@@ -8,14 +8,6 @@ namespace CEMEX.Data.Configurations.Seguridad
         {
             HasKey(u => u.ID);
 
-            Property(u => u.NombreUsuario).IsRequired().HasMaxLength(100);
-
-            Property(u => u.IdRolUsuario).IsRequired();
-
-            Property(u => u.HashedContraseña).IsRequired().HasMaxLength(300);
-
-            Property(u => u.Salt).IsRequired().HasMaxLength(300);
-
             Property(u => u.Nombre).IsRequired().HasMaxLength(100);
 
             Property(u => u.PrimerApellido).IsRequired().HasMaxLength(100);
@@ -24,11 +16,25 @@ namespace CEMEX.Data.Configurations.Seguridad
 
             Property(u => u.Sexo).IsRequired();
 
+            Property(u => u.Telefono).HasMaxLength(20).IsRequired();
+
+            Property(u => u.Email).IsRequired().HasMaxLength(100);
+
+            Property(u => u.Curp).IsRequired().HasMaxLength(50);
+
+            Property(u => u.RFC).IsRequired().HasMaxLength(50);
+
+            Property(u => u.FechaNacimiento).IsRequired().HasMaxLength(50);
+
+            Property(u => u.NombreUsuario).IsRequired().HasMaxLength(100);
+
+            Property(u => u.HashedContraseña).IsRequired().HasMaxLength(300);
+
+            Property(u => u.Salt).IsRequired().HasMaxLength(300);
+
             Property(u => u.Calle).IsRequired().HasMaxLength(100);
 
             Property(u => u.NumeroExterior).IsRequired().HasMaxLength(10);
-
-            Property(u => u.NumeroInterior).IsRequired().HasMaxLength(10);
 
             Property(u => u.Colonia).IsRequired().HasMaxLength(100);
 
@@ -40,21 +46,7 @@ namespace CEMEX.Data.Configurations.Seguridad
 
             Property(u => u.IdMunicipio).IsRequired();
 
-            Property(u => u.Email).IsRequired().HasMaxLength(100);
-
-            Property(u => u.TelefonoOficina).IsRequired().HasMaxLength(20);
-
-            Property(u => u.Extension).IsRequired().HasMaxLength(10);
-
-            Property(u => u.TelefonoCasa).IsRequired().HasMaxLength(20);
-
-            Property(u => u.TelefonoCelular).IsRequired().HasMaxLength(20);
-
-            Property(u => u.IdZona).IsRequired();
-
-            Property(u => u.IdPlaza).IsRequired();
-
-            Property(u => u.IdGerencia).IsRequired();
+            Property(u => u.Imagen).HasMaxLength(400).IsOptional();            
 
             Property(u => u.IdEstatus).IsRequired();
             

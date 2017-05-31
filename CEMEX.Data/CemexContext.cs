@@ -71,8 +71,13 @@ namespace CEMEX.Data
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
             modelBuilder.Configurations.Add(new UsuarioRolConfiguration());
 
-            modelBuilder.Entity<Estado>().ToTable("CAT_ESTADOS");
-            modelBuilder.Entity<Municipio>().ToTable("CAT_MUNICIPIOS");            
+            modelBuilder.Entity<Estado>().ToTable("Estados","Catalogo");
+            modelBuilder.Entity<Municipio>().ToTable("Municipios","Catalogo");
+
+            modelBuilder.Entity<Usuario>().ToTable("Usuarios", "Seguridad");
+            modelBuilder.Entity<PerfilUsuario>().ToTable("PerfilesUsuario", "Seguridad");
+            modelBuilder.Entity<Jerarquia>().ToTable("Jerarquias","Seguridad");
+
         }
 
     }
