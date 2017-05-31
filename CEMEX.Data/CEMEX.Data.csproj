@@ -73,6 +73,7 @@
     <Compile Include="Extensions\Catalogos\PlazaOxxoExtensions.cs" />
     <Compile Include="Extensions\Catalogos\RegionExtensions.cs" />
     <Compile Include="Extensions\Seguridad\EstadoExtensions.cs" />
+    <Compile Include="Extensions\Seguridad\PerfilUsuarioExtensions.cs" />
     <Compile Include="Extensions\Seguridad\UsuarioExtensions.cs" />
     <Compile Include="Infrastructure\DbFactory.cs" />
     <Compile Include="Infrastructure\Disposable.cs" />

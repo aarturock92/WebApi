@@ -34,10 +34,9 @@ namespace CEMEX.API.Controllers.Seguridad
             return CreateHttpResponse(request, ()=>
             {
                 HttpResponseMessage response = null;
-
-                IEnumerable<Jerarquia> _jerarquias = _jerarquiasRepository.GetAll().ToList();
-
-                IEnumerable<JerarquiaViewModel> jerarquiasVM = Mapper.Map<IEnumerable<Jerarquia>, IEnumerable<JerarquiaViewModel>>(_jerarquias);
+                IEnumerable<JerarquiaViewModel> jerarquiasVM = Mapper.Map<IEnumerable<Jerarquia>,
+                                                                          IEnumerable<JerarquiaViewModel>>
+                                                                          (_jerarquiasRepository.GetAll().ToList());
 
                 response = request.CreateResponse(HttpStatusCode.OK, jerarquiasVM);
 

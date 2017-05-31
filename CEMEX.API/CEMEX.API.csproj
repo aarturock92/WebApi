@@ -181,6 +181,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Seguridad\JerarquiasController.cs" />
     <Compile Include="Controllers\Seguridad\ModulosController.cs" />
+    <Compile Include="Controllers\Seguridad\PerfilesUsuarioController.cs" />
     <Compile Include="Controllers\Seguridad\PermisosController.cs" />
     <Compile Include="Controllers\Seguridad\RolesController.cs" />
     <Compile Include="Controllers\Seguridad\UsuariosController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Models\Seguridad\DetalleModuloPermisoViewModel.cs" />
     <Compile Include="Models\Seguridad\JerarquiaViewModel.cs" />
     <Compile Include="Models\Seguridad\ModuloViewModel.cs" />
+    <Compile Include="Models\Seguridad\PerfilUsuarioViewModel.cs" />
     <Compile Include="Models\Seguridad\PermisoViewModel.cs" />
     <Compile Include="Models\Seguridad\RolViewModel.cs" />
     <Compile Include="Models\Seguridad\UsuarioViewModel.cs" />
@@ -231,9 +233,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Properties\PublishProfiles\aarturock92.pubxml" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

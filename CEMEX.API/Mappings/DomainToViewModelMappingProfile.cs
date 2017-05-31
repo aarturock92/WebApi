@@ -20,6 +20,7 @@ namespace CEMEX.API.Mappings
         public DomainToViewModelMappingProfile()
         {
             //Mapping Catalogos
+            CreateMap<PerfilUsuario, PerfilUsuarioViewModel>();
             CreateMap<Estado, EstadoViewModel>().ForMember(e => e.Municipios, map => map.MapFrom(ma => ma.Municipios));
             CreateMap<Municipio, MunicipioViewModel>();
             CreateMap<Region, RegionViewModel>();

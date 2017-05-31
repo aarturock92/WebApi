@@ -74,6 +74,12 @@ namespace CEMEX.Data
             modelBuilder.Entity<Estado>().ToTable("Estados","Catalogo");
             modelBuilder.Entity<Municipio>().ToTable("Municipios","Catalogo");
 
+            modelBuilder.Entity<Region>().ToTable("Regiones","Catalogo");
+            modelBuilder.Entity<PlazaImmex>().ToTable("PlazasImmex", "Catalogo");
+            modelBuilder.Entity<PlazaOxxo>().ToTable("PlazasOxxo","Catalogo");
+            modelBuilder.Entity<Distrito>().ToTable("Distritos","Catalogo");
+            modelBuilder.Entity<Tienda>().ToTable("Tiendas","Catalogo");
+
             modelBuilder.Entity<Usuario>().ToTable("Usuarios", "Seguridad");
             modelBuilder.Entity<PerfilUsuario>().ToTable("PerfilesUsuario", "Seguridad");
             modelBuilder.Entity<Jerarquia>().ToTable("Jerarquias","Seguridad");

@@ -11,6 +11,7 @@ namespace CEMEX.API.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            ViewBag.Title = "Index";
             return View();
         }
     }
