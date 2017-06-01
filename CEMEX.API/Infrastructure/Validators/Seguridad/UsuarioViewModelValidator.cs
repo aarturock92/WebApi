@@ -1,4 +1,5 @@
 ﻿using CEMEX.API.Models.Seguridad;
+using CEMEX.Entidades;
 using FluentValidation;
 
 namespace CEMEX.API.Infrastructure.Validators.Seguridad
@@ -22,7 +23,8 @@ namespace CEMEX.API.Infrastructure.Validators.Seguridad
             RuleFor(u => u.SegundoApellido).NotEmpty().WithMessage("El campo Segundo Apellido es requerido.")
                                    .Length(2, 50).WithMessage("El campo Segundo Apellido permite entre 2 y 50 caracteres.");
 
-            RuleFor(u => u.Sexo).Must(x => x == 1 || x == 2).WithMessage("El campo Sexo es invalido.");
+            RuleFor(u => u.Sexo).Must(x => x == (int)ETypeEstatusRegistro.Activo || x == (int)ETypeEstatusRegistro.Inactivo)
+                                .WithMessage("El campo Sexo es invalido.");
 
             RuleFor(u => u.Telefono).NotEmpty().WithMessage("El campo Telefono es requerido.");
 

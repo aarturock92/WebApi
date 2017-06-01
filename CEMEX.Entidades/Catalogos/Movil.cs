@@ -4,8 +4,6 @@
     {
         public int IdPlazaImmex { get; set; }
 
-        public int IdMovil { get; set; }
-
         public string Marca { get; set; }
 
         public string Modelo { get; set; }
