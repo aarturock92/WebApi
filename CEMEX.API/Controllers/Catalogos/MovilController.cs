@@ -65,6 +65,10 @@ namespace CEMEX.API.Controllers.Catalogos
                 }
                 else
                 {
+                    Movil newMovil = new Movil();
+                    //newMovil.CreateMovil(movilVM);
+
+
 
                 }
 
