@@ -14,9 +14,7 @@ namespace CEMEX.API.Infrastructure.Validators.Seguridad
             RuleFor(j => j.Descripcion).NotEmpty().WithMessage("El campo Descripcion es requerido")
                                   .Length(1, 200).WithMessage("El campo Descripcion solo permite entre 1 y 200 caracteres");
 
-            RuleFor(j => j.IdJerarquiaPadre).NotEmpty().WithMessage("El campo JerarquiaPadre es requerido");
-
-            RuleFor(j => j.NivelEstructura).NotEmpty().WithMessage("El campo Nivel Estructura es requerido");
+            RuleFor(j => j.NivelJerarquia).NotEmpty().WithMessage("El campo Nivel Jerarquia es requerido");
 
             RuleFor(j => j.Estatus).NotEmpty().WithMessage("El campo Estatus es requerido")
                                    .Must(j => j == (int)EstatusRegistro.Activo || j == (int)EstatusRegistro.Inactivo || j == (int)EstatusRegistro.Eliminado)
