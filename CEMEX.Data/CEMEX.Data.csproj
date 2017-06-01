@@ -53,6 +53,7 @@
     <Compile Include="CemexContext.cs" />
     <Compile Include="Configurations\Catalogos\DistritoConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\EstadoConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\MovilConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\MunicipioConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\PlazaImmexConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\PlazaOxxoConfiguration.cs" />
@@ -96,6 +97,10 @@
     <Compile Include="Migrations\201705312202435_Add schema Jerarquia.Designer.cs">
       <DependentUpon>201705312202435_Add schema Jerarquia.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706011830289_Create entity Movil.cs" />
+    <Compile Include="Migrations\201706011830289_Create entity Movil.Designer.cs">
+      <DependentUpon>201706011830289_Create entity Movil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntityBaseRepository.cs" />
@@ -123,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705312202435_Add schema Jerarquia.resx">
       <DependentUpon>201705312202435_Add schema Jerarquia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706011830289_Create entity Movil.resx">
+      <DependentUpon>201706011830289_Create entity Movil.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -26,6 +26,7 @@ namespace CEMEX.Data
         public IDbSet<PlazaOxxo> PlazaOxxoSet { get; set; }
         public IDbSet<Distrito> DistritoSet { get; set; }
         public IDbSet<Tienda> TiendaSet { get; set; }
+        public IDbSet<Movil> MovilSet { get; set; }
         #endregion
 
         #region Seguridad
@@ -60,6 +61,7 @@ namespace CEMEX.Data
             modelBuilder.Configurations.Add(new PlazaOxxoConfiguration());
             modelBuilder.Configurations.Add(new DistritoConfiguration());
             modelBuilder.Configurations.Add(new TiendaConfiguration());
+            modelBuilder.Configurations.Add(new MovilConfiguration());
                         
 
             modelBuilder.Configurations.Add(new DetalleModuloPermisoConfiguration());
@@ -73,7 +75,7 @@ namespace CEMEX.Data
 
             modelBuilder.Entity<Estado>().ToTable("Estados","Catalogo");
             modelBuilder.Entity<Municipio>().ToTable("Municipios","Catalogo");
-
+            modelBuilder.Entity<Movil>().ToTable("Moviles", "Catalogo");
             modelBuilder.Entity<Region>().ToTable("Regiones","Catalogo");
             modelBuilder.Entity<PlazaImmex>().ToTable("PlazasImmex", "Catalogo");
             modelBuilder.Entity<PlazaOxxo>().ToTable("PlazasOxxo","Catalogo");

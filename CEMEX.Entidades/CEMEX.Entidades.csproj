@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Catalogos\Distrito.cs" />
     <Compile Include="Catalogos\Estado.cs" />
+    <Compile Include="Catalogos\Movil.cs" />
     <Compile Include="Catalogos\Municipio.cs" />
     <Compile Include="Catalogos\PlazaImmex.cs" />
     <Compile Include="Catalogos\PlazaOxxo.cs" />

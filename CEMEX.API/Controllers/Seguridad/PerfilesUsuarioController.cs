@@ -29,7 +29,8 @@ namespace CEMEX.API.Controllers.Seguridad
 
         [HttpGet]
         [Route("list")]
-        public HttpResponseMessage Get(HttpRequestMessage request, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
+        public HttpResponseMessage Get(HttpRequestMessage request, 
+                                       ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
