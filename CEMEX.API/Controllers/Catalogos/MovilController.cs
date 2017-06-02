@@ -23,8 +23,8 @@ namespace CEMEX.API.Controllers.Catalogos
         private readonly IEntityBaseRepository<Movil> _movilRepository;
 
         public MovilController(IEntityBaseRepository<Movil> movilRepository,
-                               IEntityBaseRepository<Error> errorRepository, 
-                               IUnitOfWork unitOfWork) 
+                               IEntityBaseRepository<Error> errorRepository,
+                               IUnitOfWork unitOfWork)
             : base(errorRepository, unitOfWork)
         {
             _movilRepository = movilRepository;
@@ -32,14 +32,14 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [HttpGet]
         [Route("list")]
-        public HttpResponseMessage Get(HttpRequestMessage request, 
+        public HttpResponseMessage Get(HttpRequestMessage request,
                                        ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
-                IEnumerable<MovilViewModel> _movilesVM = Mapper.Map<IEnumerable<Movil>, 
+                IEnumerable<MovilViewModel> _movilesVM = Mapper.Map<IEnumerable<Movil>,
                                                                     IEnumerable<MovilViewModel>>
                                                                     (_movilRepository.GetMovilesByStatusRegistro(estatusRegistro));
 
@@ -59,24 +59,46 @@ namespace CEMEX.API.Controllers.Catalogos
 
                 if (!ModelState.IsValid)
                 {
-                    response = request.CreateResponse(HttpStatusCode.BadRequest, 
-                        ModelState.Keys.SelectMany(k => ModelState[k].Errors)
-                          .Select(m => m.ErrorMessage).ToArray());
+                    response = request.CreateResponse(HttpStatusCode.BadRequest,
+                                                      ModelState.Keys.SelectMany(k => ModelState[k].Errors).Select(m => m.ErrorMessage).ToArray());
                 }
                 else
                 {
-                    Movil newMovil = new Movil();
-                    newMovil.CreateMovil(movilVM);
-                    _movilRepository.Add(newMovil);
-                    _unitOfWork.Commit();
+                    Movil _movil = _movilRepository.GetMovil(movilVM.IMEI,
+                                                             movilVM.NumeroTelefono,
+                                                             movilVM.NumeroSerie);
 
-                    movilVM = Mapper.Map<Movil, MovilViewModel>(newMovil);
-                    response = request.CreateResponse(HttpStatusCode.Created, movilVM);
+                    if (_movil != null)
+                    {
+                        response = request.CreateResponse(HttpStatusCode.OK, "Ya existe un movil con el IMEI, Número Telefonico o Numero de Serie en el sistema.");
+                    }
+                    else
+                    {
+                        Movil newMovil = new Movil();
+                        newMovil.CreateMovil(movilVM);
+                        _movilRepository.Add(newMovil);
+                        _unitOfWork.Commit();
+
+                        movilVM = Mapper.Map<Movil, MovilViewModel>(newMovil);
+                        response = request.CreateResponse(HttpStatusCode.Created, movilVM);
+                    }
                 }
 
                 return response;
             });
-            
+        }
+
+        [HttpGet]
+        [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]
+        public HttpResponseMessage Search(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+
+                return response;
+            });
         }
 
     }

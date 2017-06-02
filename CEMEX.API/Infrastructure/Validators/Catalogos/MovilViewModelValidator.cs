@@ -8,11 +8,9 @@ namespace CEMEX.API.Infrastructure.Validators.Catalogos
     {
         public MovilViewModelValidator()
         {
-            RuleFor(m => m.IdRegion).NotEmpty().WithMessage("El campo Región es requerido")
-                                    .Must(m => m > 0).WithMessage("El campo Región es requerido");
+            RuleFor(m => m.IdRegion).Must(m => m > 0).WithMessage("El campo Región es requerido");
 
-            RuleFor(m => m.IdPlazaImmex).NotEmpty().WithMessage("El campo Plaza Immex es requerido")
-                                        .Must(m => m > 0).WithMessage("El campo Plaza Immex es requerido");
+            RuleFor(m => m.IdPlazaImmex).Must(m => m > 0).WithMessage("El campo Plaza Immex es requerido");
 
             RuleFor(m => m.Marca).NotEmpty().WithMessage("El campo Nombre es requerido")
                                  .Length(2, 50).WithMessage("El campo Nombre solo permite entre 2 y 50 caracteres");
