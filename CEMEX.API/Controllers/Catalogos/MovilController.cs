@@ -114,6 +114,39 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
+        [HttpPut]
+        [Route("{id:int}")]
+        public HttpResponseMessage Update(HttpRequestMessage request, int id, MovilViewModel movilVM)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest,
+                                                      ModelState.Keys.SelectMany(k => ModelState[k].Errors).Select(m => m.ErrorMessage).ToArray());
+                }else
+                {
+                    Movil _movil = _movilRepository.GetSingle(id);
+
+                    if (_movil != null)
+                    {
+                        _movil.UpdateMovil(movilVM);
+                        _unitOfWork.Commit();
+
+                        movilVM = Mapper.Map<Movil, MovilViewModel>(_movil);
+                        response = request.CreateResponse(HttpStatusCode.OK, movilVM);
+                    }else
+                    {
+                        response = request.CreateResponse(HttpStatusCode.NotFound, 
+                                                          "El movil no existe en la base de datos");
+                    }
+                }
+
+                return response;
+            });
+        }
 
         [HttpGet]
         [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]

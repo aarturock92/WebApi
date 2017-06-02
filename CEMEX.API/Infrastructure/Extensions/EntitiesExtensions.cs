@@ -67,6 +67,9 @@ namespace CEMEX.API.Infrastructure.Extensions
             usuario.FechaModifico = DateTime.UtcNow;
         }
 
+
+
+
         public static void DeleteUser(this Usuario usuario)
         {
             usuario.IdEstatus = (int)EstatusRegistro.Eliminado;
@@ -91,6 +94,19 @@ namespace CEMEX.API.Infrastructure.Extensions
             movil.IdEstatus = (int)ETypeEstatusRegistro.Activo;
             movil.FechaAlta = DateTime.UtcNow;
             movil.FechaModifico = DateTime.Now;
+        }
+
+        public static void UpdateMovil(this Movil movil, MovilViewModel movilVM)
+        {
+            movil.IdRegion = movilVM.IdRegion;
+            movil.IdPlazaImmex = movilVM.IdPlazaImmex;
+            movil.IMEI = movilVM.IMEI.Trim();
+            movil.Marca = movilVM.Marca.Trim();
+            movil.Modelo = movilVM.Modelo.Trim();
+            movil.NumeroSerie = movilVM.NumeroSerie.Trim();
+            movil.NumeroTelefono = movilVM.NumeroTelefono.Trim();
+            movil.FechaModifico = DateTime.UtcNow;
+            movil.IdEstatus = movilVM.IdEstatus;
         }
     }
 }
