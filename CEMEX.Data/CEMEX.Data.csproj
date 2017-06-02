@@ -102,6 +102,10 @@
     <Compile Include="Migrations\201706011830289_Create entity Movil.Designer.cs">
       <DependentUpon>201706011830289_Create entity Movil.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706021730006_Update entity Movil.cs" />
+    <Compile Include="Migrations\201706021730006_Update entity Movil.Designer.cs">
+      <DependentUpon>201706021730006_Update entity Movil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntityBaseRepository.cs" />
@@ -132,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201706011830289_Create entity Movil.resx">
       <DependentUpon>201706011830289_Create entity Movil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706021730006_Update entity Movil.resx">
+      <DependentUpon>201706021730006_Update entity Movil.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

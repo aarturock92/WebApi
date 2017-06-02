@@ -1,11 +1,8 @@
 ﻿using CEMEX.Data.Repositories;
 using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CEMEX.Data.Extensions.Catalogos
 {

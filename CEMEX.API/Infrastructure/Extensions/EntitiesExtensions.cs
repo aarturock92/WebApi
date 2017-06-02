@@ -75,12 +75,16 @@ namespace CEMEX.API.Infrastructure.Extensions
 
         public static void CreateMovil(this Movil movil, MovilViewModel movilVM)
         {
-            //movil.IdPlazaImmex = movilVM.IdPlazaImmex;
-            //movil.Marca = movilVM.Marca.Trim();
-            //movil.Modelo = movilVM.Modelo.Trim();
-            //movil.NumeroTelefono = movilVM.NumeroTelefono.Trim();
-            //movil.NumeroSerie = movilVM.NumeroSerie.Trim();
-            //movil.IMEI = movilVM.
+            movil.IdPlazaImmex = movilVM.IdPlazaImmex;
+            movil.IdRegion = movilVM.IdRegion;
+            movil.Marca = movilVM.Marca.Trim();
+            movil.Modelo = movilVM.Modelo.Trim();
+            movil.NumeroTelefono = movilVM.NumeroTelefono.Trim();
+            movil.NumeroSerie = movilVM.NumeroSerie.Trim();
+            movil.IMEI = movilVM.IMEI.Trim();
+            movil.IdEstatus = (int)ETypeEstatusRegistro.Activo;
+            movil.FechaAlta = DateTime.UtcNow;
+            movil.FechaModifico = DateTime.Now;
         }
     }
 }

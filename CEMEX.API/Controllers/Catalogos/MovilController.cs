@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CEMEX.API.Infrastructure.Core;
+using CEMEX.API.Infrastructure.Extensions;
 using CEMEX.API.Models.Catalogos;
 using CEMEX.Data.Extensions.Catalogos;
 using CEMEX.Data.Infrastructure;
@@ -7,7 +8,6 @@ using CEMEX.Data.Repositories;
 using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -66,10 +66,12 @@ namespace CEMEX.API.Controllers.Catalogos
                 else
                 {
                     Movil newMovil = new Movil();
-                    //newMovil.CreateMovil(movilVM);
+                    newMovil.CreateMovil(movilVM);
+                    _movilRepository.Add(newMovil);
+                    _unitOfWork.Commit();
 
-
-
+                    movilVM = Mapper.Map<Movil, MovilViewModel>(newMovil);
+                    response = request.CreateResponse(HttpStatusCode.Created, movilVM);
                 }
 
                 return response;

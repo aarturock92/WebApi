@@ -2,6 +2,8 @@
 {
     public class Movil:EntidadBase
     {
+        public int IdRegion { get; set; }
+
         public int IdPlazaImmex { get; set; }
 
         public string Marca { get; set; }
