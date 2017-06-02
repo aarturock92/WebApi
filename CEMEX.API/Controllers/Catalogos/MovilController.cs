@@ -8,6 +8,7 @@ using CEMEX.Data.Repositories;
 using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -70,7 +71,8 @@ namespace CEMEX.API.Controllers.Catalogos
 
                     if (_movil != null)
                     {
-                        response = request.CreateResponse(HttpStatusCode.OK, "Ya existe un movil con el IMEI, Número Telefonico o Numero de Serie en el sistema.");
+                        response = request.CreateResponse(HttpStatusCode.OK, 
+                                                          "Ya existe un movil con el IMEI, Número Telefonico o Numero de Serie en el sistema.");
                     }
                     else
                     {
@@ -88,14 +90,86 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
+        [HttpDelete]
+        [Route("{id:int}")]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, ()=>
+            {
+                HttpResponseMessage response = null;
+
+                Movil movil = _movilRepository.GetSingle(id);
+
+                if (movil != null)
+                {
+                    movil.DeleteMovil();
+                    _unitOfWork.Commit();
+                    response = request.CreateResponse(HttpStatusCode.OK);
+                }else
+                {
+                    response = request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                return response;
+            });
+        }
+
+
         [HttpGet]
         [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]
         public HttpResponseMessage Search(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
         {
+            int currentPage = page.Value,
+                currentPageSize = pageSize.Value;
+
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
 
+                List<Movil> moviles = null;
+                int totalMoviles = new int();
+
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    filter = filter.Trim().ToLower();
+
+                    moviles = _movilRepository.FindBy(m => m.Marca.ToLower().Contains(filter) ||
+                                                           m.Modelo.ToLower().Contains(filter) ||
+                                                           m.NumeroTelefono.ToLower().Contains(filter) ||
+                                                           m.NumeroSerie.ToLower().Contains(filter))
+                                               .OrderBy(m => m.ID)
+                                               .Skip(currentPage * currentPageSize)
+                                               .Take(currentPageSize)
+                                               .ToList();
+
+                    totalMoviles = _movilRepository.FindBy(m => m.Marca.ToLower().Contains(filter) ||
+                                                          m.Modelo.ToLower().Contains(filter) ||
+                                                          m.NumeroTelefono.ToLower().Contains(filter) ||
+                                                          m.NumeroSerie.ToLower().Contains(filter)).Count();
+
+                }else
+                {
+                    moviles = _movilRepository.GetAll()
+                                              .OrderBy(e => e.ID)
+                                              .Skip(currentPage * currentPageSize)
+                                              .Take(currentPageSize)
+                                              .ToList();
+
+                    totalMoviles = _movilRepository.GetAll()
+                                                   .Count();
+                }
+
+                IEnumerable<MovilViewModel> movilesVM = Mapper.Map<IEnumerable<Movil>, IEnumerable<MovilViewModel>>(moviles);
+
+                PaginationSet<MovilViewModel> pagedSet = new PaginationSet<MovilViewModel>()
+                {
+                    Page = currentPage,
+                    TotalCount = totalMoviles,
+                    TotalPages = (int)Math.Ceiling((decimal)totalMoviles / currentPageSize),
+                    Items = movilesVM
+                };
+
+                response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
 
                 return response;
             });

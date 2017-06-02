@@ -73,6 +73,12 @@ namespace CEMEX.API.Infrastructure.Extensions
         }
 
 
+        public static void DeleteMovil(this Movil movil)
+        {
+            movil.IdEstatus = (int)EstatusRegistro.Eliminado;
+        }
+
+
         public static void CreateMovil(this Movil movil, MovilViewModel movilVM)
         {
             movil.IdPlazaImmex = movilVM.IdPlazaImmex;
