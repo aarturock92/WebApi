@@ -11,6 +11,7 @@ using AutoMapper;
 using CEMEX.Data.Extensions.Catalogos;
 using System.Net;
 using System.Linq;
+using CEMEX.Entidades;
 
 namespace CEMEX.API.Controllers.Catalogos
 {
@@ -31,7 +32,8 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [HttpGet]
         [Route("list")]
-        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirPlazaImmex = false)
+        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirPlazaImmex = false, 
+                                       ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -41,11 +43,11 @@ namespace CEMEX.API.Controllers.Catalogos
                 if (incluirPlazaImmex)
                     regionesVM = Mapper.Map<IEnumerable<Region>, 
                                             IEnumerable<RegionViewModel>>
-                                            (_regionRepository.GetRegionesWithPlazaImmex());
+                                            (_regionRepository.GetRegionesWithPlazaImmex(estatusRegistro));
                 else
                     regionesVM = Mapper.Map<IEnumerable<Region>, 
                                             IEnumerable<RegionViewModel>>
-                                            (_regionRepository.GetRegiones());
+                                            (_regionRepository.GetRegiones(estatusRegistro));
 
                 response = request.CreateResponse(HttpStatusCode.OK, regionesVM);
 

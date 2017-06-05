@@ -50,6 +50,29 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
+        [HttpGet]
+        [Route("{id:int}")]
+        public HttpResponseMessage Get(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                Movil _movil = _movilRepository.GetSingle(id);
+
+                if (_movil != null && _movil.IdEstatus != (int)ETypeEstatusRegistro.Eliminado)
+                {
+                    MovilViewModel movilVM = Mapper.Map<Movil, MovilViewModel>(_movil);
+                    response = request.CreateResponse(HttpStatusCode.OK, movilVM);
+                }
+                else
+                {
+                    response = request.CreateResponse(HttpStatusCode.NotFound, "No se encontro el registro Móvil.");
+                }
+
+                return response;
+            });
+        }
+
         [HttpPost]
         [Route("register")]
         public HttpResponseMessage Register(HttpRequestMessage request, MovilViewModel movilVM)
@@ -207,6 +230,5 @@ namespace CEMEX.API.Controllers.Catalogos
                 return response;
             });
         }
-
     }
 }
