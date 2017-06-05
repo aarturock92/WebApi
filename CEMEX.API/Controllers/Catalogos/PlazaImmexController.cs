@@ -4,6 +4,7 @@ using CEMEX.API.Models.Catalogos;
 using CEMEX.Data.Extensions.Catalogos;
 using CEMEX.Data.Infrastructure;
 using CEMEX.Data.Repositories;
+using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [Route("list")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirPlazasOxxo = false)
+        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirPlazasOxxo = false, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -39,11 +40,11 @@ namespace CEMEX.API.Controllers.Catalogos
                 if (incluirPlazasOxxo)
                     _plazaImmxVM = Mapper.Map<IEnumerable<PlazaImmex>,
                                              IEnumerable<PlazaImmexViewModel>>
-                                             (_repositoryPlazaImmex.GetPlazasImmexWithPlazaOxxo());
+                                             (_repositoryPlazaImmex.GetPlazasImmexWithPlazaOxxo(estatusRegistro));
                 else
                     _plazaImmxVM = Mapper.Map<IEnumerable<PlazaImmex>,
                                               IEnumerable<PlazaImmexViewModel>>
-                                              (_repositoryPlazaImmex.GetPlazasImmex());
+                                              (_repositoryPlazaImmex.GetPlazasImmex(estatusRegistro));
 
                 response = request.CreateResponse(HttpStatusCode.OK, _plazaImmxVM);
 
@@ -69,7 +70,7 @@ namespace CEMEX.API.Controllers.Catalogos
                                               PlazaImmexViewModel>
                                               (_repositoryPlazaImmex.GetPlazaImmexById(id));
 
-                if (plazaImmexVM != null)
+                if (plazaImmexVM != null && plazaImmexVM.Estatus != (int)ETypeEstatusRegistro.Eliminado)
                     response = request.CreateResponse(HttpStatusCode.OK, plazaImmexVM);
                 else
                     response = request.CreateResponse(HttpStatusCode.NotFound);
