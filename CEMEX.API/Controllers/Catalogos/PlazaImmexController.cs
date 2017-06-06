@@ -30,7 +30,9 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [Route("list")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirPlazasOxxo = false, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
+        public HttpResponseMessage Get(HttpRequestMessage request, 
+                                       bool incluirPlazasOxxo = false, 
+                                       ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
