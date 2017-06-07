@@ -173,7 +173,7 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [HttpGet]
         [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]
-        public HttpResponseMessage Search(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
+        public HttpResponseMessage Search(HttpRequestMessage request, int? page, int? pageSize, string filter = null, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             int currentPage = page.Value,
                 currentPageSize = pageSize.Value;
@@ -205,7 +205,7 @@ namespace CEMEX.API.Controllers.Catalogos
 
                 }else
                 {
-                    moviles = _movilRepository.GetAll()
+                    moviles = _movilRepository.GetMovilesByStatusRegistro(estatusRegistro)
                                               .OrderBy(e => e.ID)
                                               .Skip(currentPage * currentPageSize)
                                               .Take(currentPageSize)
