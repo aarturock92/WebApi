@@ -33,9 +33,6 @@ namespace CEMEX.API.Mappings
 
             CreateMap<Jerarquia, JerarquiaViewModel>();
             CreateMap<Permiso, PermisoViewModel>();
-            CreateMap<Modulo, ModuloViewModel>();
-            CreateMap<DetalleModuloPermiso, DetalleModuloPermisoViewModel>();
-            CreateMap<Rol, RolViewModel>();
             CreateMap<Usuario, UsuarioViewModel>().ForMember(u => u.Contrasena, opt => opt.Ignore());            
         }
     }

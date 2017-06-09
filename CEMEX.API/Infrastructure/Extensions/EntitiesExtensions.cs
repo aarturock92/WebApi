@@ -43,7 +43,7 @@ namespace CEMEX.API.Infrastructure.Extensions
         {
             usuario.NumeroEmpleado = usuarioVM.NumeroEmpleado.Trim();
             usuario.NombreUsuario = usuarioVM.NombreUsuario.Trim();
-            usuario.IdPerfilUsuario = usuarioVM.IdPerfilUsuario;
+            usuario.PerfilUsuarioId = usuarioVM.IdPerfilUsuario;
             usuario.Salt = EncryptionService.CrearSalt();
             usuario.HashedContraseña = EncryptionService.EncriptarPassowrd(usuarioVM.Contrasena.Trim(), usuario.Salt);
             usuario.Nombre = usuarioVM.Nombre.Trim();

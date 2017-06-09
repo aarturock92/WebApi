@@ -1,5 +1,7 @@
-﻿using CEMEX.Data.Configurations.Catalogos;
+﻿using CEMEX.Data.Configurations.App;
+using CEMEX.Data.Configurations.Catalogos;
 using CEMEX.Data.Configurations.Seguridad;
+using CEMEX.Entidades.App;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
 using System.Data.Entity;
@@ -30,15 +32,15 @@ namespace CEMEX.Data
         #endregion
 
         #region Seguridad
-        public IDbSet<DetalleModuloPermiso> DetalleModuloPermisoSet { get; set; }
-        public IDbSet<DetalleRolPermiso> DetalleRolPermisoSet { get; set; }
-        public IDbSet<Error> ErrorSet { get; set; }
+        public IDbSet<DetalleMenuPermiso> DetalleModuloPermisoSet { get; set; }
         public IDbSet<Jerarquia> JerarquiaSet { get; set; }
-        public IDbSet<Modulo> ModuloSet { get; set; }
         public IDbSet<Permiso> PermisoSet { get; set; }
-        public IDbSet<Rol> RolSet { get; set; }
         public IDbSet<Usuario> UsuarioSet { get; set; }
-        public IDbSet<UsuarioRol> UsuarioRolSet { get; set; }        
+        #endregion
+
+        #region App
+        public IDbSet<Menu> MenuSet { get; set; }
+        public IDbSet<Error> ErrorSet { get; set; }
         #endregion
 
         public virtual void Commit()
@@ -62,16 +64,14 @@ namespace CEMEX.Data
             modelBuilder.Configurations.Add(new DistritoConfiguration());
             modelBuilder.Configurations.Add(new TiendaConfiguration());
             modelBuilder.Configurations.Add(new MovilConfiguration());
-                        
 
-            modelBuilder.Configurations.Add(new DetalleModuloPermisoConfiguration());
-            modelBuilder.Configurations.Add(new DetalleRolPermisoConfiguration());
+            modelBuilder.Configurations.Add(new DetalleMenuPermisoConfiguration());
             modelBuilder.Configurations.Add(new JerarquiaConfiguration());
-            modelBuilder.Configurations.Add(new ModuloConfiguration());
             modelBuilder.Configurations.Add(new PermisoConfiguration());
-            modelBuilder.Configurations.Add(new RolConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
-            modelBuilder.Configurations.Add(new UsuarioRolConfiguration());
+
+            modelBuilder.Configurations.Add(new MenuConfiguration());
+
 
             modelBuilder.Entity<Estado>().ToTable("Estados","Catalogo");
             modelBuilder.Entity<Municipio>().ToTable("Municipios","Catalogo");
@@ -85,7 +85,11 @@ namespace CEMEX.Data
             modelBuilder.Entity<Usuario>().ToTable("Usuarios", "Seguridad");
             modelBuilder.Entity<PerfilUsuario>().ToTable("PerfilesUsuario", "Seguridad");
             modelBuilder.Entity<Jerarquia>().ToTable("Jerarquias","Seguridad");
+            modelBuilder.Entity<Permiso>().ToTable("Permisos", "Seguridad");
+            modelBuilder.Entity<DetalleMenuPermiso>().ToTable("DetalleMenuPermiso", "Seguridad");
 
+            modelBuilder.Entity<Menu>().ToTable("Menu", "Aplicacion");
+            modelBuilder.Entity<Error>().ToTable("Error", "Aplicacion");
         }
 
     }

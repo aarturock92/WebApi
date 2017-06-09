@@ -23,6 +23,10 @@ namespace CEMEX.Data.Configurations.Seguridad
             Property(j => j.FechaAlta).IsRequired();
 
             Property(j => j.FechaModifico).IsOptional();
+
+            HasMany(j => j.PerfilesUsuario).WithRequired().HasForeignKey(p => p.JerarquiaId);
+
+
         }
     }
 }

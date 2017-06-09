@@ -8,6 +8,8 @@ namespace CEMEX.Data.Configurations.Seguridad
         {
             HasKey(u => u.ID);
 
+            Property(u => u.PerfilUsuarioId).IsRequired();
+
             Property(u => u.Nombre).IsRequired().HasMaxLength(100);
 
             Property(u => u.PrimerApellido).IsRequired().HasMaxLength(100);

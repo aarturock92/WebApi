@@ -172,6 +172,7 @@
     <Compile Include="App_Start\Bootstrapper.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\App\MenuController.cs" />
     <Compile Include="Controllers\Catalogos\DistritoController.cs" />
     <Compile Include="Controllers\Catalogos\EstadosController.cs" />
     <Compile Include="Controllers\Catalogos\MovilController.cs" />
@@ -181,10 +182,8 @@
     <Compile Include="Controllers\Catalogos\RegionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Seguridad\JerarquiasController.cs" />
-    <Compile Include="Controllers\Seguridad\ModulosController.cs" />
     <Compile Include="Controllers\Seguridad\PerfilesUsuarioController.cs" />
     <Compile Include="Controllers\Seguridad\PermisosController.cs" />
-    <Compile Include="Controllers\Seguridad\RolesController.cs" />
     <Compile Include="Controllers\Seguridad\UsuariosController.cs" />
     <Compile Include="Controllers\Shared\FileUploadController.cs" />
     <Compile Include="Global.asax.cs">
