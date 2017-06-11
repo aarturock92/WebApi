@@ -7,6 +7,8 @@ namespace CEMEX.Entidades.Seguridad
         public PerfilUsuario()
         {
             Usuarios = new List<Usuario>();
+
+            DetallesPefilUsuarioMenu = new List<DetallePerfilUsuarioMenu>();
         }
 
         public string Nombre { get; set; }
@@ -20,5 +22,7 @@ namespace CEMEX.Entidades.Seguridad
         public int Estatus { get; set; }
 
         public ICollection<Usuario> Usuarios { get; set; }
+
+        public ICollection<DetallePerfilUsuarioMenu> DetallesPefilUsuarioMenu { get; set; }
     }
 }

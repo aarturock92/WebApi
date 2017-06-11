@@ -9,7 +9,5 @@
         public int IdPermiso { get; set; }
 
         public int IdEstatus { get; set; }
-
-        public virtual Permiso Permiso { get; set; }
     }
 }

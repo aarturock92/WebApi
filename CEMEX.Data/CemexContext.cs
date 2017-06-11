@@ -32,7 +32,9 @@ namespace CEMEX.Data
         #endregion
 
         #region Seguridad
+        public IDbSet<DetallePerfilUsuarioMenu> DetallePerfilUsuarioMenu { get; set; }
         public IDbSet<DetalleMenuPermiso> DetalleModuloPermisoSet { get; set; }
+        public IDbSet<PerfilUsuario> PerfilUsuarioSet { get; set; }
         public IDbSet<Jerarquia> JerarquiaSet { get; set; }
         public IDbSet<Permiso> PermisoSet { get; set; }
         public IDbSet<Usuario> UsuarioSet { get; set; }
@@ -66,9 +68,11 @@ namespace CEMEX.Data
             modelBuilder.Configurations.Add(new MovilConfiguration());
 
             modelBuilder.Configurations.Add(new DetalleMenuPermisoConfiguration());
+            modelBuilder.Configurations.Add(new DetallePerfilUsuarioMenuConfiguration());
             modelBuilder.Configurations.Add(new JerarquiaConfiguration());
             modelBuilder.Configurations.Add(new PermisoConfiguration());
             modelBuilder.Configurations.Add(new UsuarioConfiguration());
+            modelBuilder.Configurations.Add(new PerfilUsuarioConfiguration());
 
             modelBuilder.Configurations.Add(new MenuConfiguration());
 
@@ -87,6 +91,7 @@ namespace CEMEX.Data
             modelBuilder.Entity<Jerarquia>().ToTable("Jerarquias","Seguridad");
             modelBuilder.Entity<Permiso>().ToTable("Permisos", "Seguridad");
             modelBuilder.Entity<DetalleMenuPermiso>().ToTable("DetalleMenuPermiso", "Seguridad");
+            modelBuilder.Entity<DetallePerfilUsuarioMenu>().ToTable("DetallePerfilUsuarioMenu", "Seguridad");
 
             modelBuilder.Entity<Menu>().ToTable("Menu", "Aplicacion");
             modelBuilder.Entity<Error>().ToTable("Error", "Aplicacion");

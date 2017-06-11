@@ -27,6 +27,8 @@ namespace CEMEX.Data.Configurations.Seguridad
             Property(j => j.FechaModifico).IsOptional();
 
             HasMany(e => e.Usuarios).WithRequired().HasForeignKey(s => s.PerfilUsuarioId);
+
+            HasMany(e => e.DetallesPefilUsuarioMenu).WithRequired().HasForeignKey(d => d.PefilUsuarioId);
         }
     }
 }
