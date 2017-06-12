@@ -80,13 +80,9 @@
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201706111929404_Init Migration.cs" />
-    <Compile Include="Migrations\201706111929404_Init Migration.Designer.cs">
-      <DependentUpon>201706111929404_Init Migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201706112001598_Add register by default.cs" />
-    <Compile Include="Migrations\201706112001598_Add register by default.Designer.cs">
-      <DependentUpon>201706112001598_Add register by default.cs</DependentUpon>
+    <Compile Include="Migrations\201706120454490_Init Migration.cs" />
+    <Compile Include="Migrations\201706120454490_Init Migration.Designer.cs">
+      <DependentUpon>201706120454490_Init Migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,11 +100,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706111929404_Init Migration.resx">
-      <DependentUpon>201706111929404_Init Migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201706112001598_Add register by default.resx">
-      <DependentUpon>201706112001598_Add register by default.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706120454490_Init Migration.resx">
+      <DependentUpon>201706120454490_Init Migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

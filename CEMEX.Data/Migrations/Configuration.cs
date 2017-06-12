@@ -26,6 +26,8 @@ namespace CEMEX.Data.Migrations
             context.PermisoSet.AddOrUpdate(GetPermisos());
             //Agrega el menu Por Default
             context.MenuSet.AddOrUpdate(GetMenus());
+
+            context.DetallePerfilUsuarioMenu.AddOrUpdate(DetallePerfilUsuarioMenus());
         }
 
         private Jerarquia[] GetJerarquias()
@@ -122,6 +124,20 @@ namespace CEMEX.Data.Migrations
                 new Menu() { IdMenuPadre = 0, Nombre = "Rutas", Descripcion = "Rutas", Url ="javascript:void(0)", Orden = 4, CssClass ="menu-logistica", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
                 new Menu() { IdMenuPadre = 10, Nombre = "Administración de Rutas", Descripcion = "Administración de Rutas", Url ="AdmonRutas.aspx", Orden =1, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
                 new Menu() { IdMenuPadre = 0, Nombre = "Salir", Descripcion = "Salir", Url ="GenericMethods.aspx", Orden = 5, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 }
+            };
+        }
+
+        private DetallePerfilUsuarioMenu[] DetallePerfilUsuarioMenus()
+        {
+            return new DetallePerfilUsuarioMenu[] {
+                new DetallePerfilUsuarioMenu() {MenuId = 2, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new DetallePerfilUsuarioMenu() {MenuId = 3, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new DetallePerfilUsuarioMenu() {MenuId = 4, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new DetallePerfilUsuarioMenu() {MenuId = 5, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new DetallePerfilUsuarioMenu() {MenuId = 6, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new DetallePerfilUsuarioMenu() {MenuId = 7, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new DetallePerfilUsuarioMenu() {MenuId = 8, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new DetallePerfilUsuarioMenu() {MenuId = 9, PefilUsuarioId = 1, IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 }
             };
         }
     }

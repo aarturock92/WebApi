@@ -15,25 +15,6 @@ namespace CEMEX.Data.Migrations
                         IdModulo = c.Int(nullable: false),
                         IdPermiso = c.Int(nullable: false),
                         IdEstatus = c.Int(nullable: false),
-                        Permiso_ID = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("Seguridad.Permisos", t => t.Permiso_ID)
-                .Index(t => t.Permiso_ID);
-            
-            CreateTable(
-                "Seguridad.Permisos",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Nombre = c.String(nullable: false, maxLength: 100),
-                        Descripcion = c.String(nullable: false, maxLength: 200),
-                        Icono = c.String(nullable: false, maxLength: 100),
-                        Estatus = c.Int(nullable: false),
-                        FechaAlta = c.DateTime(nullable: false),
-                        FechaModifico = c.DateTime(),
-                        IdUsuarioAlta = c.Int(nullable: false),
-                        IdUsuarioModifico = c.Int(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -45,6 +26,10 @@ namespace CEMEX.Data.Migrations
                         MenuId = c.Int(nullable: false),
                         IdEstatus = c.Int(nullable: false),
                         PefilUsuarioId = c.Int(nullable: false),
+                        FechaAlta = c.DateTime(nullable: false),
+                        FechaModifico = c.DateTime(nullable: false),
+                        IdUsuarioAlta = c.Int(nullable: false),
+                        IdUsuarioModifico = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("Seguridad.PerfilesUsuario", t => t.PefilUsuarioId, cascadeDelete: true)
@@ -256,6 +241,22 @@ namespace CEMEX.Data.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "Seguridad.Permisos",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Nombre = c.String(nullable: false, maxLength: 100),
+                        Descripcion = c.String(nullable: false, maxLength: 200),
+                        Icono = c.String(nullable: false, maxLength: 100),
+                        Estatus = c.Int(nullable: false),
+                        FechaAlta = c.DateTime(nullable: false),
+                        FechaModifico = c.DateTime(),
+                        IdUsuarioAlta = c.Int(nullable: false),
+                        IdUsuarioModifico = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "Catalogo.PlazasImmex",
                 c => new
                     {
@@ -319,7 +320,6 @@ namespace CEMEX.Data.Migrations
             DropForeignKey("Seguridad.DetallePerfilUsuarioMenu", "PefilUsuarioId", "Seguridad.PerfilesUsuario");
             DropForeignKey("Catalogo.Municipios", "EstadoId", "Catalogo.Estados");
             DropForeignKey("Catalogo.Tiendas", "DistritoId", "Catalogo.Distritos");
-            DropForeignKey("Seguridad.DetalleMenuPermiso", "Permiso_ID", "Seguridad.Permisos");
             DropIndex("Catalogo.PlazasOxxo", new[] { "PlazaImmexId" });
             DropIndex("Catalogo.PlazasImmex", new[] { "RegionId" });
             DropIndex("Seguridad.Usuarios", new[] { "PerfilUsuarioId" });
@@ -328,10 +328,10 @@ namespace CEMEX.Data.Migrations
             DropIndex("Catalogo.Tiendas", new[] { "DistritoId" });
             DropIndex("Catalogo.Distritos", new[] { "DistritoId" });
             DropIndex("Seguridad.DetallePerfilUsuarioMenu", new[] { "PefilUsuarioId" });
-            DropIndex("Seguridad.DetalleMenuPermiso", new[] { "Permiso_ID" });
             DropTable("Catalogo.Regiones");
             DropTable("Catalogo.PlazasOxxo");
             DropTable("Catalogo.PlazasImmex");
+            DropTable("Seguridad.Permisos");
             DropTable("Catalogo.Moviles");
             DropTable("Aplicacion.Menu");
             DropTable("Seguridad.Usuarios");
@@ -343,7 +343,6 @@ namespace CEMEX.Data.Migrations
             DropTable("Catalogo.Tiendas");
             DropTable("Catalogo.Distritos");
             DropTable("Seguridad.DetallePerfilUsuarioMenu");
-            DropTable("Seguridad.Permisos");
             DropTable("Seguridad.DetalleMenuPermiso");
         }
     }
