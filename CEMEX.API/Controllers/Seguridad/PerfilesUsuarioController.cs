@@ -5,8 +5,10 @@ using CEMEX.Data.Extensions.Seguridad;
 using CEMEX.Data.Infrastructure;
 using CEMEX.Data.Repositories;
 using CEMEX.Entidades;
+using CEMEX.Entidades.App;
 using CEMEX.Entidades.Seguridad;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
@@ -18,13 +20,19 @@ namespace CEMEX.API.Controllers.Seguridad
     public class PerfilesUsuarioController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<PerfilUsuario> _perfilUsuarioRepository;
+        private readonly IEntityBaseRepository<DetallePerfilUsuarioMenu>  _detallePerfilUsuarioMenuRepository;
+        private readonly IEntityBaseRepository<Menu> _menuRepository;
 
-        public PerfilesUsuarioController(IEntityBaseRepository<PerfilUsuario> perfilUsuarioRepository,
+        public PerfilesUsuarioController(IEntityBaseRepository<DetallePerfilUsuarioMenu> detallePerfilUsuarioRepository,
+                                         IEntityBaseRepository<Menu>  menuRepository,
+                                         IEntityBaseRepository<PerfilUsuario> perfilUsuarioRepository,
                                          IEntityBaseRepository<Error> errorRepository, 
                                          IUnitOfWork unitOfWork) 
             : base(errorRepository, unitOfWork)
         {
             _perfilUsuarioRepository = perfilUsuarioRepository;
+            _detallePerfilUsuarioMenuRepository = detallePerfilUsuarioRepository;
+            _menuRepository = menuRepository;
         }
 
         [HttpGet]
@@ -46,6 +54,25 @@ namespace CEMEX.API.Controllers.Seguridad
                 return response;
             });
         }
+
+        [HttpGet]
+        [Route("{id:int}/Menu")]
+        public HttpResponseMessage GetMenuByPerfilUsuarioId(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                IEnumerable<Menu> _menuResult = _perfilUsuarioRepository.GetMenuByPerfilUsuarioId(_detallePerfilUsuarioMenuRepository,
+                                                                                                  _menuRepository, 
+                                                                                                  id);
+
+                response = request.CreateResponse(HttpStatusCode.OK, _menuResult);
+                
+                return response;
+            });
+        }
+
 
 
 

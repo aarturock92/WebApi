@@ -1,7 +1,7 @@
 ﻿using CEMEX.Data.Repositories;
 using CEMEX.Entidades;
+using CEMEX.Entidades.App;
 using CEMEX.Entidades.Seguridad;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,6 +43,20 @@ namespace CEMEX.Data.Extensions.Seguridad
             }
 
             return perfilesUsuario;
+        }
+
+        public static IEnumerable<Menu> GetMenuByPerfilUsuarioId(this IEntityBaseRepository<PerfilUsuario>  perfilUsuarioRepository,
+                                                                 IEntityBaseRepository<DetallePerfilUsuarioMenu> detallePerfilUsuarioMenuRepository,
+                                                                 IEntityBaseRepository<Menu> menuRepository, 
+                                                                 int id)
+        {
+            return (from perfil in perfilUsuarioRepository.GetAll()
+                    join detalle in detallePerfilUsuarioMenuRepository.GetAll()
+                    on perfil.ID equals detalle.PefilUsuarioId
+                    join menu in menuRepository.GetAll()
+                    on detalle.MenuId equals menu.ID
+                    where perfil.ID == id
+                    select menu).ToArray();
         }
     }
 }
