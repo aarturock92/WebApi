@@ -81,5 +81,18 @@ namespace CEMEX.API.Controllers.Seguridad
             });
         }
 
+
+        [HttpGet]
+        [Route("search/{page:int=0}/{pageSize:int=4}/{filter?}")]
+        public HttpResponseMessage Search(HttpRequestMessage request, int? page, int? pageSize, string filter = null, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+                return response;
+            });
+        }
+
     }
 }
