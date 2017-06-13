@@ -67,6 +67,7 @@
     <Compile Include="Configurations\Seguridad\PerfilUsuarioConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\PermisoConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\UsuarioConfiguration.cs" />
+    <Compile Include="Extensions\Aplicacion\MenuExtensions.cs" />
     <Compile Include="Extensions\Catalogos\DistritoExtensions.cs" />
     <Compile Include="Extensions\Catalogos\MovilExtensions.cs" />
     <Compile Include="Extensions\Catalogos\PlazaImmexExtensions.cs" />
@@ -80,9 +81,9 @@
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201706120454490_Init Migration.cs" />
-    <Compile Include="Migrations\201706120454490_Init Migration.Designer.cs">
-      <DependentUpon>201706120454490_Init Migration.cs</DependentUpon>
+    <Compile Include="Migrations\201706121501564_initial migration.cs" />
+    <Compile Include="Migrations\201706121501564_initial migration.Designer.cs">
+      <DependentUpon>201706121501564_initial migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,8 +101,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201706120454490_Init Migration.resx">
-      <DependentUpon>201706120454490_Init Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201706121501564_initial migration.resx">
+      <DependentUpon>201706121501564_initial migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

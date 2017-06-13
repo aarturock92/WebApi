@@ -83,6 +83,7 @@ namespace CEMEX.Data.Migrations
             {
                 new PerfilUsuario()
                 {
+                    ID = 1,
                     Nombre ="Administrador App",
                     Descripcion = "Administrador App",
                     JerarquiaId = 1,

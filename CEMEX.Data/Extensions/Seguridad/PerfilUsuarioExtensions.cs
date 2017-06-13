@@ -55,7 +55,9 @@ namespace CEMEX.Data.Extensions.Seguridad
                     on perfil.ID equals detalle.PefilUsuarioId
                     join menu in menuRepository.GetAll()
                     on detalle.MenuId equals menu.ID
-                    where perfil.ID == id
+                    where perfil.ID == id && 
+                          detalle.IdEstatus == (int)ETypeEstatusRegistro.Activo && 
+                          menu.IdEstatus == (int)ETypeEstatusRegistro.Activo
                     select menu).ToArray();
         }
     }

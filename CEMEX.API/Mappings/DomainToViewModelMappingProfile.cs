@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using CEMEX.API.Models.Aplicacion;
 using CEMEX.API.Models.Catalogos;
 using CEMEX.API.Models.Seguridad;
+using CEMEX.Entidades.App;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
 using System.Collections.Generic;
@@ -30,10 +32,13 @@ namespace CEMEX.API.Mappings
             CreateMap<Distrito, DistritoViewModel>();
             CreateMap<Tienda, TiendaViewModel>();
 
+            CreateMap<Menu, MenuViewModel>();
 
             CreateMap<Jerarquia, JerarquiaViewModel>();
             CreateMap<Permiso, PermisoViewModel>();
             CreateMap<Usuario, UsuarioViewModel>().ForMember(u => u.Contrasena, opt => opt.Ignore());            
+
+
         }
     }
 }

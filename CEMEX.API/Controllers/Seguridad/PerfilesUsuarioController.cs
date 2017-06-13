@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using CEMEX.API.Infrastructure.Core;
+using CEMEX.API.Models.Aplicacion;
 using CEMEX.API.Models.Seguridad;
+using CEMEX.Data.Extensions.Aplicacion;
 using CEMEX.Data.Extensions.Seguridad;
 using CEMEX.Data.Infrastructure;
 using CEMEX.Data.Repositories;
@@ -63,19 +65,21 @@ namespace CEMEX.API.Controllers.Seguridad
             {
                 HttpResponseMessage response = null;
 
-                IEnumerable<Menu> _menuResult = _perfilUsuarioRepository.GetMenuByPerfilUsuarioId(_detallePerfilUsuarioMenuRepository,
-                                                                                                  _menuRepository, 
-                                                                                                  id);
+                List<Menu> menus = _menuRepository.GetMenuByPerfilUsuarioId(_detallePerfilUsuarioMenuRepository, id);
+                List<MenuViewModel> _menusVM = Mapper.Map<List<Menu>, List<MenuViewModel>>(menus);
 
-                response = request.CreateResponse(HttpStatusCode.OK, _menuResult);
+                for (int indexMenu = 0; indexMenu < _menusVM.Count(); indexMenu++)
+                {
+                    var identityMenu = _menusVM[indexMenu].ID;
+                    _menusVM[indexMenu].SubMenus = Mapper.Map<List<Menu>, List<MenuViewModel>>(_menuRepository
+                                                                                               .GetMenuByPerfilUsuarioId(_detallePerfilUsuarioMenuRepository, id, identityMenu));
+                }
+
+                response = request.CreateResponse(HttpStatusCode.OK, _menusVM);
                 
                 return response;
             });
         }
-
-
-
-
 
     }
 }
