@@ -17,6 +17,7 @@ namespace CEMEX.API.Models.Seguridad
 
         public int Estatus { get; set; }
 
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             var validator = new JerarquiaViewModelValidator();

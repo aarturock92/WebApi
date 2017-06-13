@@ -3,6 +3,7 @@ using CEMEX.Entidades;
 using CEMEX.Entidades.App;
 using CEMEX.Entidades.Seguridad;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 
 namespace CEMEX.Data.Extensions.Seguridad
@@ -41,6 +42,7 @@ namespace CEMEX.Data.Extensions.Seguridad
                                                              .ToList();
                     break;
             }
+
 
             return perfilesUsuario;
         }

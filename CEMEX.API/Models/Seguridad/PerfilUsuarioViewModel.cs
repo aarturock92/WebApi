@@ -8,7 +8,7 @@
 
         public string Descripcion { get; set; }
 
-        public int IdJerarquia { get; set; }
+        public int JerarquiaId { get; set; }
 
         public bool AsignacionMultiple { get; set; }
 
