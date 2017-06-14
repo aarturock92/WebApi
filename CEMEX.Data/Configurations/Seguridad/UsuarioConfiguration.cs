@@ -59,6 +59,8 @@ namespace CEMEX.Data.Configurations.Seguridad
             Property(u => u.FechaAlta).IsRequired();
 
             Property(u => u.FechaModifico).IsOptional();
+
+            HasMany(u => u.DetallesUsuarioAsignacion).WithRequired().HasForeignKey(d => d.UsuarioId);
         }
     }
 }

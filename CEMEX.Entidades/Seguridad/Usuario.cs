@@ -1,7 +1,15 @@
-﻿namespace CEMEX.Entidades.Seguridad
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace CEMEX.Entidades.Seguridad
 {
     public class Usuario : EntidadBase
     {
+        public Usuario()
+        {
+            DetallesUsuarioAsignacion = new List<DetalleUsuarioAsignacion>();
+        }
+
         public int PerfilUsuarioId { get; set; }
 
         public string NumeroEmpleado { get; set; }
@@ -47,5 +55,7 @@
         public string Imagen { get; set; }
 
         public int IdEstatus { get; set; }
+
+        public ICollection<DetalleUsuarioAsignacion> DetallesUsuarioAsignacion { get; set; }
     }
 }
