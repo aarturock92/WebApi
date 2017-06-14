@@ -85,6 +85,14 @@
     <Compile Include="Migrations\201706121501564_initial migration.Designer.cs">
       <DependentUpon>201706121501564_initial migration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706141544357_Add key at entity PlazaOxxxo.cs" />
+    <Compile Include="Migrations\201706141544357_Add key at entity PlazaOxxxo.Designer.cs">
+      <DependentUpon>201706141544357_Add key at entity PlazaOxxxo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201706141644435_Change property in entity Distrito .cs" />
+    <Compile Include="Migrations\201706141644435_Change property in entity Distrito .Designer.cs">
+      <DependentUpon>201706141644435_Change property in entity Distrito .cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EntityBaseRepository.cs" />
@@ -103,6 +111,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201706121501564_initial migration.resx">
       <DependentUpon>201706121501564_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706141544357_Add key at entity PlazaOxxxo.resx">
+      <DependentUpon>201706141544357_Add key at entity PlazaOxxxo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706141644435_Change property in entity Distrito .resx">
+      <DependentUpon>201706141644435_Change property in entity Distrito .cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

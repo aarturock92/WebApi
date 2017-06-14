@@ -6,6 +6,8 @@ namespace CEMEX.Data.Configurations.Catalogos
     {
         public PlazaOxxoConfiguration()
         {
+            HasKey(p => p.ID);
+
             Property(p => p.PlazaImmexId).IsRequired();
 
             Property(p => p.CRPlazaOxxo).IsRequired().HasMaxLength(50);
@@ -22,7 +24,7 @@ namespace CEMEX.Data.Configurations.Catalogos
 
             Property(p => p.IdUsuarioModifico).IsOptional();
 
-            HasMany(p => p.Distritos).WithRequired().HasForeignKey(d => d.DistritoId);
+            HasMany(p => p.Distritos).WithRequired().HasForeignKey(d => d.PlazaOxxoId);
         }
     }
 }

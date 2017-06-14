@@ -4,6 +4,7 @@ using CEMEX.API.Models.Catalogos;
 using CEMEX.Data.Extensions.Catalogos;
 using CEMEX.Data.Infrastructure;
 using CEMEX.Data.Repositories;
+using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
 using System.Collections.Generic;
@@ -29,7 +30,9 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [Route("list")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request, bool incluirDistritos = false)
+        public HttpResponseMessage Get(HttpRequestMessage request, 
+                                       bool incluirDistritos = false, 
+                                       ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos )
         {
             return CreateHttpResponse(request, () =>
             {
@@ -39,17 +42,45 @@ namespace CEMEX.API.Controllers.Catalogos
                 if (incluirDistritos)
                     _plazasOxxoVM = Mapper.Map<IEnumerable<PlazaOxxo>, 
                                                IEnumerable<PlazaOxxoViewModel>>
-                                               (_plazaOxxoRepository.GetPlazasOxxoWithDistritos());
+                                               (_plazaOxxoRepository.GetPlazasOxxoWithDistritos(estatusRegistro));
                 else
                     _plazasOxxoVM = Mapper.Map<IEnumerable<PlazaOxxo>, 
                                                IEnumerable<PlazaOxxoViewModel>>
-                                               (_plazaOxxoRepository.GetPlazasOxxo());
+                                               (_plazaOxxoRepository.GetPlazasOxxo(estatusRegistro));
 
                 response = request.CreateResponse(HttpStatusCode.OK, _plazasOxxoVM);
 
                 return response;
             });
         }
+
+        [Route("{id:int}")]
+        [HttpGet]
+        public HttpResponseMessage GetDetails(HttpRequestMessage request, int id, bool incluirDistritos = false)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                PlazaOxxoViewModel plazaOxxoVM = null;
+
+                if (incluirDistritos)
+                    plazaOxxoVM = Mapper.Map<PlazaOxxo, 
+                                             PlazaOxxoViewModel>
+                                             (_plazaOxxoRepository.GetPlazaOxxoByIdWithDistritos(id));
+                else
+                    plazaOxxoVM = Mapper.Map<PlazaOxxo, 
+                                             PlazaOxxoViewModel>
+                                             (_plazaOxxoRepository.GetPlazaOxxoById(id));
+
+                if (plazaOxxoVM != null)
+                    response = request.CreateResponse(HttpStatusCode.OK, plazaOxxoVM);
+                else
+                    response = request.CreateResponse(HttpStatusCode.NotFound);
+
+                return response;
+            });
+        }
+
 
     }
 }

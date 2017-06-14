@@ -8,7 +8,7 @@ namespace CEMEX.Data.Configurations.Catalogos
         {
             HasKey(m => m.ID);
 
-            Property(d => d.DistritoId).IsRequired();
+            Property(d => d.PlazaOxxoId).IsRequired();
 
             Property(d => d.ClaveDistrito).IsRequired().HasMaxLength(50);
 
