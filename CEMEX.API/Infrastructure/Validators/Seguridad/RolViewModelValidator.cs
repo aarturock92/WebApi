@@ -19,9 +19,9 @@ namespace CEMEX.API.Infrastructure.Validators.Seguridad
             RuleFor(r => r.AsignacionMultiple).NotEmpty().WithMessage("El campo Asignación Multiple es requerido");
 
             RuleFor(r => r.Estatus).NotEmpty().WithMessage("El campo Estatus es requerido")
-                                   .Must(e => e == (int)EstatusRegistro.Activo ||
-                                              e == (int)EstatusRegistro.Eliminado ||
-                                              e == (int)EstatusRegistro.Eliminado)
+                                   .Must(e => e == (int)ETypeEstatusRegistro.Activo ||
+                                              e == (int)ETypeEstatusRegistro.Eliminado ||
+                                              e == (int)ETypeEstatusRegistro.Eliminado)
                                    .WithMessage("El campo Estatus es invalido");
 
 

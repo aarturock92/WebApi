@@ -161,7 +161,7 @@ namespace CEMEX.API.Controllers.Catalogos
 
                 if (_municipio != null)
                 {
-                    _municipio.Estatus = (int)EstatusRegistro.Eliminado;
+                    _municipio.Estatus = (int)ETypeEstatusRegistro.Eliminado;
                     _unitOfWork.Commit();
 
                     response = request.CreateResponse(HttpStatusCode.OK);

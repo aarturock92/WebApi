@@ -1,18 +1,24 @@
 ﻿namespace CEMEX.Entidades
 {
-    public enum EstatusRegistro
-    {
-        Activo = 1,
-        Inactivo= 2,
-        Eliminado = 3
-    }
-
+    /// <summary>
+    /// Especifica los tipos de Estatus en los Registros.
+    /// </summary>
     public enum ETypeEstatusRegistro
     {
         Activo= 1,
         Inactivo= 2,
         Eliminado = 3,
         Todos = 0
+    }
+
+    /// <summary>
+    /// Especifica los niveles de Jerarquia que se utilizan en la aplicación
+    /// </summary>
+    public enum ETypeNivelJerarquia
+    {
+        Administracion = 1,
+        Supervision = 2,
+        Operativo = 3
     }
 
     public static class ResponseMessages

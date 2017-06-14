@@ -72,13 +72,13 @@ namespace CEMEX.API.Infrastructure.Extensions
 
         public static void DeleteUser(this Usuario usuario)
         {
-            usuario.IdEstatus = (int)EstatusRegistro.Eliminado;
+            usuario.IdEstatus = (int)ETypeEstatusRegistro.Eliminado;
         }
 
 
         public static void DeleteMovil(this Movil movil)
         {
-            movil.IdEstatus = (int)EstatusRegistro.Eliminado;
+            movil.IdEstatus = (int)ETypeEstatusRegistro.Eliminado;
         }
 
 

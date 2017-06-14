@@ -15,7 +15,7 @@ namespace CEMEX.API.Infrastructure.Validators
                                                  .Length(1, 50).WithMessage("El campo Abreviatura solo permite entre 1 y 50 caracteres");
 
             RuleFor(estado => estado.Estatus).NotEmpty().WithMessage("El campo Estatus es requerido")
-                                             .Must(x => x == (int)EstatusRegistro.Activo || x == (int)EstatusRegistro.Inactivo || x == (int)EstatusRegistro.Eliminado)
+                                             .Must(x => x == (int)ETypeEstatusRegistro.Activo || x == (int)ETypeEstatusRegistro.Inactivo || x == (int)ETypeEstatusRegistro.Eliminado)
                                              .WithMessage("El campo Estatus es inválido");
 
         }
