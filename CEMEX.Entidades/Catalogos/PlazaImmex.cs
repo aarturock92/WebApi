@@ -4,6 +4,13 @@ namespace CEMEX.Entidades.Catalogos
 {
     public class PlazaImmex:EntidadBase
     {
+        public PlazaImmex()
+        {
+            PlazasOxxo = new List<PlazaOxxo>();
+
+            Vehiculos = new List<Vehiculo>();
+        }
+
         public int RegionId { get; set; }
 
         public string CRPlazaImmex { get; set; }
@@ -13,5 +20,7 @@ namespace CEMEX.Entidades.Catalogos
         public int Estatus { get; set; }
 
         public ICollection<PlazaOxxo> PlazasOxxo { get; set; }
+
+        public ICollection<Vehiculo> Vehiculos { get; set; }
     }
 }

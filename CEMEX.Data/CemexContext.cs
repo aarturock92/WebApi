@@ -67,6 +67,7 @@ namespace CEMEX.Data
             modelBuilder.Configurations.Add(new DistritoConfiguration());
             modelBuilder.Configurations.Add(new TiendaConfiguration());
             modelBuilder.Configurations.Add(new MovilConfiguration());
+            modelBuilder.Configurations.Add(new VehiculoConfiguration());
 
             modelBuilder.Configurations.Add(new DetalleMenuPermisoConfiguration());
             modelBuilder.Configurations.Add(new DetallePerfilUsuarioMenuConfiguration());
@@ -81,12 +82,13 @@ namespace CEMEX.Data
 
             modelBuilder.Entity<Estado>().ToTable("Estados","Catalogo");
             modelBuilder.Entity<Municipio>().ToTable("Municipios","Catalogo");
-            modelBuilder.Entity<Movil>().ToTable("Moviles", "Catalogo");
             modelBuilder.Entity<Region>().ToTable("Regiones","Catalogo");
             modelBuilder.Entity<PlazaImmex>().ToTable("PlazasImmex", "Catalogo");
             modelBuilder.Entity<PlazaOxxo>().ToTable("PlazasOxxo","Catalogo");
             modelBuilder.Entity<Distrito>().ToTable("Distritos","Catalogo");
             modelBuilder.Entity<Tienda>().ToTable("Tiendas","Catalogo");
+            modelBuilder.Entity<Movil>().ToTable("Moviles", "Catalogo");
+            modelBuilder.Entity<Vehiculo>().ToTable("Vehiculos", "Catalogo");
 
             modelBuilder.Entity<Usuario>().ToTable("Usuarios", "Seguridad");
             modelBuilder.Entity<PerfilUsuario>().ToTable("PerfilesUsuario", "Seguridad");

@@ -25,6 +25,8 @@ namespace CEMEX.Data.Configurations.Catalogos
             Property(p => p.IdUsuarioModifico).IsOptional();
 
             HasMany(p => p.PlazasOxxo).WithRequired().HasForeignKey(p => p.PlazaImmexId);
+
+            HasMany(p => p.Vehiculos).WithRequired().HasForeignKey(v => v.PlazaImmexId);
         }
     }
 }
