@@ -180,6 +180,7 @@
     <Compile Include="Controllers\Catalogos\PlazaImmexController.cs" />
     <Compile Include="Controllers\Catalogos\PlazaOxxoController.cs" />
     <Compile Include="Controllers\Catalogos\RegionController.cs" />
+    <Compile Include="Controllers\Catalogos\VehiculoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Seguridad\JerarquiasController.cs" />
     <Compile Include="Controllers\Seguridad\PerfilesUsuarioController.cs" />
@@ -220,6 +221,7 @@
     <Compile Include="Models\Catalogos\PlazaOxxoViewModel.cs" />
     <Compile Include="Models\Catalogos\RegionViewModel.cs" />
     <Compile Include="Models\Catalogos\TiendaViewModel.cs" />
+    <Compile Include="Models\Catalogos\VehiculoViewModel.cs" />
     <Compile Include="Models\Seguridad\CredentialViewModel.cs" />
     <Compile Include="Models\Seguridad\DetalleModuloPermisoViewModel.cs" />
     <Compile Include="Models\Seguridad\JerarquiaViewModel.cs" />

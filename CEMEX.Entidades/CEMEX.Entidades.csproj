@@ -50,6 +50,7 @@
     <Compile Include="Catalogos\PlazaOxxo.cs" />
     <Compile Include="Catalogos\Region.cs" />
     <Compile Include="Catalogos\Tienda.cs" />
+    <Compile Include="Catalogos\Vehiculo.cs" />
     <Compile Include="Codes.cs" />
     <Compile Include="EntidadBase.cs" />
     <Compile Include="IEntidadBase.cs" />

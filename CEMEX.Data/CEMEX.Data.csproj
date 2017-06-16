@@ -60,6 +60,7 @@
     <Compile Include="Configurations\Catalogos\PlazaOxxoConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\RegionConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\TiendaConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\VehiculoConfiguration.cs" />
     <Compile Include="Configurations\EntityBaseConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\DetalleMenuPermisoConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\DetallePerfilUsuarioMenuConfiguration.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Extensions\Catalogos\PlazaImmexExtensions.cs" />
     <Compile Include="Extensions\Catalogos\PlazaOxxoExtensions.cs" />
     <Compile Include="Extensions\Catalogos\RegionExtensions.cs" />
+    <Compile Include="Extensions\Catalogos\VehiculoExtensions.cs" />
     <Compile Include="Extensions\Seguridad\EstadoExtensions.cs" />
     <Compile Include="Extensions\Seguridad\PerfilUsuarioExtensions.cs" />
     <Compile Include="Extensions\Seguridad\UsuarioExtensions.cs" />
