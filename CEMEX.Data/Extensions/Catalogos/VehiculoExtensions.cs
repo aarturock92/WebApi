@@ -43,5 +43,12 @@ namespace CEMEX.Data.Extensions.Catalogos
 
             return Vehiculos;
         }
+
+        public static Vehiculo GetVehiculoDetailsById(this IEntityBaseRepository<Vehiculo> repositoryVehiculo, int id)
+        {
+            return repositoryVehiculo.GetAll()
+                                     .Where(v => v.ID == id && v.IdEstatus != (int)ETypeEstatusRegistro.Eliminado)
+                                     .FirstOrDefault();
+        }
     }
 }

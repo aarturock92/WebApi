@@ -18,11 +18,11 @@ namespace CEMEX.API.Controllers.Catalogos
 {
     [Authorize]
     [RoutePrefix("api/Municipio")]
-    public class MunicipiosController : ApiControllerBase
+    public class MunicipioController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Municipio> _municipiosRepository;
 
-        public MunicipiosController(IEntityBaseRepository<Municipio> municipiosRepository,
+        public MunicipioController(IEntityBaseRepository<Municipio> municipiosRepository,
                                     IEntityBaseRepository<Error> errorRepository,
                                     IUnitOfWork unitOfWork)
             : base(errorRepository, unitOfWork)

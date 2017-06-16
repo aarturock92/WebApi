@@ -174,9 +174,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\App\MenuController.cs" />
     <Compile Include="Controllers\Catalogos\DistritoController.cs" />
-    <Compile Include="Controllers\Catalogos\EstadosController.cs" />
+    <Compile Include="Controllers\Catalogos\EstadoController.cs" />
     <Compile Include="Controllers\Catalogos\MovilController.cs" />
-    <Compile Include="Controllers\Catalogos\MunicipiosController.cs" />
+    <Compile Include="Controllers\Catalogos\MunicipioController.cs" />
     <Compile Include="Controllers\Catalogos\PlazaImmexController.cs" />
     <Compile Include="Controllers\Catalogos\PlazaOxxoController.cs" />
     <Compile Include="Controllers\Catalogos\RegionController.cs" />
@@ -204,6 +204,7 @@
     <Compile Include="Infrastructure\MessageHandlers\CemexAuthHandler.cs" />
     <Compile Include="Infrastructure\MessageHandlers\SlidingExpirationHandler.cs" />
     <Compile Include="Infrastructure\Validators\Catalogos\MovilViewModelValidator.cs" />
+    <Compile Include="Infrastructure\Validators\Catalogos\VehiculoViewModelValidator.cs" />
     <Compile Include="Infrastructure\Validators\EstadoViewModelValidator.cs" />
     <Compile Include="Infrastructure\Validators\MunicipioViewModelValidator.cs" />
     <Compile Include="Infrastructure\Validators\Seguridad\CredentialViewModelValidator.cs" />

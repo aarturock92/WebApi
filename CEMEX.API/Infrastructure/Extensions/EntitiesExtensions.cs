@@ -108,5 +108,17 @@ namespace CEMEX.API.Infrastructure.Extensions
             movil.FechaModifico = DateTime.UtcNow;
             movil.IdEstatus = movilVM.IdEstatus;
         }
+
+        public static void CreateVehiculo(this Vehiculo vehiculo, VehiculoViewModel vehiculoVM)
+        {
+            vehiculo.PlazaImmexId = vehiculoVM.PlazaImmexId;
+            vehiculo.Marca = vehiculoVM.Marca.Trim();
+            vehiculo.NumeroPlaca = vehiculoVM.NumeroPlaca.Trim();
+            vehiculo.NumeroEconomico = vehiculoVM.NumeroEconomico.Trim();
+            vehiculo.IdEstatus = vehiculoVM.IdEstatus;
+            vehiculo.FechaAlta = DateTime.Now;
+            vehiculo.UniqueVehiculo = Guid.NewGuid();
+            vehiculo.FechaModifico = DateTime.MinValue;
+        }
     }
 }

@@ -20,11 +20,11 @@ namespace CEMEX.API.Controllers.Catalogos
 {
     [Authorize]
     [RoutePrefix("api/Estado")]
-    public class EstadosController : ApiControllerBase
+    public class EstadoController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<Estado> _estadosRepository;
 
-        public EstadosController(IEntityBaseRepository<Estado> estadosRepository,
+        public EstadoController(IEntityBaseRepository<Estado> estadosRepository,
                                  IEntityBaseRepository<Error> errorRepository, 
                                  IUnitOfWork unitOfWork) : base(errorRepository, unitOfWork)
         {
