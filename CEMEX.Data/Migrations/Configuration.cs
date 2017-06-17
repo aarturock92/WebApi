@@ -90,7 +90,7 @@ namespace CEMEX.Data.Migrations
                     AsignacionMultiple = true,
                     Estatus = 1,
                     FechaAlta = DateTime.Now,
-                    FechaModifico = DateTime.MinValue,
+                    FechaModifico = DateTime.Now,
                     IdUsuarioAlta = 0,
                     IdUsuarioModifico = 0
                 },
@@ -103,7 +103,7 @@ namespace CEMEX.Data.Migrations
                     AsignacionMultiple = false,
                     Estatus = 1,
                     FechaAlta = DateTime.Now,
-                    FechaModifico = DateTime.MinValue,
+                    FechaModifico = DateTime.Now,
                     IdUsuarioAlta = 0,
                     IdUsuarioModifico = 0
                 },
@@ -116,7 +116,7 @@ namespace CEMEX.Data.Migrations
                     AsignacionMultiple = true,
                     Estatus = 1,
                     FechaAlta = DateTime.Now,
-                    FechaModifico = DateTime.MinValue,
+                    FechaModifico = DateTime.Now,
                     IdUsuarioAlta = 0,
                     IdUsuarioModifico = 0
                 },
@@ -129,7 +129,7 @@ namespace CEMEX.Data.Migrations
                     AsignacionMultiple = false,
                     Estatus = 1,
                     FechaAlta = DateTime.Now,
-                    FechaModifico = DateTime.MinValue,
+                    FechaModifico = DateTime.Now,
                     IdUsuarioAlta = 0,
                     IdUsuarioModifico = 0
                 },
@@ -142,7 +142,7 @@ namespace CEMEX.Data.Migrations
                     AsignacionMultiple = true,
                     Estatus = 1,
                     FechaAlta = DateTime.Now,
-                    FechaModifico = DateTime.MinValue,
+                    FechaModifico = DateTime.Now,
                     IdUsuarioAlta = 0,
                     IdUsuarioModifico = 0
                 },
@@ -155,7 +155,7 @@ namespace CEMEX.Data.Migrations
                     AsignacionMultiple = false,
                     Estatus = 1,
                     FechaAlta = DateTime.Now,
-                    FechaModifico = DateTime.MinValue,
+                    FechaModifico = DateTime.Now,
                     IdUsuarioAlta = 0,
                     IdUsuarioModifico = 0
                 }
