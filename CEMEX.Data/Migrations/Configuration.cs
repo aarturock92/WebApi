@@ -84,13 +84,78 @@ namespace CEMEX.Data.Migrations
                 new PerfilUsuario()
                 {
                     ID = 1,
-                    Nombre ="Administrador App",
-                    Descripcion = "Administrador App",
+                    Nombre ="Administrador Multiple",
+                    Descripcion = "Administrador Multiple",
+                    JerarquiaId = 1,
+                    AsignacionMultiple = true,
+                    Estatus = 1,
+                    FechaAlta = DateTime.Now,
+                    FechaModifico = DateTime.MinValue,
+                    IdUsuarioAlta = 0,
+                    IdUsuarioModifico = 0
+                },
+                new PerfilUsuario()
+                {
+                    ID = 2,
+                    Nombre ="Administrador No Multiple",
+                    Descripcion = "Administrador No Multiple",
                     JerarquiaId = 1,
                     AsignacionMultiple = false,
                     Estatus = 1,
                     FechaAlta = DateTime.Now,
-                    FechaModifico = DateTime.Now,
+                    FechaModifico = DateTime.MinValue,
+                    IdUsuarioAlta = 0,
+                    IdUsuarioModifico = 0
+                },
+                new PerfilUsuario()
+                {
+                    ID = 3,
+                    Nombre = "Supervisión Multiple",
+                    Descripcion ="Supervisión Multiple",
+                    JerarquiaId = 2,
+                    AsignacionMultiple = true,
+                    Estatus = 1,
+                    FechaAlta = DateTime.Now,
+                    FechaModifico = DateTime.MinValue,
+                    IdUsuarioAlta = 0,
+                    IdUsuarioModifico = 0
+                },
+                new PerfilUsuario()
+                {
+                    ID = 4,
+                    Nombre = "Supervisión No Multiple",
+                    Descripcion = "Supervisión No Multiple",
+                    JerarquiaId = 2,
+                    AsignacionMultiple = false,
+                    Estatus = 1,
+                    FechaAlta = DateTime.Now,
+                    FechaModifico = DateTime.MinValue,
+                    IdUsuarioAlta = 0,
+                    IdUsuarioModifico = 0
+                },
+                new PerfilUsuario()
+                {
+                    ID = 5,
+                    Nombre ="Operativo Multiple",
+                    Descripcion ="Operativo Multiple",
+                    JerarquiaId = 3,
+                    AsignacionMultiple = true,
+                    Estatus = 1,
+                    FechaAlta = DateTime.Now,
+                    FechaModifico = DateTime.MinValue,
+                    IdUsuarioAlta = 0,
+                    IdUsuarioModifico = 0
+                },
+                new PerfilUsuario()
+                {
+                    ID= 6,
+                    Nombre = "Operativo No Multiple",
+                    Descripcion ="Operativo No Multiple",
+                    JerarquiaId = 3,
+                    AsignacionMultiple = false,
+                    Estatus = 1,
+                    FechaAlta = DateTime.Now,
+                    FechaModifico = DateTime.MinValue,
                     IdUsuarioAlta = 0,
                     IdUsuarioModifico = 0
                 }
