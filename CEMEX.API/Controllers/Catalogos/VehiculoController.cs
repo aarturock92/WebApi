@@ -23,8 +23,8 @@ namespace CEMEX.API.Controllers.Catalogos
         private readonly IEntityBaseRepository<Vehiculo> _vehiculoRepository;
 
         public VehiculoController(IEntityBaseRepository<Vehiculo> vehiculoRepository,
-                                  IEntityBaseRepository<Error> errorRepository, 
-                                  IUnitOfWork unitOfWork) 
+                                  IEntityBaseRepository<Error> errorRepository,
+                                  IUnitOfWork unitOfWork)
             : base(errorRepository, unitOfWork)
         {
             _vehiculoRepository = vehiculoRepository;
@@ -32,13 +32,13 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [Route("list")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request, 
+        public HttpResponseMessage Get(HttpRequestMessage request,
                                        ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                IEnumerable<VehiculoViewModel> vehiculosVM = Mapper.Map<IEnumerable<Vehiculo>, 
+                IEnumerable<VehiculoViewModel> vehiculosVM = Mapper.Map<IEnumerable<Vehiculo>,
                                                                         IEnumerable<VehiculoViewModel>>
                                                                         (_vehiculoRepository.GetVehiculosByEstatusRegistro(estatusRegistro));
 
@@ -77,7 +77,7 @@ namespace CEMEX.API.Controllers.Catalogos
 
                 if (!ModelState.IsValid)
                 {
-                    response = request.CreateResponse(HttpStatusCode.BadRequest, 
+                    response = request.CreateResponse(HttpStatusCode.BadRequest,
                                                       ModelState.Keys
                                                       .SelectMany(k => ModelState[k].Errors)
                                                       .Select(m => m.ErrorMessage).ToArray());
@@ -91,7 +91,41 @@ namespace CEMEX.API.Controllers.Catalogos
                 }
 
                 return response;
-            });         
+            });
+        }
+
+        [Route("{id:int}")]
+        [HttpPut]
+        public HttpResponseMessage Update(HttpRequestMessage request, int id, VehiculoViewModel vehiculoVM)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                Vehiculo vehiculo = _vehiculoRepository.GetVehiculoDetailsById(id);
+
+                if (vehiculo != null)
+                {
+                    if (!ModelState.IsValid)
+                    {
+                        response = request.CreateResponse(HttpStatusCode.BadRequest,
+                                                          ModelState.Keys
+                                                          .SelectMany(k => ModelState[k].Errors)
+                                                          .Select(m => m.ErrorMessage).ToArray());
+                    }
+                    else
+                    {
+                        vehiculo.UpdateVehiculo(vehiculoVM);
+                        _unitOfWork.Commit();
+                        response = request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Vehiculo, VehiculoViewModel>(vehiculo));
+                    }
+                }
+                else
+                {
+                    response = request.CreateResponse(HttpStatusCode.NotFound);
+                }
+
+                return response;
+            });
         }
 
         //[HttpPut]
