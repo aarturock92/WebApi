@@ -9,6 +9,8 @@ namespace CEMEX.Entidades.Catalogos
             PlazasOxxo = new List<PlazaOxxo>();
 
             Vehiculos = new List<Vehiculo>();
+
+            Moviles = new List<Movil>();
         }
 
         public int RegionId { get; set; }
@@ -22,5 +24,7 @@ namespace CEMEX.Entidades.Catalogos
         public ICollection<PlazaOxxo> PlazasOxxo { get; set; }
 
         public ICollection<Vehiculo> Vehiculos { get; set; }
+
+        public ICollection<Movil> Moviles { get; set; }
     }
 }

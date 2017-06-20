@@ -97,5 +97,52 @@ namespace CEMEX.Data.Extensions.Catalogos
         {
             return repositoryPlazaImmex.GetAll().Include(p => p.PlazasOxxo).FirstOrDefault(p => p.ID == id);
         }
+
+        public static PlazaImmex GetPlazaImmexWithMoviles(this IEntityBaseRepository<PlazaImmex> repositoryPlazaImmex, int idPlazaImmex, ETypeEstatusRegistro estatusRegistro)
+        {
+            PlazaImmex plazaImmex = null;
+
+            switch (estatusRegistro)
+            {
+                case ETypeEstatusRegistro.Activo:
+                    plazaImmex = repositoryPlazaImmex
+                                    .GetAll()
+                                    .Include(p => p.Moviles.Where(m => m.IdEstatus == (int)ETypeEstatusRegistro.Activo))
+                                    .Where(p => p.ID == idPlazaImmex)
+                                    .FirstOrDefault();
+                    break;
+                case ETypeEstatusRegistro.Inactivo:
+                    plazaImmex = repositoryPlazaImmex
+                                    .GetAll()
+                                    .Include(p => p.Moviles.Where(m => m.IdEstatus == (int)ETypeEstatusRegistro.Inactivo))
+                                    .Where(p => p.ID == idPlazaImmex)
+                                    .FirstOrDefault();
+                    break;
+                case ETypeEstatusRegistro.Eliminado:
+                    plazaImmex = repositoryPlazaImmex
+                                    .GetAll()
+                                    .Include(p => p.Moviles.Where(m => m.IdEstatus == (int)ETypeEstatusRegistro.Eliminado))
+                                    .Where(p => p.ID == idPlazaImmex)
+                                    .FirstOrDefault();
+                    break;
+                case ETypeEstatusRegistro.Todos:
+                    plazaImmex = repositoryPlazaImmex
+                                   .GetAll()
+                                   .Include(p => p.Moviles.Where(m => m.IdEstatus == (int)ETypeEstatusRegistro.Inactivo ||
+                                                                      m.IdEstatus == (int)ETypeEstatusRegistro.Activo))
+                                   .Where(p => p.ID == idPlazaImmex)
+                                   .FirstOrDefault();
+                    break;
+                default:
+                    plazaImmex = repositoryPlazaImmex
+                                   .GetAll()
+                                   .Include(p => p.Moviles)
+                                   .Where(p => p.ID == idPlazaImmex)
+                                   .FirstOrDefault();
+                    break;
+            }
+
+            return plazaImmex;
+        }
     }
 }

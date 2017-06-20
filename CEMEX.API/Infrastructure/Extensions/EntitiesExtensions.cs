@@ -84,7 +84,7 @@ namespace CEMEX.API.Infrastructure.Extensions
 
         public static void CreateMovil(this Movil movil, MovilViewModel movilVM)
         {
-            movil.IdPlazaImmex = movilVM.IdPlazaImmex;
+            movil.PlazaImmexId = movilVM.IdPlazaImmex;
             movil.IdRegion = movilVM.IdRegion;
             movil.Marca = movilVM.Marca.Trim();
             movil.Modelo = movilVM.Modelo.Trim();
@@ -99,7 +99,7 @@ namespace CEMEX.API.Infrastructure.Extensions
         public static void UpdateMovil(this Movil movil, MovilViewModel movilVM)
         {
             movil.IdRegion = movilVM.IdRegion;
-            movil.IdPlazaImmex = movilVM.IdPlazaImmex;
+            movil.PlazaImmexId = movilVM.IdPlazaImmex;
             movil.IMEI = movilVM.IMEI.Trim();
             movil.Marca = movilVM.Marca.Trim();
             movil.Modelo = movilVM.Modelo.Trim();

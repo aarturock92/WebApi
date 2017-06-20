@@ -21,8 +21,8 @@ namespace CEMEX.API.Controllers.Catalogos
         private readonly IEntityBaseRepository<PlazaImmex> _repositoryPlazaImmex;
 
         public PlazaImmexController(IEntityBaseRepository<PlazaImmex> repositoryPlazaImmex,
-                                    IEntityBaseRepository<Error> errorRepository, 
-                                    IUnitOfWork unitOfWork) 
+                                    IEntityBaseRepository<Error> errorRepository,
+                                    IUnitOfWork unitOfWork)
             : base(errorRepository, unitOfWork)
         {
             _repositoryPlazaImmex = repositoryPlazaImmex;
@@ -30,8 +30,8 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [Route("list")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request, 
-                                       bool incluirPlazasOxxo = false, 
+        public HttpResponseMessage Get(HttpRequestMessage request,
+                                       bool incluirPlazasOxxo = false,
                                        ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
@@ -64,11 +64,11 @@ namespace CEMEX.API.Controllers.Catalogos
                 PlazaImmexViewModel plazaImmexVM = null;
 
                 if (incluirPlazaOxxo)
-                    plazaImmexVM = Mapper.Map<PlazaImmex, 
+                    plazaImmexVM = Mapper.Map<PlazaImmex,
                                               PlazaImmexViewModel>
                                               (_repositoryPlazaImmex.GetPlazaImmexByIdWithPlazaOxxo(id));
                 else
-                    plazaImmexVM = Mapper.Map<PlazaImmex, 
+                    plazaImmexVM = Mapper.Map<PlazaImmex,
                                               PlazaImmexViewModel>
                                               (_repositoryPlazaImmex.GetPlazaImmexById(id));
 
@@ -76,6 +76,21 @@ namespace CEMEX.API.Controllers.Catalogos
                     response = request.CreateResponse(HttpStatusCode.OK, plazaImmexVM);
                 else
                     response = request.CreateResponse(HttpStatusCode.NotFound);
+
+                return response;
+            });
+        } 
+
+
+        [Route("{id:int}/Moviles")]
+        [HttpGet]
+        public HttpResponseMessage GetMoviles(HttpRequestMessage request, int id)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+
+
 
                 return response;
             });
