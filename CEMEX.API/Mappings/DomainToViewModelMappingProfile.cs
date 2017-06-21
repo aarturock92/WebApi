@@ -35,14 +35,11 @@ namespace CEMEX.API.Mappings
             CreateMap<Distrito, DistritoViewModel>();
             CreateMap<Tienda, TiendaViewModel>();
             CreateMap<Vehiculo, VehiculoViewModel>();
-
             CreateMap<Menu, MenuViewModel>();
-
             CreateMap<Jerarquia, JerarquiaViewModel>();
             CreateMap<Permiso, PermisoViewModel>();
             CreateMap<Usuario, UsuarioViewModel>().ForMember(u => u.Contrasena, opt => opt.Ignore());
             CreateMap<DetalleUsuarioAsignacion, DetalleUsuarioAsignacionViewModel>();
-
         }
     }
 }

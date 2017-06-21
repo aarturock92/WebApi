@@ -8,6 +8,7 @@ using CEMEX.Data.Repositories;
 using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -55,8 +56,9 @@ namespace CEMEX.API.Controllers.Catalogos
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                VehiculoViewModel vehiculoVM = Mapper.Map<Vehiculo, VehiculoViewModel>
-                                               (_vehiculoRepository.GetVehiculoDetailsById(id));
+                VehiculoViewModel vehiculoVM = Mapper.Map<Vehiculo, 
+                                                          VehiculoViewModel>
+                                                          (_vehiculoRepository.GetVehiculoDetailsById(id));
 
                 if (vehiculoVM != null)
                     response = request.CreateResponse(HttpStatusCode.OK, vehiculoVM);
@@ -123,6 +125,52 @@ namespace CEMEX.API.Controllers.Catalogos
                 {
                     response = request.CreateResponse(HttpStatusCode.NotFound);
                 }
+
+                return response;
+            });
+        }
+
+
+        [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]
+        [HttpGet]
+        public HttpResponseMessage Search(HttpRequestMessage request, int? page, int? pageSize, string filter = null)
+        {
+            int currentPage = page.Value;
+            int currentPageSize = pageSize.Value;
+
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                List<Vehiculo> vehiculos = null;
+                int totalVehiculos = new int();
+
+                if (!string.IsNullOrEmpty(filter))
+                {
+
+                }else
+                {
+                    vehiculos = _vehiculoRepository
+                                .GetAll()
+                                .OrderBy(v => v.ID)
+                                .Skip(currentPage * currentPageSize)
+                                .Take(currentPageSize)
+                                .ToList();
+
+                    totalVehiculos = _vehiculoRepository
+                                     .GetAll()
+                                     .Count();
+                }
+
+                IEnumerable<VehiculoViewModel> vehiculosVM = Mapper.Map<IEnumerable<Vehiculo>, IEnumerable<VehiculoViewModel>>(vehiculos);
+                PaginationSet<VehiculoViewModel> pagedSet = new PaginationSet<VehiculoViewModel>()
+                {
+                    Page = currentPage,
+                    TotalCount = totalVehiculos,
+                    TotalPages = (int)Math.Ceiling((decimal)totalVehiculos / currentPageSize),
+                    Items = vehiculosVM
+                };
+
+                response = request.CreateResponse(HttpStatusCode.OK, pagedSet);
 
                 return response;
             });

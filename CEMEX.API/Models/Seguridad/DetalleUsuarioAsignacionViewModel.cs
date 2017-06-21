@@ -9,4 +9,5 @@
         public int ReferenciaId { get; set; }
 
         public int IdEstatus { get; set; }
+    }
 }

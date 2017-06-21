@@ -8,7 +8,6 @@ namespace CEMEX.Entidades.Seguridad
 
         public int ReferenciaId { get; set; }
 
-        public int IdEstatus { get; set; }
-    
+        public int IdEstatus { get; set; }    
     }
 }
