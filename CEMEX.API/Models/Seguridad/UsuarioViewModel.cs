@@ -55,6 +55,8 @@ namespace CEMEX.API.Models.Seguridad
         public string Imagen { get; set; }
 
         public int Estatus { get; set; }
+
+        public List<DetalleUsuarioAsignacionViewModel> DetallesUsuarioAsignacion { get; set; }
         
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

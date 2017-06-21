@@ -4,7 +4,6 @@ namespace CEMEX.API.Models.Catalogos
 {
     public class PlazaImmexViewModel
     {
-
         public int ID { get; set; }
 
         public int RegionId { get; set; }

@@ -225,6 +225,7 @@
     <Compile Include="Models\Catalogos\VehiculoViewModel.cs" />
     <Compile Include="Models\Seguridad\CredentialViewModel.cs" />
     <Compile Include="Models\Seguridad\DetalleModuloPermisoViewModel.cs" />
+    <Compile Include="Models\Seguridad\DetalleUsuarioAsignacionViewModel.cs" />
     <Compile Include="Models\Seguridad\JerarquiaViewModel.cs" />
     <Compile Include="Models\Seguridad\ModuloViewModel.cs" />
     <Compile Include="Models\Seguridad\PerfilUsuarioViewModel.cs" />
