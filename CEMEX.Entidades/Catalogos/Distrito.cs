@@ -4,6 +4,11 @@ namespace CEMEX.Entidades.Catalogos
 {
     public class Distrito:EntidadBase
     {
+        public Distrito()
+        {
+            Tiendas = new List<Tienda>();
+        }
+
         public int PlazaOxxoId { get; set; }
 
         public string ClaveDistrito { get; set; }

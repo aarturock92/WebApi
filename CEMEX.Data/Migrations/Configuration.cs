@@ -38,7 +38,7 @@ namespace CEMEX.Data.Migrations
                 new Jerarquia() { NivelJerarquia =  2, Nombre ="Supervisión", Descripcion ="Supervisión", Estatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico= 0 },
                 new Jerarquia() { NivelJerarquia =  3, Nombre ="Operativo", Descripcion ="Supervisión", Estatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico= 0 }
             };
-        } 
+        }
 
         private Usuario[] GetUsuarios()
         {
@@ -180,8 +180,8 @@ namespace CEMEX.Data.Migrations
                 new Menu() { IdMenuPadre = 0, Nombre = "Inicio", Descripcion = "Inicio", Url ="", Orden = 1, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
                 new Menu() { IdMenuPadre = 0, Nombre = "Configuración", Descripcion = "Configuración", Url ="javascript:void(0)", Orden = 2, CssClass ="menu-configuracion", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
                 new Menu() { IdMenuPadre = 1, Nombre = "Administración de Perfiles", Descripcion = "Administración de Perfiles", Url ="AdmonPerfiles.aspx", Orden = 1, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
-                new Menu() { IdMenuPadre = 1, Nombre = "Administración de Usuarios", Descripcion = "Administración de Usuarios", Url ="admonUsuarios.aspx", Orden = 2, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
-                new Menu() { IdMenuPadre = 1, Nombre = "Administración de Móviles", Descripcion = "Administración de Móviles", Url ="admonMoviles.aspx", Orden = 3, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new Menu() { IdMenuPadre = 1, Nombre = "Administración de Usuarios", Descripcion = "Administración de Usuarios", Url ="/usuario", Orden = 2, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
+                new Menu() { IdMenuPadre = 1, Nombre = "Administración de Móviles", Descripcion = "Administración de Móviles", Url ="/movil", Orden = 3, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
                 new Menu() { IdMenuPadre = 1, Nombre = "Catálogos", Descripcion = "Catálogos", Url ="AdmonCatalogos.aspx", Orden = 4, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
                 new Menu() { IdMenuPadre = 1, Nombre = "Carga Masiva", Descripcion = "Carga Masiva", Url ="CargaMasiva.aspx", Orden = 5, CssClass ="", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },
                 new Menu() { IdMenuPadre = 0, Nombre = "Encuestas", Descripcion = "Encuestas", Url ="javascript:void(0)", Orden = 3, CssClass ="menu-encuestas", IdEstatus = 1, FechaAlta = DateTime.Now, FechaModifico = DateTime.Now, IdUsuarioAlta = 0, IdUsuarioModifico = 0 },

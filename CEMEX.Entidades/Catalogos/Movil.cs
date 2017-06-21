@@ -2,7 +2,7 @@
 {
     public class Movil:EntidadBase
     {
-        public int IdRegion { get; set; }
+        public int RegionId { get; set; }
 
         public int PlazaImmexId { get; set; }
 

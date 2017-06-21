@@ -8,7 +8,7 @@ namespace CEMEX.Data.Configurations.Catalogos
         {
             HasKey(m => m.ID);
 
-            Property(m => m.IdRegion).IsRequired();
+            Property(m => m.RegionId).IsRequired();
 
             Property(m => m.PlazaImmexId).IsRequired();
 

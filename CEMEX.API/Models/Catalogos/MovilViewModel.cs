@@ -12,9 +12,9 @@ namespace CEMEX.API.Models.Catalogos
     {
         public int ID { get; set; }
 
-        public int IdRegion { get; set; }
+        public int RegionId { get; set; }
 
-        public int IdPlazaImmex { get; set; }
+        public int PlazaImmexId { get; set; }
 
         public string Marca { get; set; }
 

@@ -7,13 +7,13 @@ namespace CEMEX.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddrelationentityUsuariowithDetalleUsuarioAsignacion : IMigrationMetadata
+    public sealed partial class InitMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddrelationentityUsuariowithDetalleUsuarioAsignacion));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201706142238170_Add relation entity Usuario with DetalleUsuarioAsignacion"; }
+            get { return "201706210355214_Init Migration"; }
         }
         
         string IMigrationMetadata.Source
