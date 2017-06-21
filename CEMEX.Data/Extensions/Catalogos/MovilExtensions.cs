@@ -53,5 +53,45 @@ namespace CEMEX.Data.Extensions.Catalogos
 
             return moviles;
         }
+
+        public static IEnumerable<Movil> GetMovilesByPlazaImmex(this IEntityBaseRepository<Movil> movilRepository, int idPlazaImmex, ETypeEstatusRegistro estatusRegistro)
+        {
+            IEnumerable<Movil> moviles = null;
+
+            switch (estatusRegistro)
+            {
+                case ETypeEstatusRegistro.Activo:
+                    moviles = movilRepository
+                                .GetAll()
+                                .Where(m => m.PlazaImmexId == idPlazaImmex && m.IdEstatus == (int)ETypeEstatusRegistro.Activo)
+                                .ToList();
+                    break;
+                case ETypeEstatusRegistro.Inactivo:
+                    moviles = movilRepository
+                                 .GetAll()
+                                 .Where(m => m.PlazaImmexId == idPlazaImmex && m.IdEstatus == (int)ETypeEstatusRegistro.Inactivo)
+                                 .ToList();
+                    break;
+                case ETypeEstatusRegistro.Eliminado:
+                    moviles = movilRepository
+                                 .GetAll()
+                                 .Where(m => m.PlazaImmexId == idPlazaImmex && m.IdEstatus == (int)ETypeEstatusRegistro.Eliminado)
+                                 .ToList();
+                    break;
+                case ETypeEstatusRegistro.Todos:
+                    moviles = movilRepository
+                                  .GetAll()
+                                  .Where(m => m.PlazaImmexId == idPlazaImmex && (m.IdEstatus == (int)ETypeEstatusRegistro.Inactivo || m.IdEstatus == (int)ETypeEstatusRegistro.Activo))
+                                  .ToList();
+                    break;
+                default:
+                    moviles = movilRepository
+                                 .GetAll()
+                                 .ToList();
+                    break;
+            }
+
+            return moviles;
+        }
     }
 }

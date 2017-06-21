@@ -4,6 +4,7 @@ namespace CEMEX.API.Models.Catalogos
 {
     public class PlazaImmexViewModel
     {
+
         public int ID { get; set; }
 
         public int RegionId { get; set; }
@@ -15,5 +16,9 @@ namespace CEMEX.API.Models.Catalogos
         public int Estatus { get; set; }
 
         public List<PlazaOxxoViewModel> PlazasOxxo { get; set; }
+
+        public List<MovilViewModel> Moviles { get; set; }
+
+        public List<VehiculoViewModel> Vehiculos { get; set; }
     }
 }

@@ -19,13 +19,19 @@ namespace CEMEX.API.Controllers.Catalogos
     public class PlazaImmexController : ApiControllerBase
     {
         private readonly IEntityBaseRepository<PlazaImmex> _repositoryPlazaImmex;
+        private readonly IEntityBaseRepository<Vehiculo> _repositoryVehiculo;
+        private readonly IEntityBaseRepository<Movil> _repositoryMovil;
 
         public PlazaImmexController(IEntityBaseRepository<PlazaImmex> repositoryPlazaImmex,
+                                    IEntityBaseRepository<Vehiculo> repositoryVehiculo,
+                                    IEntityBaseRepository<Movil> repositoryMovil,
                                     IEntityBaseRepository<Error> errorRepository,
                                     IUnitOfWork unitOfWork)
             : base(errorRepository, unitOfWork)
         {
             _repositoryPlazaImmex = repositoryPlazaImmex;
+            _repositoryVehiculo = repositoryVehiculo;
+            _repositoryMovil = repositoryMovil;
         }
 
         [Route("list")]
@@ -84,13 +90,33 @@ namespace CEMEX.API.Controllers.Catalogos
 
         [Route("{id:int}/Moviles")]
         [HttpGet]
-        public HttpResponseMessage GetMoviles(HttpRequestMessage request, int id)
+        public HttpResponseMessage GetMoviles(HttpRequestMessage request, int id, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
         {
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
+                IEnumerable<MovilViewModel> movilesVM = Mapper.Map<IEnumerable<Movil>, 
+                                                                  IEnumerable<MovilViewModel>>
+                                                                  (_repositoryMovil.GetMovilesByPlazaImmex(id, estatusRegistro));
 
+                response = request.CreateResponse(HttpStatusCode.OK, movilesVM);
 
+                return response;
+            });
+        }
+
+        [Route("{id:int}/Vehiculos")]
+        [HttpGet]
+        public HttpResponseMessage GetVehiculos(HttpRequestMessage request, int id, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
+        {
+            return CreateHttpResponse(request, ()=>
+            {
+                HttpResponseMessage response = null;
+                IEnumerable<VehiculoViewModel> vehiculosVM = Mapper.Map<IEnumerable<Vehiculo>, 
+                                                                        IEnumerable<VehiculoViewModel>>
+                                                                        (_repositoryVehiculo.GetVehiculosByIdPlazaImmex(id, estatusRegistro));
+
+                response = request.CreateResponse(HttpStatusCode.OK, vehiculosVM);
 
                 return response;
             });

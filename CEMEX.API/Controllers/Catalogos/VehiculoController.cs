@@ -127,8 +127,5 @@ namespace CEMEX.API.Controllers.Catalogos
                 return response;
             });
         }
-
-        //[HttpPut]
-        //[Route("update")]
     }
 }

@@ -50,5 +50,45 @@ namespace CEMEX.Data.Extensions.Catalogos
                                      .Where(v => v.ID == id && v.IdEstatus != (int)ETypeEstatusRegistro.Eliminado)
                                      .FirstOrDefault();
         }
+
+        public static IEnumerable<Vehiculo> GetVehiculosByIdPlazaImmex(this IEntityBaseRepository<Vehiculo> repositoryVehiculo, int idPlazaImmex, ETypeEstatusRegistro estatusRegistro)
+        {
+            IEnumerable<Vehiculo> vehiculos = null;
+
+            switch (estatusRegistro)
+            {
+                case ETypeEstatusRegistro.Activo:
+                    vehiculos = repositoryVehiculo
+                                    .GetAll()
+                                    .Where(v => v.PlazaImmexId == idPlazaImmex && v.IdEstatus == (int)ETypeEstatusRegistro.Activo)
+                                    .ToList();
+                    break;
+                case ETypeEstatusRegistro.Inactivo:
+                    vehiculos = repositoryVehiculo
+                                    .GetAll()
+                                    .Where(v => v.PlazaImmexId == idPlazaImmex && v.IdEstatus == (int)ETypeEstatusRegistro.Inactivo)
+                                    .ToList();
+                    break;
+                case ETypeEstatusRegistro.Eliminado:
+                    vehiculos = repositoryVehiculo
+                                    .GetAll()
+                                    .Where(v => v.PlazaImmexId == idPlazaImmex && v.IdEstatus == (int)ETypeEstatusRegistro.Eliminado)
+                                    .ToList();
+                    break;
+                case ETypeEstatusRegistro.Todos:
+                    vehiculos = repositoryVehiculo
+                                    .GetAll()
+                                    .Where(v => v.PlazaImmexId == idPlazaImmex && (v.IdEstatus == (int)ETypeEstatusRegistro.Activo || v.IdEstatus == (int)ETypeEstatusRegistro.Inactivo))
+                                    .ToList();
+                    break;
+                default:
+                    vehiculos = repositoryVehiculo
+                                    .GetAll()
+                                    .ToList();                                        
+                    break;
+            }
+
+            return vehiculos;
+        }
     }
 }

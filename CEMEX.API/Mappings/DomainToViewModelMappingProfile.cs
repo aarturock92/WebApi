@@ -27,10 +27,14 @@ namespace CEMEX.API.Mappings
             CreateMap<Estado, EstadoViewModel>().ForMember(e => e.Municipios, map => map.MapFrom(ma => ma.Municipios));
             CreateMap<Municipio, MunicipioViewModel>();
             CreateMap<Region, RegionViewModel>();
-            CreateMap<PlazaImmex, PlazaImmexViewModel>();
+            CreateMap<PlazaImmex, PlazaImmexViewModel>()
+                .ForMember(p => p.Moviles, map => map.MapFrom(ma => ma.Moviles))
+                .ForMember(p => p.Vehiculos, map => map.MapFrom(ma => ma.Vehiculos))
+                .ForMember(p => p.PlazasOxxo, map => map.MapFrom(ma => ma.PlazasOxxo));
             CreateMap<PlazaOxxo, PlazaOxxoViewModel>();
             CreateMap<Distrito, DistritoViewModel>();
             CreateMap<Tienda, TiendaViewModel>();
+            CreateMap<Vehiculo, VehiculoViewModel>();
 
             CreateMap<Menu, MenuViewModel>();
 
