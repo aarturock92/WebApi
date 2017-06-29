@@ -253,13 +253,13 @@
     <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CEMEX.Data\CEMEX.Data.csproj">
+    <ProjectReference Include="..\CEMEX.Data\ENCUESTA.Data.csproj">
       <Project>{cb3a0554-c8f5-439a-b4a7-d7fd9f63ba35}</Project>
-      <Name>CEMEX.Data</Name>
+      <Name>ENCUESTA.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\CEMEX.Entidades\CEMEX.Entidades.csproj">
+    <ProjectReference Include="..\CEMEX.Entidades\ENCUESTA.Entidades.csproj">
       <Project>{23c95db5-346c-4238-8108-a91f46be21dc}</Project>
-      <Name>CEMEX.Entidades</Name>
+      <Name>ENCUESTA.Entidades</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
