@@ -114,8 +114,7 @@ namespace CEMEX.API.Controllers.Catalogos
                     {
                         response = request.CreateResponse(HttpStatusCode.NotFound, 
                             string.Format(ResponseMessages.MessageResponseEstados.NoEncontrado, estado.ID));
-                    }
-                    
+                    }                    
                 }
 
                 return response;
