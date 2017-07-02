@@ -91,7 +91,7 @@ namespace CEMEX.API.Infrastructure.Extensions
             movil.NumeroTelefono = movilVM.NumeroTelefono.Trim();
             movil.NumeroSerie = movilVM.NumeroSerie.Trim();
             movil.IMEI = movilVM.IMEI.Trim();
-            movil.IdEstatus = (int)ETypeEstatusRegistro.Activo;
+            movil.IdEstatus = movilVM.IdEstatus;
             movil.FechaAlta = DateTime.UtcNow;
             movil.FechaModifico = DateTime.Now;
         }

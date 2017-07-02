@@ -211,7 +211,7 @@ namespace CEMEX.API.Controllers.Catalogos
                                               .Take(currentPageSize)
                                               .ToList();
 
-                    totalMoviles = _movilRepository.GetAll()
+                    totalMoviles = _movilRepository.GetMovilesByStatusRegistro(estatusRegistro)
                                                    .Count();
                 }
 
