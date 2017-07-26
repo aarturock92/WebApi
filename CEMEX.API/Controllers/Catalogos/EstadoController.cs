@@ -168,7 +168,7 @@ namespace CEMEX.API.Controllers.Catalogos
                 {
                     filter = filter.Trim().ToLower();
                     estados = _estadosRepository.FindBy(c => c.Abreviatura.ToLower().Contains(filter) ||
-                                                        c.Nombre.ToLower().Contains(filter))
+                                                             c.Nombre.ToLower().Contains(filter))
                                                         .OrderBy(c => c.ID)
                                                         .Skip(currentPage * currentPageSize)
                                                         .Take(currentPageSize)
@@ -176,7 +176,7 @@ namespace CEMEX.API.Controllers.Catalogos
 
                     totalEstados = _estadosRepository.GetAll()
                                     .Where(c => c.Abreviatura.ToLower().Contains(filter) ||
-                                           c.Nombre.ToLower().Contains(filter))
+                                                c.Nombre.ToLower().Contains(filter))
                                     .Count();
 
                 }else

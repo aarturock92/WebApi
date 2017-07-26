@@ -201,8 +201,17 @@ namespace CEMEX.API.Controllers.Seguridad
 
                 if (!string.IsNullOrEmpty(filter))
                 {
-                    //filter = filter.Trim().ToLower();
-                    //_usuarios = _usuariosRepository.FindBy(c => c.NombreUsuario.ToLower().Contains(filter) || )
+                    filter = filter.Trim().ToLower();
+                    _usuarios = _usuariosRepository.FindBy(c => c.NombreUsuario.ToLower().Contains(filter) ||
+                                                                c.Nombre.ToLower().Contains(filter) ||
+                                                                c.PrimerApellido.ToLower().Contains(filter) ||
+                                                                c.SegundoApellido.ToLower().Contains(filter))
+                                                   .OrderBy(c => c.ID)
+                                                   .Skip(currentPage * currentPageSize)
+                                                   .Take(currentPageSize)
+                                                   .ToList();
+
+                    totalUsuarios = _usuarios.Count();
                 }else
                 {
                     _usuarios = _usuariosRepository.GetUsuarios(estatusRegistro)

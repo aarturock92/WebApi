@@ -162,6 +162,7 @@ namespace CEMEX.API.Controllers.Catalogos
                 }
 
                 IEnumerable<VehiculoViewModel> vehiculosVM = Mapper.Map<IEnumerable<Vehiculo>, IEnumerable<VehiculoViewModel>>(vehiculos);
+
                 PaginationSet<VehiculoViewModel> pagedSet = new PaginationSet<VehiculoViewModel>()
                 {
                     Page = currentPage,

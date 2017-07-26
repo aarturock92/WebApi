@@ -60,8 +60,14 @@
     <Compile Include="Configurations\Catalogos\PlazaOxxoConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\RegionConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\TiendaConfiguration.cs" />
+    <Compile Include="Configurations\Catalogos\TipoEncuestaConfiguration.cs" />
     <Compile Include="Configurations\Catalogos\VehiculoConfiguration.cs" />
     <Compile Include="Configurations\EntityBaseConfiguration.cs" />
+    <Compile Include="Configurations\Operacion\DetalleRespuestaConfiguration.cs" />
+    <Compile Include="Configurations\Operacion\EncuestaConfiguration.cs" />
+    <Compile Include="Configurations\Operacion\PreguntaConfiguration.cs" />
+    <Compile Include="Configurations\Operacion\RespuestaConfiguration.cs" />
+    <Compile Include="Configurations\Operacion\SeccionConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\DetalleMenuPermisoConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\DetallePerfilUsuarioMenuConfiguration.cs" />
     <Compile Include="Configurations\Seguridad\DetalleUsuarioAsignacionConfiguration.cs" />

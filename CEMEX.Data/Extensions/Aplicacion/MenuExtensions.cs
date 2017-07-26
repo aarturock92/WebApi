@@ -14,9 +14,9 @@ namespace CEMEX.Data.Extensions.Aplicacion
                                                           int idPerfilUsuario, 
                                                           int idMenuPadre = 0)
         {
-            List<Menu> menusPadre;
+            List<Menu> _menu = null;
 
-            menusPadre = (from detalle in detallePerfilUsuarioMenuRepository.GetAll()
+            _menu = (from detalle in detallePerfilUsuarioMenuRepository.GetAll()
                           join menu in menuRepository.GetAll()
                           on detalle.MenuId equals menu.ID
                           where detalle.PefilUsuarioId == idPerfilUsuario &&
@@ -26,7 +26,7 @@ namespace CEMEX.Data.Extensions.Aplicacion
                           orderby menu.Orden
                           select menu).ToList();
 
-            return menusPadre;
+            return _menu;
         }
     }
 }

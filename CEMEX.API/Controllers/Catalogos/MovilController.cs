@@ -148,7 +148,8 @@ namespace CEMEX.API.Controllers.Catalogos
                 if (!ModelState.IsValid)
                 {
                     response = request.CreateResponse(HttpStatusCode.BadRequest,
-                                                      ModelState.Keys.SelectMany(k => ModelState[k].Errors).Select(m => m.ErrorMessage).ToArray());
+                                                      ModelState.Keys.SelectMany(k => ModelState[k].Errors)
+                                                                     .Select(m => m.ErrorMessage).ToArray());
                 }else
                 {
                     Movil _movil = _movilRepository.GetSingle(id);

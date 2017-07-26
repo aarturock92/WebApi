@@ -1,8 +1,10 @@
 ﻿using CEMEX.Data.Configurations.App;
 using CEMEX.Data.Configurations.Catalogos;
+using CEMEX.Data.Configurations.Operacion;
 using CEMEX.Data.Configurations.Seguridad;
 using CEMEX.Entidades.App;
 using CEMEX.Entidades.Catalogos;
+using CEMEX.Entidades.Operacion;
 using CEMEX.Entidades.Seguridad;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -29,6 +31,7 @@ namespace CEMEX.Data
         public IDbSet<Distrito> DistritoSet { get; set; }
         public IDbSet<Tienda> TiendaSet { get; set; }
         public IDbSet<Movil> MovilSet { get; set; }
+        public IDbSet<TipoEncuesta> TipoEncuestaSet { get; set; }
         #endregion
 
         #region Seguridad
@@ -44,6 +47,14 @@ namespace CEMEX.Data
         #region App
         public IDbSet<Menu> MenuSet { get; set; }
         public IDbSet<Error> ErrorSet { get; set; }
+        #endregion
+
+        #region Operacion
+        public IDbSet<Encuesta> EncuestaSet { get; set; }
+        public IDbSet<Seccion> SeccionSet { get; set; }
+        public IDbSet<Pregunta> PreguntaSet { get; set; }
+        public IDbSet<Respuesta> RespuestaSet { get; set; }
+        public IDbSet<DetalleRespuesta> DetalleRespuestaSet { get; set; }
         #endregion
 
         public virtual void Commit()
@@ -68,6 +79,7 @@ namespace CEMEX.Data
             modelBuilder.Configurations.Add(new TiendaConfiguration());
             modelBuilder.Configurations.Add(new MovilConfiguration());
             modelBuilder.Configurations.Add(new VehiculoConfiguration());
+            modelBuilder.Configurations.Add(new TipoEncuestaConfiguration());
 
             modelBuilder.Configurations.Add(new DetalleMenuPermisoConfiguration());
             modelBuilder.Configurations.Add(new DetallePerfilUsuarioMenuConfiguration());
@@ -79,7 +91,13 @@ namespace CEMEX.Data
 
             modelBuilder.Configurations.Add(new MenuConfiguration());
 
+            modelBuilder.Configurations.Add(new EncuestaConfiguration());
+            modelBuilder.Configurations.Add(new SeccionConfiguration());
+            modelBuilder.Configurations.Add(new PreguntaConfiguration());
+            modelBuilder.Configurations.Add(new RespuestaConfiguration());
+            modelBuilder.Configurations.Add(new DetalleRespuestaConfiguration());
 
+            
             modelBuilder.Entity<Estado>().ToTable("Estados","Catalogo");
             modelBuilder.Entity<Municipio>().ToTable("Municipios","Catalogo");
             modelBuilder.Entity<Region>().ToTable("Regiones","Catalogo");
@@ -89,6 +107,7 @@ namespace CEMEX.Data
             modelBuilder.Entity<Tienda>().ToTable("Tiendas","Catalogo");
             modelBuilder.Entity<Movil>().ToTable("Moviles", "Catalogo");
             modelBuilder.Entity<Vehiculo>().ToTable("Vehiculos", "Catalogo");
+            modelBuilder.Entity<TipoEncuesta>().ToTable("TiposEncuesta", "Catalogo");
 
             modelBuilder.Entity<Usuario>().ToTable("Usuarios", "Seguridad");
             modelBuilder.Entity<PerfilUsuario>().ToTable("PerfilesUsuario", "Seguridad");
@@ -100,6 +119,12 @@ namespace CEMEX.Data
 
             modelBuilder.Entity<Menu>().ToTable("Menu", "Aplicacion");
             modelBuilder.Entity<Error>().ToTable("Error", "Aplicacion");
+
+            modelBuilder.Entity<Encuesta>().ToTable("Encuestas", "Operacion");
+            modelBuilder.Entity<Seccion>().ToTable("Secciones", "Operacion");
+            modelBuilder.Entity<Pregunta>().ToTable("Preguntas", "Operacion");
+            modelBuilder.Entity<Respuesta>().ToTable("Respuestas", "Operacion");
+            modelBuilder.Entity<DetalleRespuesta>().ToTable("DetallesRespuesta", "Operacion");
         }
 
     }
