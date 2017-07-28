@@ -170,7 +170,6 @@ namespace CEMEX.API.Controllers.Seguridad
                                 Token = token,
                                 LifetimeInMinutes = lifetimeInMinutes,
                                 FullName = _usuario.NombreUsuario
-                                //FullName = string.Format("{0} {1} {2}",_usuario.Nombre, _usuario.PrimerApellido, _usuario.SegundoApellido)
                             });
                         }
                         else

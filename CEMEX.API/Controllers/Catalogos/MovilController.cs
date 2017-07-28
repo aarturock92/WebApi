@@ -31,6 +31,12 @@ namespace CEMEX.API.Controllers.Catalogos
             _movilRepository = movilRepository;
         }
 
+        /// <summary>
+        /// Consulta todos los registros para la entidad Movil.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="estatusRegistro"></param>
+        /// <returns></returns>
         [HttpGet]
         public HttpResponseMessage Get(HttpRequestMessage request,
                                        ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
@@ -49,6 +55,15 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
+        /// <summary>
+        /// Consulta un solo registro de la entidad Movil a partir de su Id.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="id"></param>
+        /// <returns>
+        /// StatusCode 200: Se encontro el registro.
+        /// StatusCode 404: El recurso no se encuentra en BD.
+        /// </returns>
         [HttpGet]
         [Route("{id:int}")]
         public HttpResponseMessage Get(HttpRequestMessage request, int id)
@@ -56,24 +71,30 @@ namespace CEMEX.API.Controllers.Catalogos
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-                Movil _movil = _movilRepository.GetSingle(id);
 
-                if (_movil != null && _movil.IdEstatus != (int)ETypeEstatusRegistro.Eliminado)
-                {
-                    MovilViewModel movilVM = Mapper.Map<Movil, MovilViewModel>(_movil);
-                    response = request.CreateResponse(HttpStatusCode.OK, movilVM);
-                }
+                Movil _movil = _movilRepository.GetMovilPorId(id);
+
+                if (_movil != null)
+                    response = request.CreateResponse(HttpStatusCode.OK, Mapper.Map<Movil, MovilViewModel>(_movil));
                 else
-                {
-                    response = request.CreateResponse(HttpStatusCode.NotFound, "No se encontro el registro Móvil.");
-                }
+                    response = request.CreateResponse(HttpStatusCode.NotFound);
 
                 return response;
             });
         }
 
+        /// <summary>
+        /// Crea un nuevo registro para la entidad Movil.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="movilVM"></param>
+        /// <returns>
+        /// StatusCode 400: La estructura no contiene el formato correcto.
+        /// StatusCode 409: El registro ya existe en base de datos.
+        /// StatusCode 201: La trasacción se realizo con exito.
+        /// </returns>
         [HttpPost]
-        public HttpResponseMessage Register(HttpRequestMessage request, MovilViewModel movilVM)
+        public HttpResponseMessage Crear(HttpRequestMessage request, MovilViewModel movilVM)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -82,13 +103,14 @@ namespace CEMEX.API.Controllers.Catalogos
                 if (!ModelState.IsValid)
                 {
                     response = request.CreateResponse(HttpStatusCode.BadRequest,
-                                                      ModelState.Keys.SelectMany(k => ModelState[k].Errors).Select(m => m.ErrorMessage).ToArray());
+                                                      ModelState.Keys.SelectMany(k => ModelState[k].Errors)
+                                                                .Select(m => m.ErrorMessage).ToArray());
                 }
                 else
                 {
                     List<string> validacionesMovil = new List<string>();
 
-                    if (_movilRepository.ValidarCreacionMovil(movilVM, out validacionesMovil))
+                    if (_movilRepository.ExisteMovilCreacion(movilVM, out validacionesMovil))
                     {
                         Movil newMovil = new Movil();
                         newMovil.CrearMovil(movilVM);
@@ -108,14 +130,23 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
+        /// <summary>
+        /// Realiza un eliminado logico del registro Movil.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="id"></param>
+        /// <returns>
+        /// StatusCode 200: La operación se realizo con exito.
+        /// StatusCode 404: El registro no se encuentra en la BD.
+        /// </returns>
         [HttpDelete]
         [Route("{id:int}")]
-        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        public HttpResponseMessage Eliminar(HttpRequestMessage request, int id)
         {
             return CreateHttpResponse(request, ()=>
             {
                 HttpResponseMessage response = null;
-                Movil movil = _movilRepository.GetSingle(id);
+                Movil movil = _movilRepository.GetMovilPorId(id);
 
                 if (movil != null)
                 {
@@ -131,9 +162,16 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="id"></param>
+        /// <param name="movilVM"></param>
+        /// <returns></returns>
         [HttpPut]
         [Route("{id:int}")]
-        public HttpResponseMessage Update(HttpRequestMessage request, int id, MovilViewModel movilVM)
+        public HttpResponseMessage Modificar(HttpRequestMessage request, int id, MovilViewModel movilVM)
         {
             return CreateHttpResponse(request, () =>
             {
@@ -146,16 +184,21 @@ namespace CEMEX.API.Controllers.Catalogos
                                                                      .Select(m => m.ErrorMessage).ToArray());
                 }else
                 {
-                    Movil _movil = _movilRepository.GetSingle(id);
+                    Movil _movil = _movilRepository.GetMovilPorId(id);
+
+                    List<string> validacionesMovil = new List<string>();
 
                     if (_movil != null)
                     {
-                        _movil.UpdateMovil(movilVM);
+                        _movil.ModificarMovil(movilVM);
                         _unitOfWork.Commit();
                         movilVM = Mapper.Map<Movil, MovilViewModel>(_movil);
                         response = request.CreateResponse(HttpStatusCode.OK, movilVM);
-                    }else
+                    }
+                    else
+                    {
                         response = request.CreateResponse(HttpStatusCode.NotFound);
+                    }                        
                 }
 
                 return response;
@@ -172,8 +215,8 @@ namespace CEMEX.API.Controllers.Catalogos
             return CreateHttpResponse(request, () =>
             {
                 HttpResponseMessage response = null;
-
                 List<Movil> moviles = null;
+
                 int totalMoviles = new int();
 
                 if (!string.IsNullOrEmpty(filter))

@@ -10,13 +10,16 @@ namespace CEMEX.API
     {
         public static void Register(HttpConfiguration config)
         {
-            var cors = new EnableCorsAttribute("*", "*", "*");
-            config.EnableCors(cors);
-            // Rutas de API web
+            // Habilita las peticiones desde cualquier origen.
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
+            // Rutas de API web.
             config.MapHttpAttributeRoutes();
 
+            // Configure el filtro de autenticación para que se ejecute en cada solicitud marcada con el atributo Authorize.
             config.Filters.Add(new BearerAuthenticationFilter());
 
+            // Configurar el manejador de caducidad deslizante para que se ejecute en cada solicitud.
             config.MessageHandlers.Add(new SlidingExpirationHandler());
 
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

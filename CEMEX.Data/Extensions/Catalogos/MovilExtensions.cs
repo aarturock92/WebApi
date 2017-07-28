@@ -102,5 +102,10 @@ namespace CEMEX.Data.Extensions.Catalogos
 
             return moviles;
         }
+
+        public static Movil GetMovilPorId(this IEntityBaseRepository<Movil> movilRepository, int id)
+        {
+            return movilRepository.GetAll().Where(m => m.IdEstatus == (int)ETypeEstatusRegistro.Activo || m.IdEstatus == (int)ETypeEstatusRegistro.Inactivo).FirstOrDefault();
+        }
     }
 }

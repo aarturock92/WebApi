@@ -16,7 +16,7 @@ namespace CEMEX.API.Infrastructure.Extensions
         /// <param name="movilVM"></param>
         /// <param name="validacionesEntidad"></param>
         /// <returns></returns>
-        public static bool ValidarCreacionMovil(this IEntityBaseRepository<Movil> movilRepository, MovilViewModel movilVM, out List<string> validacionesEntidad)
+        public static bool ExisteMovilCreacion(this IEntityBaseRepository<Movil> movilRepository, MovilViewModel movilVM, out List<string> validacionesEntidad)
         {
             bool esValido = true;
             validacionesEntidad = new List<string>();
@@ -65,7 +65,7 @@ namespace CEMEX.API.Infrastructure.Extensions
         }
 
 
-        public static void UpdateMovil(this Movil movil, MovilViewModel movilVM)
+        public static void ModificarMovil(this Movil movil, MovilViewModel movilVM)
         {
             movil.RegionId = movilVM.RegionId;
             movil.PlazaImmexId = movilVM.PlazaImmexId;
