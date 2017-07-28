@@ -35,5 +35,6 @@ namespace CEMEX.API.Models.Catalogos
             return result.Errors.Select(item => new ValidationResult(item.ErrorMessage,
                 new[] { item.PropertyName }));
         }
+
     }
 }

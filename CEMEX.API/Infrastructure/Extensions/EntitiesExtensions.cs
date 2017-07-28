@@ -5,6 +5,7 @@ using CEMEX.Entidades;
 using CEMEX.Entidades.Catalogos;
 using CEMEX.Entidades.Seguridad;
 using System;
+using System.Collections.Generic;
 
 namespace CEMEX.API.Infrastructure.Extensions
 {
@@ -15,11 +16,22 @@ namespace CEMEX.API.Infrastructure.Extensions
         /// </summary>
         /// <param name="estado"></param>
         /// <param name="estadoVM"></param>
-        public static void UpdateEstado(this Estado estado, EstadoViewModel estadoVM )
+        public static void CrearEstado(this Estado estado, EstadoViewModel estadoVM)
         {
             estado.Nombre = estadoVM.Nombre.Trim();
             estado.Abreviatura = estadoVM.Abreviatura.Trim();
-            estado.Estatus = estadoVM.Estatus;           
+            estado.Estatus = estadoVM.Estatus;
+            estado.FechaAlta = DateTime.Now;
+            estado.FechaModifico = DateTime.Now;
+        }
+
+
+        public static void ModificarEstado(this Estado estado, EstadoViewModel estadoVM)
+        {
+            estado.Nombre = estadoVM.Nombre.Trim();
+            estado.Abreviatura = estadoVM.Abreviatura.Trim();
+            estado.Estatus = estadoVM.Estatus;
+            estado.FechaModifico = DateTime.Now;
         }
 
         /// <summary>
@@ -33,6 +45,7 @@ namespace CEMEX.API.Infrastructure.Extensions
             //municipio.Estado_ID = municipioVM.IdEstado;
             municipio.Estatus = municipioVM.Estatus;
         }
+
 
         /// <summary>
         /// 
@@ -76,38 +89,7 @@ namespace CEMEX.API.Infrastructure.Extensions
         }
 
 
-        public static void DeleteMovil(this Movil movil)
-        {
-            movil.IdEstatus = (int)ETypeEstatusRegistro.Eliminado;
-        }
-
-
-        public static void CreateMovil(this Movil movil, MovilViewModel movilVM)
-        {
-            movil.PlazaImmexId = movilVM.PlazaImmexId;
-            movil.RegionId = movilVM.RegionId;
-            movil.Marca = movilVM.Marca.Trim();
-            movil.Modelo = movilVM.Modelo.Trim();
-            movil.NumeroTelefono = movilVM.NumeroTelefono.Trim();
-            movil.NumeroSerie = movilVM.NumeroSerie.Trim();
-            movil.IMEI = movilVM.IMEI.Trim();
-            movil.IdEstatus = movilVM.IdEstatus;
-            movil.FechaAlta = DateTime.UtcNow;
-            movil.FechaModifico = DateTime.Now;
-        }
-
-        public static void UpdateMovil(this Movil movil, MovilViewModel movilVM)
-        {
-            movil.RegionId = movilVM.RegionId;
-            movil.PlazaImmexId = movilVM.PlazaImmexId;
-            movil.IMEI = movilVM.IMEI.Trim();
-            movil.Marca = movilVM.Marca.Trim();
-            movil.Modelo = movilVM.Modelo.Trim();
-            movil.NumeroSerie = movilVM.NumeroSerie.Trim();
-            movil.NumeroTelefono = movilVM.NumeroTelefono.Trim();
-            movil.FechaModifico = DateTime.UtcNow;
-            movil.IdEstatus = movilVM.IdEstatus;
-        }
+       
 
         public static void CreateVehiculo(this Vehiculo vehiculo, VehiculoViewModel vehiculoVM)
         {

@@ -32,7 +32,6 @@ namespace CEMEX.API.Controllers.Catalogos
         }
      
         [HttpGet]
-        [Route("list")]
         public HttpResponseMessage Get(HttpRequestMessage request, 
                                        bool incluirMunicipios = false, 
                                        ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
@@ -57,7 +56,7 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
-        [Route("register")]
+
         [HttpPost]
         public HttpResponseMessage Register(HttpRequestMessage request,
                                             EstadoViewModel estadoVM)
@@ -74,9 +73,7 @@ namespace CEMEX.API.Controllers.Catalogos
                 }else
                 {
                     Estado newEstado = new Estado();
-                    newEstado.UpdateEstado(estadoVM);
-                    newEstado.FechaAlta = DateTime.Now;
-                    newEstado.FechaModifico = DateTime.Now;
+                    newEstado.CrearEstado(estadoVM);
                     _estadosRepository.Add(newEstado);
                     _unitOfWork.Commit();
 
@@ -89,7 +86,6 @@ namespace CEMEX.API.Controllers.Catalogos
         }
 
         [HttpPut]
-        [Route("update")]
         public HttpResponseMessage Update(HttpRequestMessage request, EstadoViewModel estado)
         {
             return CreateHttpResponse(request,() =>
@@ -107,13 +103,12 @@ namespace CEMEX.API.Controllers.Catalogos
 
                     if (_estado!=null)
                     {
-                        _estado.UpdateEstado(estado);
+                        _estado.ModificarEstado(estado);
                         _unitOfWork.Commit();
                         response = request.CreateResponse(HttpStatusCode.OK);
                     }else
                     {
-                        response = request.CreateResponse(HttpStatusCode.NotFound, 
-                            string.Format(ResponseMessages.MessageResponseEstados.NoEncontrado, estado.ID));
+                        response = request.CreateResponse(HttpStatusCode.NotFound);
                     }                    
                 }
 
@@ -138,7 +133,7 @@ namespace CEMEX.API.Controllers.Catalogos
                 if (estado != null)
                 {
                      EstadoViewModel estadoVM = Mapper.Map<Estado, EstadoViewModel>(estado);
-                     response = request.CreateResponse<EstadoViewModel>(HttpStatusCode.OK, estadoVM);
+                     response = request.CreateResponse(HttpStatusCode.OK, estadoVM);
                 }
                 else
                 {

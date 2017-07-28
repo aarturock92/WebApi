@@ -8,14 +8,23 @@ namespace CEMEX.Data.Extensions.Catalogos
 {
     public static class MovilExtensions
     {
-        public static Movil GetMovil(this IEntityBaseRepository<Movil> movilRepository, string IMEI, string NumeroTelefono, string NumeroSerie)
+        public static Movil GetMovilPorIMEI(this IEntityBaseRepository<Movil> movilRepository, string IMEI)
         {
-            return movilRepository.FindBy(m => m.IMEI.ToUpper().Contains(IMEI.Trim()) ||
-                                               m.NumeroSerie.Contains(NumeroTelefono.Trim()) ||
-                                               m.NumeroTelefono.Contains(NumeroTelefono.Trim()))
+            return movilRepository.FindBy(m => string.Equals(m.IMEI.ToUpper(), IMEI.ToUpper()))
                                   .FirstOrDefault();
         }
 
+        public static Movil GetMovilPorNumeroTelefono(this IEntityBaseRepository<Movil> movilRepository, string numeroTelefono)
+        {
+            return movilRepository.FindBy(m => string.Equals(m.NumeroTelefono.ToUpper(), numeroTelefono.ToUpper()))
+                                  .FirstOrDefault();
+        }
+
+        public static Movil GetMovilPorNumeroSerie(this IEntityBaseRepository<Movil> movilRepository, string numeroSerie)
+        {
+            return movilRepository.FindBy(m => string.Equals(m.NumeroSerie.ToUpper(), numeroSerie.ToUpper().Trim()))
+                                  .FirstOrDefault();
+        }
 
         public static IEnumerable<Movil> GetMovilesByStatusRegistro(this IEntityBaseRepository<Movil> movilRepository, 
                                                                     ETypeEstatusRegistro estatusRegistro)
