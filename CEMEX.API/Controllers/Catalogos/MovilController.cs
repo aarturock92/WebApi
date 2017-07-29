@@ -32,11 +32,13 @@ namespace CEMEX.API.Controllers.Catalogos
         }
 
         /// <summary>
-        /// Consulta todos los registros para la entidad Movil.
+        /// Consulta todos los registros de la entidad Movil.
         /// </summary>
         /// <param name="request"></param>
         /// <param name="estatusRegistro"></param>
-        /// <returns></returns>
+        /// <returns>
+        /// OK 200: Retorna todos los registros de la entidad Movil.
+        /// </returns>
         [HttpGet]
         public HttpResponseMessage Get(HttpRequestMessage request,
                                        ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
@@ -61,8 +63,8 @@ namespace CEMEX.API.Controllers.Catalogos
         /// <param name="request"></param>
         /// <param name="id"></param>
         /// <returns>
-        /// StatusCode 200: Se encontro el registro.
-        /// StatusCode 404: El recurso no se encuentra en BD.
+        /// OK 200: Se encontro el registro.
+        /// NotFound 404: El recurso no se encuentra en BD.
         /// </returns>
         [HttpGet]
         [Route("{id:int}")]
@@ -89,9 +91,9 @@ namespace CEMEX.API.Controllers.Catalogos
         /// <param name="request"></param>
         /// <param name="movilVM"></param>
         /// <returns>
-        /// StatusCode 400: La estructura no contiene el formato correcto.
-        /// StatusCode 409: El registro ya existe en base de datos.
-        /// StatusCode 201: La trasacción se realizo con exito.
+        /// BadRequest 400: La estructura no contiene el formato correcto.
+        /// Conflict 409: El registro ya existe en base de datos.
+        /// Created 201: La trasacción se realizo con exito.
         /// </returns>
         [HttpPost]
         public HttpResponseMessage Crear(HttpRequestMessage request, MovilViewModel movilVM)
@@ -136,8 +138,8 @@ namespace CEMEX.API.Controllers.Catalogos
         /// <param name="request"></param>
         /// <param name="id"></param>
         /// <returns>
-        /// StatusCode 200: La operación se realizo con exito.
-        /// StatusCode 404: El registro no se encuentra en la BD.
+        /// OK 200: La operación se realizo con exito.
+        /// NotFound 404: El registro no se encuentra en la BD.
         /// </returns>
         [HttpDelete]
         [Route("{id:int}")]
@@ -205,6 +207,17 @@ namespace CEMEX.API.Controllers.Catalogos
             });
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="filter"></param>
+        /// <param name="estatusRegistro"></param>
+        /// <returns>
+        /// OK 200: Retorna los registros en formato de paginación.
+        /// </returns>
         [HttpGet]
         [Route("search/{page:int=0}/{pageSize=4}/{filter?}")]
         public HttpResponseMessage Search(HttpRequestMessage request, int? page, int? pageSize, string filter = null, ETypeEstatusRegistro estatusRegistro = ETypeEstatusRegistro.Todos)
