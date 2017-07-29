@@ -33,13 +33,13 @@ namespace CEMEX.API.Infrastructure.Core
             catch (DbUpdateException ex)
             {
                 LogError(ex);
-                response = request.CreateResponse(HttpStatusCode.BadRequest, ex.InnerException.Message);
+                response = request.CreateResponse(HttpStatusCode.InternalServerError, ex.InnerException.Message);
 
             }
             catch (Exception ex)
             {
                 LogError(ex);
-                response = request.CreateResponse(HttpStatusCode.BadRequest, ex.InnerException.Message);
+                response = request.CreateResponse(HttpStatusCode.InternalServerError, ex.InnerException.Message);
             }
 
             return response;
