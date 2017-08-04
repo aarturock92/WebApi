@@ -1,4 +1,5 @@
 ﻿using CEMEX.API.Controllers.Seguridad;
+using CEMEX.API.Infrastructure.Core;
 using CEMEX.API.Infrastructure.Extensions;
 using System.Net.Http;
 using System.Security.Claims;
@@ -27,11 +28,9 @@ namespace CEMEX.API.Infrastructure.MessageHandlers
             }
 
             var nombreCompleto = claimsPrincipal.Identity.Name;
-            //var numeroEmpleado = claimsPrincipal.Identity.
             var usuarioId = claimsPrincipal.Identity.GetUserId();
-            var lifetimeInMinutes = int.Parse(WebConfigurationManager.AppSettings["TokenLifeTimeInMinutes"]);
 
-            var token = UsuariosController.CrearToken(usuarioId, nombreCompleto, "123", lifetimeInMinutes);
+            var token = UsuariosController.CrearToken(usuarioId, nombreCompleto);
             response.Headers.Add("Set-Authorization", token);
 
             return response;

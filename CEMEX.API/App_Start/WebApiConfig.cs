@@ -23,7 +23,8 @@ namespace CEMEX.API
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
             // Habilita las peticiones desde cualquier origen.
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*", "Set-Authorization"));
+
         }
     }
 }
