@@ -10,9 +10,6 @@ namespace CEMEX.API
     {
         public static void Register(HttpConfiguration config)
         {
-            // Habilita las peticiones desde cualquier origen.
-            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
-
             // Rutas de API web.
             config.MapHttpAttributeRoutes();
 
@@ -22,13 +19,11 @@ namespace CEMEX.API
             // Configurar el manejador de caducidad deslizante para que se ejecute en cada solicitud.
             config.MessageHandlers.Add(new SlidingExpirationHandler());
 
+            //Impone a las estructuras JSON a usar camelCase
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            // Habilita las peticiones desde cualquier origen.
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
         }
     }
 }

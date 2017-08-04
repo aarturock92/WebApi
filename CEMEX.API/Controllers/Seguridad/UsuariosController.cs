@@ -162,8 +162,10 @@ namespace CEMEX.API.Controllers.Seguridad
                         if (string.Equals(EncryptionService.EncriptarPassowrd(credentialVM.Password.Trim(), _usuario.Salt),
                                           _usuario.HashedContraseña.Trim()))
                         {
+                            var nombreCompleto = String.Format("{0} {1} {2}", _usuario.Nombre, _usuario.PrimerApellido, _usuario.SegundoApellido);
+
                             var lifetimeInMinutes = int.Parse(WebConfigurationManager.AppSettings["TokenLifetimeInMinutes"]);
-                            var token = CrearToken(_usuario.ID.ToString(), _usuario.NombreUsuario, lifetimeInMinutes);
+                            var token = CrearToken(_usuario.ID.ToString(), nombreCompleto, _usuario.NumeroEmpleado,  lifetimeInMinutes);
 
                             response = request.CreateResponse(HttpStatusCode.OK, new
                             {
@@ -241,11 +243,12 @@ namespace CEMEX.API.Controllers.Seguridad
         }
 
 
-        public static string CrearToken(string userId, string fullName, int lifeTimeInMinutes)
+        public static string CrearToken(string userId, string nombreCompleto, string numeroEmpleado, int lifeTimeInMinutes)
         {
             var claimsIdentity = new ClaimsIdentity(new[] {
                 new Claim(JwtRegisteredClaimNames.Sub, userId),
-                new Claim("name", fullName)
+                new Claim("numeroEmpleado", numeroEmpleado),
+                new Claim("name", nombreCompleto)
             });
 
             var now = DateTime.UtcNow;

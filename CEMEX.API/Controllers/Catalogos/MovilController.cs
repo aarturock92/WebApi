@@ -96,6 +96,7 @@ namespace CEMEX.API.Controllers.Catalogos
         /// Created 201: La trasacción se realizo con exito.
         /// </returns>
         [HttpPost]
+        [Route("Crear")]
         public HttpResponseMessage Crear(HttpRequestMessage request, MovilViewModel movilVM)
         {
             return CreateHttpResponse(request, () =>

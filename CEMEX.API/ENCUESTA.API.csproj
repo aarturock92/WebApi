@@ -201,7 +201,6 @@
     <Compile Include="Infrastructure\Files\MimeMultipart.cs" />
     <Compile Include="Infrastructure\Files\UploadMultipartFormProvider.cs" />
     <Compile Include="Infrastructure\Filters\BearerAuthenticationFilter.cs" />
-    <Compile Include="Infrastructure\MessageHandlers\CemexAuthHandler.cs" />
     <Compile Include="Infrastructure\MessageHandlers\SlidingExpirationHandler.cs" />
     <Compile Include="Infrastructure\Validators\Catalogos\MovilViewModelValidator.cs" />
     <Compile Include="Infrastructure\Validators\Catalogos\VehiculoViewModelValidator.cs" />

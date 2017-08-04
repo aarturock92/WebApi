@@ -26,11 +26,12 @@ namespace CEMEX.API.Infrastructure.MessageHandlers
                 return response;
             }
 
-            var fullName = claimsPrincipal.Identity.Name;
-            var userId = claimsPrincipal.Identity.GetUserId();
+            var nombreCompleto = claimsPrincipal.Identity.Name;
+            //var numeroEmpleado = claimsPrincipal.Identity.
+            var usuarioId = claimsPrincipal.Identity.GetUserId();
             var lifetimeInMinutes = int.Parse(WebConfigurationManager.AppSettings["TokenLifeTimeInMinutes"]);
 
-            var token = UsuariosController.CrearToken(userId,fullName,lifetimeInMinutes);
+            var token = UsuariosController.CrearToken(usuarioId, nombreCompleto, "123", lifetimeInMinutes);
             response.Headers.Add("Set-Authorization", token);
 
             return response;
